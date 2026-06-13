@@ -1,691 +1,625 @@
 @{
-    ViewData["Title"] = "AI Officer — PasTech HQ";
+    ViewData["Title"] = "AI HQ";
     Layout = "~/Views/Shared/_OfficeLayout.cshtml";
 }
 
-<!-- Stars -->
-<div class="stars" id="stars"></div>
+<div class="stars"></div>
+<div class="hq-page">
 
-<div class="office-layout">
-    <!-- ═══ BUILDING ═══ -->
-    <div class="building-wrap">
-        <div class="building">
+    <!-- ══════════════════════════════════════════
+         LEFT PANEL
+    ══════════════════════════════════════════ -->
+    <div class="hq-left">
+        <div class="lp-brand">
+            <div class="lp-brand-ttl">PASTECHAI<span class="lp-brand-v">v3</span></div>
+            <div class="lp-clock" id="lp-clock">--:--:--</div>
+            <div class="lp-date" id="lp-date">—</div>
+        </div>
 
-            <!-- ROOF -->
-            <div class="building-roof">
-                <div class="roof-logo">
-                    <div class="logo-icon">🏢</div>
-                    <div>
-                        <h1>PASTECH SYSTEM HQ</h1>
-                        <p>AI Agent Office — v2.0 · Room Edition</p>
-                    </div>
-                </div>
-                <div class="text-center">
-                    <div class="roof-clock" id="clock">09:00:00</div>
-                    <div class="roof-status mt-1">
-                        <div class="status-dot"></div> SYSTEM OPTIMAL
-                    </div>
+        <div class="lp-sec">
+            <div class="lp-sec-ttl">Company Status</div>
+            <div class="lp-row"><span>Tasks Active</span><span class="lp-val" style="color:#58a6ff">24</span></div>
+            <div class="lp-row"><span>Completed Today</span><span class="lp-val" style="color:#3fb950">156</span></div>
+            <div class="lp-row"><span>Revenue (MTD)</span><span class="lp-val" style="color:#f0c040">฿1.2M</span></div>
+            <div class="lp-spark">
+                <div class="lp-bar" style="height:30%"></div>
+                <div class="lp-bar" style="height:55%"></div>
+                <div class="lp-bar" style="height:40%"></div>
+                <div class="lp-bar" style="height:70%"></div>
+                <div class="lp-bar" style="height:50%"></div>
+                <div class="lp-bar" style="height:85%"></div>
+                <div class="lp-bar" style="height:60%"></div>
+                <div class="lp-bar" style="height:100%"></div>
+            </div>
+        </div>
+
+        <div class="lp-sec">
+            <div class="lp-sec-ttl">System Health</div>
+            <div class="lp-srow"><span style="font-size:.65rem">AI API</span><span class="lp-tag ok">OK</span></div>
+            <div class="lp-srow"><span style="font-size:.65rem">Database</span><span class="lp-tag ok">OK</span></div>
+            <div class="lp-srow"><span style="font-size:.65rem">Cloudflare</span><span class="lp-tag secure">SECURE</span></div>
+            <div class="lp-srow"><span style="font-size:.65rem">CI/CD</span><span class="lp-tag ok">OK</span></div>
+        </div>
+
+        <div class="lp-sec">
+            <div class="lp-sec-ttl">Notifications</div>
+            <div class="notif-item"><div class="notif-dot"></div>Sales: Inquiry ใหม่จาก บริษัท ABC</div>
+            <div class="notif-item"><div class="notif-dot"></div>Project: งาน PT-2024-089 อัปเดต</div>
+            <div class="notif-item"><div class="notif-dot"></div>Support: Ticket #142 ปิดแล้ว</div>
+        </div>
+
+        <div class="lp-sec" style="flex:1">
+            <div class="lp-sec-ttl">AI Agents Online</div>
+            <div class="agent-row">
+                <div class="agent-mini" onclick="selectRoom('cmd')"><div class="agent-mini-icon">🤖</div>Boss</div>
+                <div class="agent-mini" onclick="selectRoom('sales')"><div class="agent-mini-icon">😊</div>Sales</div>
+                <div class="agent-mini" onclick="selectRoom('survey')"><div class="agent-mini-icon">🔍</div>Survey</div>
+                <div class="agent-mini" onclick="selectRoom('quotation')"><div class="agent-mini-icon">📋</div>Quote</div>
+                <div class="agent-mini" onclick="selectRoom('project')"><div class="agent-mini-icon">📅</div>Project</div>
+                <div class="agent-mini" onclick="selectRoom('document')"><div class="agent-mini-icon">📄</div>Doc</div>
+                <div class="agent-mini" onclick="selectRoom('support')"><div class="agent-mini-icon">🛠️</div>Support</div>
+                <div class="agent-mini" onclick="selectRoom('marketing')"><div class="agent-mini-icon">📣</div>Mktg</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         CENTER BUILDING
+    ══════════════════════════════════════════ -->
+    <div class="hq-center">
+        <div class="hq-roof">
+            <div class="hq-roof-brand">
+                <div class="hq-roof-icon">🏢</div>
+                <div>
+                    <div class="hq-roof-name">PASTECHAI HQ</div>
+                    <div class="hq-roof-sub">Intelligent AI Office · Multi-Department Operations</div>
                 </div>
             </div>
+            <div class="hq-roof-right">
+                <div class="roof-pulse"></div>
+                ALL SYSTEMS OPERATIONAL
+            </div>
+        </div>
 
-            <!-- ══ PENTHOUSE — CEO / BOSS ══ -->
-            <div class="floor ceo-floor" onclick="selectAgent('ceo',event)">
-                <div class="elevator-shaft">
-                    <div class="elevator-car" id="elevatorCar" style="top:4px">🛗</div>
+        <!-- COMMAND CENTER -->
+        <div class="hq-cmd" id="room-cmd" onclick="selectRoom('cmd')">
+            <div class="cmd-ceil"></div>
+            <div class="cmd-lamps">
+                <div class="cmd-lamp"></div>
+                <div class="cmd-lamp"></div>
+                <div class="cmd-lamp"></div>
+                <div class="cmd-lamp"></div>
+                <div class="cmd-lamp"></div>
+            </div>
+            <div class="cmd-wall-disp">
+                <div class="cmd-disp-grid"></div>
+                <div class="cmd-disp-data">
+                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
+                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
+                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
+                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
                 </div>
-                <div class="floor-num-col">
-                    <div class="fl-num">P</div>
-                    <div class="fl-icon">👑</div>
+                <div class="cmd-orb">BOSS</div>
+            </div>
+            <div class="cmd-ws-row">
+                <!-- CEO workstation (large) -->
+                <div class="ws main" style="--wc:240,192,64">
+                    <div class="ws-mon"><div class="ws-code">
+                        <span style="width:88%"></span><span style="width:60%"></span>
+                        <span style="width:75%"></span><span style="width:92%"></span>
+                        <span style="width:50%"></span><span style="width:80%"></span>
+                    </div></div>
+                    <div class="ws-mn"></div><div class="ws-mb"></div>
+                    <div class="ws-desk"></div>
+                    <div class="pxc-box" style="--h:#1a0d00;--s:#7c5c00"><div class="pxc"></div></div>
                 </div>
-                <div class="room-scene"
-                     style="--clr:240,192,64; --clr-hex:#f0c040; --clr-dim:#7c6000">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:85%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:72%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:90%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:60%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>🏆</span><span>☕</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">😎</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#7c6000"></div>
-                        <div class="r-arm-r" style="background:#7c6000"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📊</div>
-                        <div class="r-prop">🌿</div>
-                    </div>
-                    <div class="r-floor-prop">🏅</div>
-                    <div class="r-info">
-                        <div class="r-sdot done" id="dot-ceo"></div>
-                        <span class="r-agent-name">บอส (BOSS)</span>
-                        <span class="r-agent-role">Chief Executive Officer · Orchestrator</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('ceo')">สั่งงาน</button>
+                <div class="ws" style="--wc:240,192,64">
+                    <div class="ws-mon"><div class="ws-code">
+                        <span style="width:72%"></span><span style="width:55%"></span>
+                        <span style="width:90%"></span><span style="width:40%"></span>
+                    </div></div>
+                    <div class="ws-mn"></div><div class="ws-mb"></div>
+                    <div class="ws-desk"></div>
+                    <div class="pxc-box" style="--h:#1a1a1a;--s:#5c4500"><div class="pxc worker"></div></div>
+                </div>
+                <div class="ws" style="--wc:240,192,64">
+                    <div class="ws-mon"><div class="ws-code">
+                        <span style="width:65%"></span><span style="width:82%"></span>
+                        <span style="width:48%"></span><span style="width:95%"></span>
+                    </div></div>
+                    <div class="ws-mn"></div><div class="ws-mb"></div>
+                    <div class="ws-desk"></div>
+                    <div class="pxc-box" style="--h:#2d0a0a;--s:#5c4500"><div class="pxc worker"></div></div>
                 </div>
             </div>
+            <div class="r-label" style="top:auto;bottom:10px;left:10px;transform:none;--clr:240,192,64">
+                <div class="r-sdot working" style="display:inline-block;margin-right:5px;vertical-align:middle"></div>
+                Boss (Director) · COMMAND CENTER
+            </div>
+        </div>
 
-            <!-- ══ FLOOR 7 — MARKETING / MAYA ══ -->
-            <div class="floor" onclick="selectAgent('marketing',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">7F</div><div class="fl-icon">📣</div></div>
-                <div class="room-scene"
-                     style="--clr:167,139,250; --clr-hex:#a78bfa; --clr-dim:#5b21b6">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:90%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:75%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:85%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:50%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>🎬</span><span>☕</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">🎨</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#5b21b6"></div>
-                        <div class="r-arm-r" style="background:#5b21b6"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📸</div>
-                        <div class="r-prop">🎞️</div>
-                    </div>
-                    <div class="r-floor-prop">🌸</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-marketing"></div>
-                        <span class="r-agent-name">มายา (Maya)</span>
-                        <span class="r-agent-role">Marketing Manager · ฝ่ายการตลาด</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('marketing')">สร้าง Content</button>
+        <!-- FLOOR 2: Sales | Survey | Quotation -->
+        <div class="hq-floor-row">
+
+            <!-- SALES -->
+            <div class="hq-room" id="room-sales" style="--clr:88,166,255" onclick="selectRoom('sales')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:88,166,255">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:80%"></span><span style="width:55%"></span>
+                            <span style="width:92%"></span><span style="width:65%"></span>
+                            <span style="width:45%"></span><span style="width:78%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a120a;--s:#1e40af"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:88,166,255">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:70%"></span><span style="width:88%"></span>
+                            <span style="width:50%"></span><span style="width:75%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#1e40af"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">💼</div>
+                <div class="r-flt r-flt-r">📞</div>
+                <div class="r-info">
+                    <div class="r-sdot working" id="dot-sales"></div>
+                    <div><div class="r-nm">สมหมาย (Sommai)</div><div class="r-rl">Sales Manager</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('sales')">ตอบ Inquiry</button>
+                <div class="r-label">ฝ่ายขาย</div>
             </div>
 
-            <!-- ══ FLOOR 6 — SUPPORT / CHUAI ══ -->
-            <div class="floor" onclick="selectAgent('support',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">6F</div><div class="fl-icon">🛠️</div></div>
-                <div class="room-scene"
-                     style="--clr:251,146,60; --clr-hex:#fb923c; --clr-dim:#9a3412">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:88%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:65%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:80%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:72%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>📋</span><span>🎧</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">🎧</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#9a3412"></div>
-                        <div class="r-arm-r" style="background:#9a3412"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📡</div>
-                        <div class="r-prop">🖥️</div>
-                    </div>
-                    <div class="r-floor-prop">🔧</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-support"></div>
-                        <span class="r-agent-name">ช่วย (Chuai)</span>
-                        <span class="r-agent-role">Support Engineer · ฝ่ายบริการลูกค้า</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('support')">แจ้งปัญหา</button>
+            <!-- SURVEY -->
+            <div class="hq-room" id="room-survey" style="--clr:34,211,238" onclick="selectRoom('survey')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:34,211,238">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:92%"></span><span style="width:60%"></span>
+                            <span style="width:75%"></span><span style="width:85%"></span>
+                            <span style="width:50%"></span><span style="width:70%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#0a1a2a;--s:#0e7490"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:34,211,238">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:65%"></span><span style="width:80%"></span>
+                            <span style="width:48%"></span><span style="width:92%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#0e7490"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">📐</div>
+                <div class="r-flt r-flt-r">🔭</div>
+                <div class="r-info">
+                    <div class="r-sdot working" id="dot-survey"></div>
+                    <div><div class="r-nm">วิท (Wit)</div><div class="r-rl">Survey & Design</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('survey')">วิเคราะห์หน้างาน</button>
+                <div class="r-label">สำรวจ & ออกแบบ</div>
             </div>
 
-            <!-- ══ FLOOR 5 — DOCUMENT / EK ══ -->
-            <div class="floor" onclick="selectAgent('document',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">5F</div><div class="fl-icon">📄</div></div>
-                <div class="room-scene"
-                     style="--clr:52,211,153; --clr-hex:#34d399; --clr-dim:#065f46">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:82%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:94%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:60%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:78%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>📑</span><span>📐</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">📚</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#065f46"></div>
-                        <div class="r-arm-r" style="background:#065f46"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">🗄️</div>
-                        <div class="r-prop">📁</div>
-                    </div>
-                    <div class="r-floor-prop">🌿</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-document"></div>
-                        <span class="r-agent-name">เอก (Ek)</span>
-                        <span class="r-agent-role">Technical Writer · ฝ่ายเอกสาร</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('document')">สร้างเอกสาร</button>
+            <!-- QUOTATION -->
+            <div class="hq-room" id="room-quotation" style="--clr:251,191,36" onclick="selectRoom('quotation')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:251,191,36">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:85%"></span><span style="width:55%"></span>
+                            <span style="width:98%"></span><span style="width:70%"></span>
+                            <span style="width:45%"></span><span style="width:82%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a0a00;--s:#92400e"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:251,191,36">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:72%"></span><span style="width:90%"></span>
+                            <span style="width:55%"></span><span style="width:68%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#92400e"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">💰</div>
+                <div class="r-flt r-flt-r">🧾</div>
+                <div class="r-info">
+                    <div class="r-sdot idle" id="dot-quotation"></div>
+                    <div><div class="r-nm">นาบ (Nab)</div><div class="r-rl">Quotation Specialist</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('quotation')">ออกใบเสนอ</button>
+                <div class="r-label">ใบเสนอราคา</div>
+            </div>
+        </div>
+
+        <!-- FLOOR 1: Project | Document | Support -->
+        <div class="hq-floor-row">
+
+            <!-- PROJECT -->
+            <div class="hq-room" id="room-project" style="--clr:248,113,113" onclick="selectRoom('project')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
+                </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:248,113,113">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:78%"></span><span style="width:58%"></span>
+                            <span style="width:90%"></span><span style="width:45%"></span>
+                            <span style="width:70%"></span><span style="width:85%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#2a0a1a;--s:#7f1d1d"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:248,113,113">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:80%"></span><span style="width:52%"></span>
+                            <span style="width:65%"></span><span style="width:88%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#7f1d1d"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">📅</div>
+                <div class="r-flt r-flt-r">📌</div>
+                <div class="r-info">
+                    <div class="r-sdot working" id="dot-project"></div>
+                    <div><div class="r-nm">พิม (Pim)</div><div class="r-rl">Project Manager</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('project')">วางแผนงาน</button>
+                <div class="r-label">จัดการโครงการ</div>
             </div>
 
-            <!-- ══ FLOOR 4 — PROJECT / PIM ══ -->
-            <div class="floor" onclick="selectAgent('project',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">4F</div><div class="fl-icon">📅</div></div>
-                <div class="room-scene"
-                     style="--clr:248,113,113; --clr-hex:#f87171; --clr-dim:#7f1d1d">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:95%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:70%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:85%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:58%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>📌</span><span>⏱️</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">📊</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#7f1d1d"></div>
-                        <div class="r-arm-r" style="background:#7f1d1d"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📋</div>
-                        <div class="r-prop">🗂️</div>
-                    </div>
-                    <div class="r-floor-prop">🖨️</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-project"></div>
-                        <span class="r-agent-name">ปิ่น (Pim)</span>
-                        <span class="r-agent-role">Project Manager · ฝ่ายจัดการโครงการ</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('project')">วางแผนงาน</button>
+            <!-- DOCUMENT -->
+            <div class="hq-room" id="room-document" style="--clr:52,211,153" onclick="selectRoom('document')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:52,211,153">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:95%"></span><span style="width:60%"></span>
+                            <span style="width:80%"></span><span style="width:72%"></span>
+                            <span style="width:55%"></span><span style="width:88%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#0a1a0a;--s:#065f46"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:52,211,153">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:68%"></span><span style="width:85%"></span>
+                            <span style="width:50%"></span><span style="width:78%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#065f46"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">📄</div>
+                <div class="r-flt r-flt-r">🖨️</div>
+                <div class="r-info">
+                    <div class="r-sdot done" id="dot-document"></div>
+                    <div><div class="r-nm">เอก (Ek)</div><div class="r-rl">Document Officer</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('document')">ออกเอกสาร</button>
+                <div class="r-label">งานเอกสาร</div>
             </div>
 
-            <!-- ══ FLOOR 3 — QUOTATION / NAB ══ -->
-            <div class="floor" onclick="selectAgent('quotation',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">3F</div><div class="fl-icon">📋</div></div>
-                <div class="room-scene"
-                     style="--clr:251,191,36; --clr-hex:#fbbf24; --clr-dim:#78350f">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:78%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:92%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:65%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:88%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>🧮</span><span>💵</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">💰</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#78350f"></div>
-                        <div class="r-arm-r" style="background:#78350f"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📊</div>
-                        <div class="r-prop">🗃️</div>
-                    </div>
-                    <div class="r-floor-prop">🧾</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-quotation"></div>
-                        <span class="r-agent-name">นับทอง (Nab)</span>
-                        <span class="r-agent-role">Quotation Specialist · ฝ่ายการเงิน</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('quotation')">ทำใบเสนอราคา</button>
+            <!-- SUPPORT -->
+            <div class="hq-room" id="room-support" style="--clr:251,146,60" onclick="selectRoom('support')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:251,146,60">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:75%"></span><span style="width:90%"></span>
+                            <span style="width:62%"></span><span style="width:80%"></span>
+                            <span style="width:48%"></span><span style="width:95%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a0a00;--s:#7c2d12"><div class="pxc"></div></div>
+                    </div>
+                    <div class="ws" style="--wc:251,146,60">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:82%"></span><span style="width:58%"></span>
+                            <span style="width:70%"></span><span style="width:92%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#7c2d12"><div class="pxc worker"></div></div>
+                    </div>
+                </div>
+                <div class="r-flt r-flt-l">🛠️</div>
+                <div class="r-flt r-flt-r">📟</div>
+                <div class="r-info">
+                    <div class="r-sdot working" id="dot-support"></div>
+                    <div><div class="r-nm">ช่วย (Chuai)</div><div class="r-rl">Support Engineer</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('support')">แก้ไขปัญหา</button>
+                <div class="r-label">ฝ่ายซ่อมบำรุง</div>
+            </div>
+        </div>
+
+        <!-- GROUND: Server Room | Marketing | Lobby -->
+        <div class="hq-floor-row ground">
+
+            <!-- SERVER ROOM -->
+            <div class="hq-room server" id="room-server" style="--clr:88,166,255" onclick="selectRoom('server')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall"><div class="r-win"></div></div>
+                <div class="srv-racks">
+                    <div class="srv-rack">
+                        <div class="srv-ru" style="--d:.9s"></div><div class="srv-ru" style="--d:1.3s"></div>
+                        <div class="srv-ru" style="--d:.7s"></div><div class="srv-ru" style="--d:1.6s"></div>
+                        <div class="srv-ru" style="--d:1.1s"></div><div class="srv-ru" style="--d:.8s"></div>
+                    </div>
+                    <div class="srv-rack">
+                        <div class="srv-ru" style="--d:1.4s"></div><div class="srv-ru" style="--d:.6s"></div>
+                        <div class="srv-ru" style="--d:1.0s"></div><div class="srv-ru" style="--d:1.7s"></div>
+                        <div class="srv-ru" style="--d:.85s"></div><div class="srv-ru" style="--d:1.2s"></div>
+                    </div>
+                    <div class="srv-rack">
+                        <div class="srv-ru" style="--d:.95s"></div><div class="srv-ru" style="--d:1.5s"></div>
+                        <div class="srv-ru" style="--d:.75s"></div><div class="srv-ru" style="--d:1.0s"></div>
+                        <div class="srv-ru" style="--d:1.3s"></div><div class="srv-ru" style="--d:.65s"></div>
+                    </div>
+                </div>
+                <div class="ai-robot">🤖</div>
+                <div class="r-info" style="--clr:88,166,255">
+                    <div class="r-sdot working"></div>
+                    <div><div class="r-nm">AI Core Engine</div><div class="r-rl">Server Infrastructure</div></div>
+                </div>
+                <div class="r-label">ห้อง Server</div>
             </div>
 
-            <!-- ══ FLOOR 2 — ENGINEERING / WIT ══ -->
-            <div class="floor" onclick="selectAgent('survey',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">2F</div><div class="fl-icon">🔍</div></div>
-                <div class="room-scene"
-                     style="--clr:34,211,238; --clr-hex:#22d3ee; --clr-dim:#0e4f5e">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
-                    </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:86%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:68%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:95%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:62%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
-                    </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>📐</span><span>🔭</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">⚙️</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#0e4f5e"></div>
-                        <div class="r-arm-r" style="background:#0e4f5e"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">🗺️</div>
-                        <div class="r-prop">📡</div>
-                    </div>
-                    <div class="r-floor-prop">🔌</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-survey"></div>
-                        <span class="r-agent-name">วิศว (Wit)</span>
-                        <span class="r-agent-role">Senior Engineer · ฝ่ายวิศวกรรม</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('survey')">ออกแบบระบบ</button>
+            <!-- MARKETING -->
+            <div class="hq-room" id="room-marketing" style="--clr:167,139,250" onclick="selectRoom('marketing')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall">
+                    <div class="r-win"></div>
+                    <div class="r-wscr"><div class="r-wscr-lines">
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
+                    </div></div>
                 </div>
-            </div>
-
-            <!-- ══ FLOOR 1 — SALES / SOMMAI ══ -->
-            <div class="floor" onclick="selectAgent('sales',event)">
-                <div class="elevator-shaft"></div>
-                <div class="floor-num-col"><div class="fl-num">1F</div><div class="fl-icon">💼</div></div>
-                <div class="room-scene"
-                     style="--clr:88,166,255; --clr-hex:#60a5fa; --clr-dim:#1e40af">
-                    <div class="r-ceil"><div class="r-lamp"></div></div>
-                    <div class="r-wall">
-                        <div class="r-win"></div>
-                        <div class="r-wallboard">
-                            <div class="r-wb-line" style="width:100%"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                            <div class="r-wb-line"></div>
-                        </div>
+                <div class="r-ws-row">
+                    <div class="ws main" style="--wc:167,139,250">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:88%"></span><span style="width:55%"></span>
+                            <span style="width:72%"></span><span style="width:90%"></span>
+                            <span style="width:48%"></span><span style="width:80%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a0a2a;--s:#4c1d95"><div class="pxc"></div></div>
                     </div>
-                    <div class="r-mon">
-                        <div class="r-mon-scr">
-                            <div class="r-mon-code">
-                                <div class="r-code-ln" style="width:80%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:90%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:62%"></div>
-                                <div class="r-code-ln"></div>
-                                <div class="r-code-ln" style="width:84%"></div>
-                                <div class="r-code-ln"></div>
-                            </div>
-                        </div>
-                        <div class="r-mon-neck"></div>
-                        <div class="r-mon-base"></div>
+                    <div class="ws" style="--wc:167,139,250">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:75%"></span><span style="width:92%"></span>
+                            <span style="width:58%"></span><span style="width:80%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk"></div>
+                        <div class="pxc-box" style="--h:#1a1a1a;--s:#4c1d95"><div class="pxc worker"></div></div>
                     </div>
-                    <div class="r-desk">
-                        <div class="r-desk-items"><span>📞</span><span>📧</span></div>
-                    </div>
-                    <div class="r-keyboard"></div>
-                    <div class="r-agent">
-                        <div class="r-agent-head">😊</div>
-                        <div class="r-agent-body"></div>
-                    </div>
-                    <div class="r-arms">
-                        <div class="r-arm-l" style="background:#1e40af"></div>
-                        <div class="r-arm-r" style="background:#1e40af"></div>
-                    </div>
-                    <div class="r-props">
-                        <div class="r-prop">📱</div>
-                        <div class="r-prop">💬</div>
-                    </div>
-                    <div class="r-floor-prop">🌱</div>
-                    <div class="r-info">
-                        <div class="r-sdot idle" id="dot-sales"></div>
-                        <span class="r-agent-name">สมหมาย (Sommai)</span>
-                        <span class="r-agent-role">Sales Manager · ฝ่ายขาย</span>
-                    </div>
-                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('sales')">ตอบ Inquiry</button>
                 </div>
+                <div class="r-flt r-flt-l">📣</div>
+                <div class="r-flt r-flt-r">🎨</div>
+                <div class="r-info">
+                    <div class="r-sdot idle" id="dot-marketing"></div>
+                    <div><div class="r-nm">มายา (Maya)</div><div class="r-rl">Marketing Mgr</div></div>
+                </div>
+                <button class="r-btn" onclick="event.stopPropagation();openModal('marketing')">สร้างคอนเทนต์</button>
+                <div class="r-label">ฝ่ายการตลาด</div>
             </div>
 
             <!-- LOBBY -->
-            <div class="building-lobby">
-                <div class="lobby-sign">
-                    <div class="lobby-light"></div>
-                    🏢 LOBBY — PasTech System HQ · Open 24/7 (AI Never Sleeps)
+            <div class="hq-room" id="room-lobby" style="--clr:148,163,184" onclick="selectRoom('lobby')">
+                <div class="r-ceil"><div class="r-lamp"></div></div>
+                <div class="r-wall"><div class="r-win"></div></div>
+                <div class="r-ws-row">
+                    <div class="ws" style="--wc:148,163,184">
+                        <div class="ws-mon"><div class="ws-code">
+                            <span style="width:78%"></span><span style="width:55%"></span>
+                            <span style="width:90%"></span><span style="width:65%"></span>
+                        </div></div>
+                        <div class="ws-mn"></div><div class="ws-mb"></div>
+                        <div class="ws-desk" style="width:72px;background:#1a2a40;border-color:#243850"></div>
+                        <div class="pxc-box" style="--h:#1a1a0a;--s:#334155"><div class="pxc"></div></div>
+                    </div>
                 </div>
-                <div style="display:flex;gap:1rem">
-                    <span>🌐 ai-office.pastechsystem.co.th</span>
-                    <span>👥 7 AI Agents Online</span>
+                <div class="r-flt r-flt-l">🌱</div>
+                <div class="r-flt r-flt-r" style="font-size:.9rem">🛋️</div>
+                <div class="r-info">
+                    <div class="r-sdot idle"></div>
+                    <div><div class="r-nm">Lobby</div><div class="r-rl">Reception / Visitor</div></div>
                 </div>
-            </div>
-
-        </div><!-- /.building -->
-    </div><!-- /.building-wrap -->
-
-    <!-- ═══ SIDEBAR ═══ -->
-    <div class="sidebar">
-
-        <!-- Agent Panel -->
-        <div class="card">
-            <div class="card-header">🤖 Agent Panel</div>
-            <div class="card-body" id="agentPanel">
-                <div style="text-align:center;padding:2rem;color:var(--muted)">
-                    <div style="font-size:2.5rem">👆</div>
-                    <p style="font-size:.85rem;margin-top:.5rem">คลิกห้องเพื่อเริ่มใช้งาน AI Agent</p>
-                </div>
+                <div class="r-label">Lobby</div>
             </div>
         </div>
 
-        <!-- Metrics -->
-        <div class="card">
-            <div class="card-header">📊 Company Metrics</div>
-            <div class="card-body">
-                <div class="metrics-grid">
-                    <div class="metric-box">
-                        <div class="metric-val" style="color:#58a6ff" id="metricTasks">0</div>
-                        <div class="metric-lbl">Tasks</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-val" style="color:#3fb950">7</div>
-                        <div class="metric-lbl">Agents</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-val" style="color:#f0c040" id="metricPipeline">0</div>
-                        <div class="metric-lbl">Pipeline ฿</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-val" style="color:#34d399">99.9%</div>
-                        <div class="metric-lbl">Uptime</div>
-                    </div>
-                </div>
+        <div class="hq-base">
+            <span><span class="base-dot"></span>PasTech AI HQ · ai-office.pastechsystem.co.th</span>
+            <span id="base-clock" style="font-family:'JetBrains Mono',monospace;font-size:.65rem"></span>
+            <span>8 AI Agents · Online</span>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         RIGHT PANEL
+    ══════════════════════════════════════════ -->
+    <div class="hq-right">
+        <div class="rp-head">
+            <div id="rp-agent-name" style="color:#58a6ff;font-family:'JetBrains Mono',monospace">Select a room...</div>
+            <div id="rp-agent-role" style="font-size:.6rem;color:#8b949e;margin-top:2px"></div>
+        </div>
+        <div class="rp-body">
+            <div class="rp-sec-ttl" style="margin-bottom:.45rem">Department Status</div>
+            <div class="dp-row"><span style="font-size:.65rem">Sales</span><div class="dp-bar-bg"><div class="dp-bar" style="width:78%;background:rgba(88,166,255,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">78%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Survey</span><div class="dp-bar-bg"><div class="dp-bar" style="width:62%;background:rgba(34,211,238,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">62%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Quotation</span><div class="dp-bar-bg"><div class="dp-bar" style="width:45%;background:rgba(251,191,36,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">45%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Project</span><div class="dp-bar-bg"><div class="dp-bar" style="width:88%;background:rgba(248,113,113,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">88%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Document</span><div class="dp-bar-bg"><div class="dp-bar" style="width:92%;background:rgba(52,211,153,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">92%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Support</span><div class="dp-bar-bg"><div class="dp-bar" style="width:55%;background:rgba(251,146,60,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">55%</span></div>
+            <div class="dp-row"><span style="font-size:.65rem">Marketing</span><div class="dp-bar-bg"><div class="dp-bar" style="width:38%;background:rgba(167,139,250,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">38%</span></div>
+
+            <div style="display:flex;gap:6px;margin:1rem 0 .6rem">
+                <div class="mini-m"><div class="mini-m-v" style="color:#3fb950">24</div><div class="mini-m-l">Active</div></div>
+                <div class="mini-m"><div class="mini-m-v" style="color:#58a6ff">156</div><div class="mini-m-l">MTD Done</div></div>
+                <div class="mini-m"><div class="mini-m-v" style="color:#f0c040">8</div><div class="mini-m-l">Agents</div></div>
+            </div>
+
+            <div class="rp-sec-ttl" style="margin-bottom:.4rem">Active Projects</div>
+            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-089 Network CCTV</span><span class="proj-badge">ON</span></div>
+            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-090 Server Setup</span><span class="proj-badge">ON</span></div>
+            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-091 Fiber WAN</span><span class="proj-badge" style="background:rgba(251,191,36,.15);color:#fbbf24">NEW</span></div>
+            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-087 UPS Replace</span><span class="proj-badge" style="background:rgba(248,113,113,.15);color:#f87171">HOT</span></div>
+
+            <div class="rp-sec-ttl" style="margin-top:1rem;margin-bottom:.3rem">AI Data Flow</div>
+            <div class="flow-chart">
+                <svg width="100%" height="100%" viewBox="0 0 200 42" preserveAspectRatio="none">
+                    <polyline points="0,35 20,28 40,32 60,18 80,22 100,15 120,20 140,10 160,18 180,8 200,12" fill="none" stroke="rgba(88,166,255,.5)" stroke-width="1.5"/>
+                    <polyline points="0,38 20,36 40,35 60,32 80,28 100,30 120,24 140,28 160,22 180,25 200,20" fill="none" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
+                </svg>
+                <div class="flow-line"></div>
             </div>
         </div>
 
-        <!-- Recent Tasks -->
-        <div class="card" style="flex:1">
-            <div class="card-header" style="display:flex;justify-content:space-between;align-items:center">
-                <span>📋 Recent Tasks</span>
-                <a href="/Dashboard" style="font-size:.72rem;color:#58a6ff;text-decoration:none">ดูทั้งหมด →</a>
-            </div>
-            <div class="card-body">
-                <div class="task-ticker" id="taskTicker">
-                    <div style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem">ยังไม่มีงาน</div>
-                </div>
-                <a href="/Dashboard/NewTask" class="btn-primary" style="display:block;text-align:center;text-decoration:none;margin-top:1rem;padding:.5rem;border-radius:6px;font-weight:700;font-size:.85rem">
-                    + รับงานใหม่
-                </a>
+        <div class="ai-workflow">
+            <div style="color:#e6edf3;font-weight:600">AI Workflow Pipeline</div>
+            <div class="wf-steps">
+                <span class="wf-step">Inquiry</span><span class="wf-arr">→</span>
+                <span class="wf-step">Survey</span><span class="wf-arr">→</span>
+                <span class="wf-step">Quote</span><span class="wf-arr">→</span>
+                <span class="wf-step">Project</span><span class="wf-arr">→</span>
+                <span class="wf-step">Document</span>
             </div>
         </div>
+    </div>
+</div>
 
-        <!-- System Bar -->
-        <div class="system-bar">
-            <div class="sys-item"><div class="sys-dot" style="background:#3fb950"></div> AI: claude-sonnet-4-6</div>
-            <div class="sys-item"><div class="sys-dot" style="background:#58a6ff"></div> DB: SQL Server</div>
-            <div class="sys-item"><div class="sys-dot" style="background:#f0c040"></div> ERP: Connected</div>
-            <div class="sys-item" style="margin-left:auto" id="agentRunCount">Runs: 0</div>
-        </div>
-
-    </div><!-- /.sidebar -->
-</div><!-- /.office-layout -->
-
-<!-- ═══ AGENT MODAL ═══ -->
-<div class="modal-overlay" id="agentModal" onclick="closeModal(event)">
+<!-- MODAL -->
+<div class="modal-overlay" id="agentModal" onclick="closeModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
-        <div id="modalContent"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
+            <div>
+                <div id="modal-title" style="font-size:1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:#58a6ff"></div>
+                <div id="modal-role" style="font-size:.65rem;color:#8b949e;margin-top:2px"></div>
+            </div>
+            <button onclick="closeModal()" style="background:none;border:1px solid #21262d;color:#8b949e;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.8rem">✕ ปิด</button>
+        </div>
+        <a id="modal-link" href="/Dashboard" style="display:inline-block;margin-bottom:1rem;background:#238636;color:#fff;border:none;border-radius:6px;padding:.4rem 1.2rem;font-size:.8rem;font-weight:600;text-decoration:none">
+            เปิดหน้า Dashboard →
+        </a>
+        <div style="font-size:.75rem;color:#8b949e">คลิก "เปิดหน้า Dashboard" เพื่อสร้างงานหรือดู log ของ Agent นี้</div>
     </div>
 </div>
 
 @section Scripts {
 <script>
-// ── Stars ──
-(function(){
-    const c = document.getElementById('stars');
-    for (let i = 0; i < 90; i++) {
-        const s = document.createElement('div');
-        s.className = 'star';
-        const sz = Math.random() * 2.5 + .4;
-        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
-        c.appendChild(s);
+const AGENTS = {
+    cmd:       { name:'Boss (Director)', role:'Command Center · CEO', link:'/Office' },
+    sales:     { name:'สมหมาย (Sommai)', role:'Sales Manager · ฝ่ายขาย', link:'/Dashboard' },
+    survey:    { name:'วิท (Wit)', role:'Survey & Design · สำรวจ&ออกแบบ', link:'/Dashboard' },
+    quotation: { name:'นาบ (Nab)', role:'Quotation Specialist · ใบเสนอราคา', link:'/Dashboard' },
+    project:   { name:'พิม (Pim)', role:'Project Manager · จัดการโครงการ', link:'/Dashboard' },
+    document:  { name:'เอก (Ek)', role:'Document Officer · งานเอกสาร', link:'/Dashboard' },
+    support:   { name:'ช่วย (Chuai)', role:'Support Engineer · ซ่อมบำรุง', link:'/Dashboard' },
+    marketing: { name:'มายา (Maya)', role:'Marketing Manager · การตลาด', link:'/Dashboard' },
+    server:    { name:'AI Core Engine', role:'Server Room · Infrastructure', link:'/Dashboard' },
+    lobby:     { name:'Lobby', role:'Reception / Visitor Area', link:'/Dashboard' },
+};
+
+let curRoom = null;
+function selectRoom(id) {
+    if (curRoom) document.getElementById('room-'+curRoom)?.classList.remove('active');
+    curRoom = id;
+    document.getElementById('room-'+id)?.classList.add('active');
+    const a = AGENTS[id] || {};
+    document.getElementById('rp-agent-name').textContent = a.name || id;
+    document.getElementById('rp-agent-role').textContent = a.role || '';
+}
+function openModal(id) {
+    const a = AGENTS[id] || {};
+    document.getElementById('modal-title').textContent = a.name || id;
+    document.getElementById('modal-role').textContent  = a.role || '';
+    document.getElementById('modal-link').href = a.link || '/Dashboard';
+    document.getElementById('agentModal').classList.add('open');
+}
+function closeModal() { document.getElementById('agentModal').classList.remove('open'); }
+
+// Generate stars
+(function() {
+    const s = document.querySelector('.stars');
+    for (let i = 0; i < 55; i++) {
+        const d = document.createElement('div'); d.className = 'star';
+        const sz = (Math.random()*1.4+.4).toFixed(1)+'px';
+        d.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz};height:${sz};animation-delay:${(Math.random()*5).toFixed(2)}s;animation-duration:${(Math.random()*3+2).toFixed(1)}s`;
+        s.appendChild(d);
     }
 })();
 
-// ── Clock ──
+// Clock
 function tick() {
-    document.getElementById('clock').textContent =
-        new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const now = new Date();
+    const t = now.toLocaleTimeString('th-TH', { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
+    const d = now.toLocaleDateString('th-TH', { weekday:'short', year:'2-digit', month:'short', day:'numeric' });
+    const lc = document.getElementById('lp-clock'); if (lc) lc.textContent = t;
+    const ld = document.getElementById('lp-date');  if (ld) ld.textContent = d;
+    const bc = document.getElementById('base-clock'); if (bc) bc.textContent = t;
 }
 tick(); setInterval(tick, 1000);
-
-// ── Agent Data ──
-const agents = {
-    ceo:       { name:'บอส (BOSS)',        title:'CEO / Orchestrator',         color:'#f0c040', emoji:'👑', dept:'Command Center',   hint:'มอบหมายงาน หรือถามภาพรวมบริษัท...', agentType: null },
-    sales:     { name:'สมหมาย (Sommai)',   title:'Sales Manager',              color:'#60a5fa', emoji:'💼', dept:'Sales Office',      hint:'วางข้อความจากลูกค้าได้เลย เช่น: "สอบถามกล้องวงจรปิด..."', agentType: 1 },
-    survey:    { name:'วิศว (Wit)',         title:'Senior Engineer',            color:'#22d3ee', emoji:'⚙️', dept:'Design Studio',     hint:'ระบุข้อมูลหน้างาน: พื้นที่, จำนวนจุด, ระบบที่ต้องการ...', agentType: 2 },
-    quotation: { name:'นับทอง (Nab)',      title:'Quotation Specialist',       color:'#fbbf24', emoji:'💰', dept:'Finance Office',    hint:'วาง BOM จาก Survey Agent เพื่อทำใบเสนอราคา...', agentType: 3 },
-    project:   { name:'ปิ่น (Pim)',        title:'Project Manager',            color:'#f87171', emoji:'📅', dept:'War Room',          hint:'วาง Quotation ที่อนุมัติแล้ว + วันเริ่มงาน...', agentType: 4 },
-    document:  { name:'เอก (Ek)',          title:'Technical Writer',           color:'#34d399', emoji:'📄', dept:'Document Center',   hint:'ระบุรายการอุปกรณ์ที่ติดตั้งจริงเพื่อทำ As-Built...', agentType: 5 },
-    support:   { name:'ช่วย (Chuai)',      title:'Support Engineer',           color:'#fb923c', emoji:'🛠️', dept:'Support Center',    hint:'บอกอาการที่ลูกค้าแจ้ง เช่น: "กล้องไม่ขึ้นภาพ..."', agentType: 6 },
-    marketing: { name:'มายา (Maya)',       title:'Marketing Manager',          color:'#a78bfa', emoji:'📣', dept:'Creative Studio',   hint:'สรุปงานที่เสร็จแล้ว เช่น: "CCTV 28 จุด โรงงานชลบุรี"...', agentType: 7 },
-};
-
-function selectAgent(key, e) {
-    document.querySelectorAll('.floor').forEach(f => f.classList.remove('active'));
-    if (e && e.currentTarget) e.currentTarget.classList.add('active');
-    const a = agents[key];
-    moveElevator(key);
-    document.getElementById('agentPanel').innerHTML = `
-        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
-            <div style="width:48px;height:48px;border-radius:10px;background:${a.color}22;border:1px solid ${a.color}55;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${a.emoji}</div>
-            <div>
-                <div style="font-weight:700;color:${a.color}">${a.name}</div>
-                <div style="font-size:.72rem;color:var(--muted)">${a.title} · ${a.dept}</div>
-            </div>
-        </div>
-        ${a.agentType ? `
-        <form onsubmit="runAgent(event,'${key}')">
-            <div style="margin-bottom:.75rem">
-                <label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:.3rem">Input / คำสั่ง</label>
-                <textarea name="input" rows="4" placeholder="${a.hint}" style="background:#060b14;border:1px solid #1e2d3d;color:#e6edf3;border-radius:6px;width:100%;padding:.5rem .75rem;font-size:.83rem;resize:vertical"></textarea>
-            </div>
-            <button type="submit" style="background:${a.color};border:none;color:#060b14;padding:.5rem 1rem;border-radius:6px;font-weight:700;cursor:pointer;width:100%;font-size:.85rem">▶ Run ${a.name}</button>
-        </form>
-        ` : `<p style="color:var(--muted);font-size:.85rem;line-height:1.6">CEO คือ Orchestrator — ใช้ Dashboard เพื่อจัดการและมอบหมายงานทั้งหมด</p>
-             <a href="/Dashboard" style="display:block;text-align:center;background:#f0c040;color:#060b14;padding:.5rem;border-radius:6px;font-weight:700;text-decoration:none;margin-top:.75rem">→ ไป Dashboard</a>`}
-    `;
-}
-
-const floorMap = { ceo:4, marketing:36, support:108, document:180, project:252, quotation:324, survey:396, sales:468 };
-function moveElevator(key) {
-    const car = document.getElementById('elevatorCar');
-    if (car) car.style.top = (floorMap[key] || 4) + 'px';
-}
-
-function openAgentModal(key) {
-    const a = agents[key];
-    document.getElementById('modalContent').innerHTML = `
-        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-            <div style="width:56px;height:56px;border-radius:12px;background:${a.color}22;border:2px solid ${a.color}55;display:flex;align-items:center;justify-content:center;font-size:2rem">${a.emoji}</div>
-            <div>
-                <div style="font-size:1.1rem;font-weight:700;color:${a.color}">${a.name}</div>
-                <div style="color:var(--muted);font-size:.8rem">${a.title} · ${a.dept}</div>
-            </div>
-        </div>
-        ${a.agentType ? `
-        <form onsubmit="runAgent(event,'${key}');closeModal()">
-            <label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.5rem">Input ถึง ${a.name}</label>
-            <textarea name="input" rows="6" placeholder="${a.hint}" style="background:#060b14;border:1px solid #1e2d3d;color:#e6edf3;border-radius:6px;width:100%;padding:.75rem;font-size:.85rem;resize:vertical;margin-bottom:1rem"></textarea>
-            <div style="display:flex;gap:.75rem">
-                <button type="button" onclick="closeModal()" style="flex:1;background:transparent;border:1px solid #1e2d3d;color:var(--muted);padding:.6rem;border-radius:6px;cursor:pointer">ยกเลิก</button>
-                <button type="submit" style="flex:2;background:${a.color};border:none;color:#060b14;padding:.6rem;border-radius:6px;font-weight:700;cursor:pointer;font-size:.9rem">▶ Run Agent</button>
-            </div>
-        </form>
-        ` : `<p style="color:var(--muted)">ใช้ Dashboard สำหรับ CEO Orchestrator</p>`}
-    `;
-    document.getElementById('agentModal').classList.add('open');
-}
-
-function closeModal(e) {
-    if (!e || e.target === document.getElementById('agentModal'))
-        document.getElementById('agentModal').classList.remove('open');
-}
-
-async function runAgent(e, key) {
-    e.preventDefault();
-    const dot = document.getElementById('dot-' + key);
-    if (dot) dot.className = 'r-sdot working';
-    const btn = e.target.querySelector('button[type=submit]');
-    if (btn) { btn.disabled = true; btn.textContent = '⏳ กำลังทำงาน...'; }
-    setTimeout(() => { window.location.href = '/Dashboard'; }, 600);
-}
 </script>
 }
