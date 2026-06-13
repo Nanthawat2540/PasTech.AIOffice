@@ -1,49 +1,180 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="th" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - AI Officer | PasTech</title>
-    <script type="importmap"></script>
+    <title>@ViewData["Title"] — PasTech AI Officer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <!-- AOS Animate on Scroll -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+    <!-- NProgress -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" />
+    <!-- DataTables Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.bootstrap5.min.css" />
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" />
+    <!-- AI Office CSS -->
     <link rel="stylesheet" href="~/css/ai-office.css" asp-append-version="true" />
+
+    <style>
+        :root {
+            --font-base: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        body { font-family: var(--font-base); }
+        code, .mono { font-family: var(--font-mono); }
+
+        /* NProgress bar color */
+        #nprogress .bar { background: #58a6ff; height: 3px; }
+        #nprogress .peg { box-shadow: 0 0 10px #58a6ff, 0 0 5px #58a6ff; }
+        #nprogress .spinner-icon {
+            border-top-color: #58a6ff;
+            border-left-color: #58a6ff;
+        }
+
+        /* Navbar */
+        .ai-navbar {
+            background: rgba(13,17,23,.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #21262d;
+            position: sticky;
+            top: 0;
+            z-index: 1030;
+        }
+        .ai-navbar .navbar-brand {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: #58a6ff !important;
+            letter-spacing: .5px;
+        }
+        .ai-navbar .nav-link {
+            color: #8b949e !important;
+            font-size: .875rem;
+            transition: color .2s;
+        }
+        .ai-navbar .nav-link:hover, .ai-navbar .nav-link.active { color: #e6edf3 !important; }
+        .ai-navbar .nav-link i { margin-right: 5px; }
+
+        /* Status dot in navbar */
+        .status-online {
+            display: inline-block;
+            width: 8px; height: 8px;
+            background: #3fb950;
+            border-radius: 50%;
+            animation: pulse-green 2s infinite;
+            margin-right: 6px;
+        }
+        @@keyframes pulse-green {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .4; }
+        }
+
+        /* Page wrapper */
+        .page-wrapper { padding: 1.5rem; min-height: calc(100vh - 57px); }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PasTech.AIOffice.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - PasTech.AIOffice.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<nav class="navbar navbar-expand-lg ai-navbar">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" asp-controller="Office" asp-action="Index">
+            <i class="bi bi-buildings"></i> PasTech<span style="color:#e6edf3">·AI</span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+            <i class="bi bi-list" style="color:#8b949e;font-size:1.3rem"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navMain">
+            <ul class="navbar-nav me-auto ms-3 gap-1">
+                <li class="nav-item">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Dashboard") ? "active" : "")"
+                       asp-controller="Dashboard" asp-action="Index">
+                        <i class="bi bi-grid-1x2"></i> Dashboard
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Office") ? "active" : "")"
+                       asp-controller="Office" asp-action="Index">
+                        <i class="bi bi-building"></i> AI Office
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Dashboard" asp-action="NewTask">
+                        <i class="bi bi-plus-circle"></i> งานใหม่
+                    </a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center gap-3">
+                <span class="text-muted" style="font-size:.75rem;font-family:var(--font-mono)">
+                    <span class="status-online"></span>ONLINE
+                </span>
+                <span class="text-muted" style="font-size:.75rem" id="nav-clock"></span>
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    </div>
+</nav>
+
+<div class="page-wrapper container-fluid">
+    @RenderBody()
+</div>
+
+<!-- JS Libraries -->
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<!-- NProgress -->
+<script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.js"></script>
+<!-- AOS -->
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<!-- CountUp.js -->
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+<!-- DataTables -->
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/2.0.8/js/dataTables.bootstrap5.min.js"></script>
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+<!-- Typed.js -->
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+<!-- Notiflix -->
+<script src="https://cdn.jsdelivr.net/npm/notiflix@3.2.7/dist/notiflix-aio-3.2.7.min.js"></script>
+
+<script>
+// Global init
+NProgress.configure({ showSpinner: false });
+AOS.init({ duration: 500, once: true, offset: 40 });
+Notiflix.Notify.init({
+    position: 'right-top', timeout: 3500, borderRadius: '8px',
+    success: { background: '#0d1117', textColor: '#3fb950', notiflixIconColor: '#3fb950' },
+    failure: { background: '#0d1117', textColor: '#f85149', notiflixIconColor: '#f85149' },
+    info: { background: '#0d1117', textColor: '#58a6ff', notiflixIconColor: '#58a6ff' },
+});
+
+// NProgress on page load
+NProgress.start();
+window.addEventListener('load', () => NProgress.done());
+$(document).ajaxStart(() => NProgress.start()).ajaxStop(() => NProgress.done());
+
+// NProgress on link clicks
+document.querySelectorAll('a[href]:not([target])').forEach(a => {
+    a.addEventListener('click', () => { if (!a.href.includes('#')) NProgress.start(); });
+});
+
+// Navbar clock
+function navTick() {
+    const el = document.getElementById('nav-clock');
+    if (el) el.textContent = new Date().toLocaleTimeString('th-TH', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+}
+navTick(); setInterval(navTick, 1000);
+</script>
+
+@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

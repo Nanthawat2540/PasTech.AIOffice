@@ -2,57 +2,207 @@
     ViewData["Title"] = "งานใหม่";
 }
 
-<div class="d-flex align-items-center mb-4">
-    <a asp-action="Index" class="btn btn-sm btn-outline-secondary me-3">← Dashboard</a>
-    <h2 class="mb-0">📥 รับงานใหม่</h2>
-</div>
-
 <div class="row justify-content-center">
-    <div class="col-md-7">
-        <div class="card">
-            <div class="card-header"><strong>ข้อมูล Inquiry</strong></div>
+    <div class="col-md-7 col-lg-6">
+
+        <!-- Header -->
+        <div class="mb-4" data-aos="fade-down">
+            <a asp-action="Index" class="btn btn-sm btn-outline-secondary mb-3">
+                <i class="bi bi-arrow-left me-1"></i>Dashboard
+            </a>
+            <h4 class="fw-bold mb-1" style="font-family:var(--font-mono);color:#58a6ff">
+                <i class="bi bi-plus-circle me-2"></i>รับงานใหม่
+            </h4>
+            <small class="text-muted">Sales Agent จะรับ Inquiry และเริ่มกระบวนการอัตโนมัติ</small>
+        </div>
+
+        <div class="card" style="border-color:#21262d;background:#161b22" data-aos="fade-up">
+            <div class="card-header" style="border-color:#21262d;background:rgba(255,255,255,.03)">
+                <i class="bi bi-inbox text-primary me-2"></i><strong>ข้อมูล Inquiry</strong>
+            </div>
             <div class="card-body">
-                <form asp-action="NewTask" method="post">
+                <form asp-action="NewTask" method="post" id="newTaskForm" novalidate>
                     <div class="row g-3">
+
+                        <!-- Customer Name -->
                         <div class="col-md-6">
-                            <label class="form-label">ชื่อลูกค้า / บริษัท <span class="text-danger">*</span></label>
-                            <input name="CustomerName" class="form-control" required />
+                            <label class="form-label label-sm">
+                                <i class="bi bi-person me-1 text-primary"></i>ชื่อลูกค้า / บริษัท
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input name="CustomerName" id="CustomerName" class="form-control"
+                                   placeholder="เช่น บริษัท ไทยแฟคตอรี่ จำกัด" required
+                                   autocomplete="organization" />
+                            <div class="invalid-feedback">กรุณาใส่ชื่อลูกค้า</div>
                         </div>
+
+                        <!-- Job Type -->
                         <div class="col-md-6">
-                            <label class="form-label">ประเภทงาน <span class="text-danger">*</span></label>
-                            <select name="JobType" class="form-select" required>
-                                <option value="CCTV">📷 CCTV & Security</option>
+                            <label class="form-label label-sm">
+                                <i class="bi bi-briefcase me-1 text-primary"></i>ประเภทงาน
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select name="JobType" id="JobType" class="form-select" required>
+                                <option value="CCTV">📷 CCTV &amp; Security</option>
                                 <option value="Network">🌐 Network Infrastructure</option>
-                                <option value="Server">🖥️ Server & Data Center</option>
+                                <option value="Server">🖥️ Server &amp; Data Center</option>
                                 <option value="Solar">☀️ Solar Energy</option>
-                                <option value="SmartBuilding">🏢 Smart Building & IoT</option>
+                                <option value="SmartBuilding">🏢 Smart Building &amp; IoT</option>
                             </select>
                         </div>
+
+                        <!-- Email -->
                         <div class="col-md-6">
-                            <label class="form-label">Email</label>
-                            <input name="CustomerEmail" type="email" class="form-control" />
+                            <label class="form-label label-sm">
+                                <i class="bi bi-envelope me-1 text-muted"></i>Email
+                            </label>
+                            <input name="CustomerEmail" type="email" class="form-control"
+                                   placeholder="customer@company.com" />
                         </div>
+
+                        <!-- Phone -->
                         <div class="col-md-6">
-                            <label class="form-label">เบอร์โทร</label>
-                            <input name="CustomerPhone" class="form-control" />
+                            <label class="form-label label-sm">
+                                <i class="bi bi-telephone me-1 text-muted"></i>เบอร์โทร
+                            </label>
+                            <input name="CustomerPhone" class="form-control" placeholder="08X-XXX-XXXX" />
                         </div>
+
+                        <!-- Location -->
                         <div class="col-12">
-                            <label class="form-label">สถานที่ / จังหวัด</label>
-                            <input name="Location" class="form-control" placeholder="เช่น นิคมอมตะนคร จ.ชลบุรี" />
+                            <label class="form-label label-sm">
+                                <i class="bi bi-geo-alt me-1 text-muted"></i>สถานที่ / จังหวัด
+                            </label>
+                            <input name="Location" class="form-control"
+                                   placeholder="เช่น นิคมอมตะนคร จ.ชลบุรี" />
                         </div>
+
+                        <!-- Description -->
                         <div class="col-12">
-                            <label class="form-label">ข้อความ Inquiry <span class="text-danger">*</span></label>
-                            <textarea name="Description" class="form-control" rows="5" required
-                                placeholder="วาง email หรือข้อความที่ลูกค้าส่งมาได้เลย..."></textarea>
+                            <label class="form-label label-sm">
+                                <i class="bi bi-chat-left-text me-1 text-primary"></i>ข้อความ Inquiry
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="Description" id="Description" class="form-control" rows="6" required
+                                placeholder="วาง email หรือข้อความที่ลูกค้าส่งมาได้เลย..."
+                                style="font-size:.875rem;resize:vertical"></textarea>
+                            <div class="invalid-feedback">กรุณาใส่ข้อมูล Inquiry</div>
+                            <div class="d-flex justify-content-end mt-1">
+                                <small class="text-muted" id="charCount">0 ตัวอักษร</small>
+                            </div>
                         </div>
+
+                        <!-- Job Type Preview -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary w-100">
-                                ✅ บันทึกและเรียก Sales Agent
+                            <div id="jobPreview" class="p-3 rounded" style="background:rgba(88,166,255,.06);border:1px solid rgba(88,166,255,.2);display:none">
+                                <div class="d-flex align-items-center gap-2">
+                                    <span id="jobIcon" style="font-size:1.5rem"></span>
+                                    <div>
+                                        <div id="jobTitle" class="fw-semibold" style="color:#58a6ff"></div>
+                                        <div id="jobDesc" class="text-muted" style="font-size:.8rem"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100 py-2" id="submitBtn">
+                                <i class="bi bi-robot me-2"></i>บันทึกและเรียก Sales Agent
                             </button>
                         </div>
+
                     </div>
                 </form>
             </div>
         </div>
+
+        <!-- Steps info -->
+        <div class="card mt-3" style="border-color:#21262d;background:#161b22" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-body p-3">
+                <div class="text-muted mb-2" style="font-size:.7rem;letter-spacing:1px;font-weight:600">AGENT PIPELINE</div>
+                <div class="d-flex align-items-center gap-1 flex-wrap">
+                    @foreach (var (step, icon, color) in new[]{
+                        ("Sales","bi-briefcase","#58a6ff"),
+                        ("Survey","bi-search","#a78bfa"),
+                        ("Quotation","bi-file-earmark","#d29922"),
+                        ("Project","bi-kanban","#3fb950"),
+                        ("Document","bi-file-check","#58a6ff"),
+                        ("Support","bi-tools","#f85149"),
+                        ("Marketing","bi-megaphone","#e87316"),
+                    })
+                    {
+                        <span class="badge px-2 py-1" style="background:rgba(255,255,255,.05);color:@color;font-size:.7rem">
+                            <i class="bi @icon me-1"></i>@step
+                        </span>
+                        @if (step != "Marketing") {
+                            <i class="bi bi-arrow-right text-muted" style="font-size:.7rem"></i>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+
+@section Scripts {
+<script>
+// Character counter
+document.getElementById('Description').addEventListener('input', function() {
+    document.getElementById('charCount').textContent = this.value.length + ' ตัวอักษร';
+});
+
+// Job type preview
+const jobInfo = {
+    CCTV:         { icon:'📷', title:'CCTV & Security System', desc:'กล้องวงจรปิด, NVR/DVR, Access Control, Alarm' },
+    Network:      { icon:'🌐', title:'Network Infrastructure', desc:'Fiber, Switch, Router, Wifi, Structured Cabling' },
+    Server:       { icon:'🖥️', title:'Server & Data Center', desc:'Rack Server, NAS, Virtualization, UPS, PDU' },
+    Solar:        { icon:'☀️', title:'Solar Energy System', desc:'Solar Panel, Inverter, Battery, EV Charger' },
+    SmartBuilding:{ icon:'🏢', title:'Smart Building & IoT', desc:'BMS, Lighting Control, HVAC, Sensor Network' },
+};
+document.getElementById('JobType').addEventListener('change', function() {
+    const info = jobInfo[this.value];
+    if (!info) return;
+    document.getElementById('jobIcon').textContent  = info.icon;
+    document.getElementById('jobTitle').textContent = info.title;
+    document.getElementById('jobDesc').textContent  = info.desc;
+    document.getElementById('jobPreview').style.display = 'block';
+});
+// Trigger on load
+document.getElementById('JobType').dispatchEvent(new Event('change'));
+
+// Bootstrap validation + SweetAlert confirm
+document.getElementById('newTaskForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!this.checkValidity()) {
+        this.classList.add('was-validated');
+        Notiflix.Notify.failure('กรุณากรอกข้อมูลที่จำเป็นให้ครบ');
+        return;
+    }
+
+    const customer = document.getElementById('CustomerName').value;
+    Swal.fire({
+        title: 'ยืนยันสร้างงานใหม่?',
+        html: `<div style="font-size:.875rem;color:#8b949e">
+                 ลูกค้า: <span style="color:#e6edf3;font-weight:600">${customer}</span><br/>
+                 Sales Agent จะเริ่มทำงานทันที
+               </div>`,
+        icon: 'question',
+        background: '#161b22', color: '#e6edf3',
+        showCancelButton: true,
+        confirmButtonColor: '#238636', cancelButtonColor: '#30363d',
+        confirmButtonText: '<i class="bi bi-check-lg me-1"></i>สร้างเลย',
+        cancelButtonText: 'ยกเลิก',
+    }).then(r => {
+        if (r.isConfirmed) {
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>กำลังสร้างงาน...';
+            NProgress.start();
+            document.getElementById('newTaskForm').submit();
+        }
+    });
+});
+</script>
+}
