@@ -1,0 +1,125 @@
+@model List<PasTech.AIOffice.Domain.Entities.OfficeTask>
+@{
+    ViewData["Title"] = "AI Officer Dashboard";
+    var statusColor = new Dictionary<PasTech.AIOffice.Domain.Enums.OfficeTaskStatus, string> {
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Inquiry]      = "secondary",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Survey]        = "info",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Quotation]     = "warning",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.PO]            = "primary",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Installation]  = "primary",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Handover]      = "success",
+        [PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Closed]        = "dark",
+    };
+}
+
+<div class="ai-office-header">
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <h1 class="mb-1">🤖 AI OFFICER <span class="badge bg-success">v1.0</span></h1>
+            <p class="text-muted mb-0">PasTech System — AI Agent Office</p>
+        </div>
+        <div class="text-end">
+            <div class="system-clock" id="clock"></div>
+            <a asp-action="NewTask" class="btn btn-primary mt-2">+ งานใหม่</a>
+        </div>
+    </div>
+</div>
+
+<!-- Agent Status Bar -->
+<div class="row g-3 mb-4">
+    @foreach (var agent in new[] { ("Sales","💼"), ("Survey","🔍"), ("Quotation","📋"), ("Project","📅"), ("Document","📄"), ("Support","🛠️"), ("Marketing","📣") })
+    {
+        <div class="col">
+            <div class="agent-card text-center">
+                <div class="agent-icon">@agent.Item2</div>
+                <div class="agent-name">@agent.Item1</div>
+                <div class="agent-status idle">IDLE</div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Stats Row -->
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-number">@Model.Count</div>
+            <div class="stat-label">TASKS</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-number">@Model.Count(t => t.Status != PasTech.AIOffice.Domain.Enums.OfficeTaskStatus.Closed)</div>
+            <div class="stat-label">ACTIVE</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-number">@(Model.Where(t => t.QuotationAmount.HasValue).Sum(t => t.QuotationAmount!.Value).ToString("N0"))</div>
+            <div class="stat-label">PIPELINE (฿)</div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="stat-card">
+            <div class="stat-number">@Model.Sum(t => t.Logs.Count)</div>
+            <div class="stat-label">AGENT RUNS</div>
+        </div>
+    </div>
+</div>
+
+<!-- Task Table -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <strong>📋 Tasks</strong>
+    </div>
+    <div class="card-body p-0">
+        @if (!Model.Any())
+        {
+            <div class="text-center p-5 text-muted">
+                <div style="font-size:3rem">🤖</div>
+                <p>ยังไม่มีงาน — <a asp-action="NewTask">เพิ่มงานแรก</a></p>
+            </div>
+        }
+        else
+        {
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Task#</th>
+                        <th>ลูกค้า</th>
+                        <th>ประเภทงาน</th>
+                        <th>Status</th>
+                        <th>มูลค่า</th>
+                        <th>วันที่</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var t in Model)
+                    {
+                        <tr>
+                            <td><strong>@t.TaskNumber</strong></td>
+                            <td>@t.CustomerName</td>
+                            <td><span class="badge bg-secondary">@t.JobType</span></td>
+                            <td><span class="badge bg-@statusColor[t.Status]">@t.Status</span></td>
+                            <td>@(t.QuotationAmount.HasValue ? "฿" + t.QuotationAmount.Value.ToString("N0") : "—")</td>
+                            <td>@t.CreatedAt.ToString("dd/MM/yy")</td>
+                            <td><a asp-action="Detail" asp-route-id="@t.Id" class="btn btn-sm btn-outline-primary">ดู</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function tick() {
+    const now = new Date();
+    document.getElementById('clock').textContent =
+        now.toLocaleTimeString('th-TH', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+}
+tick(); setInterval(tick, 1000);
+</script>
+}

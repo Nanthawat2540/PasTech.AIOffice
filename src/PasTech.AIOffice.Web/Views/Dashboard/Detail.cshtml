@@ -1,0 +1,133 @@
+@model PasTech.AIOffice.Domain.Entities.OfficeTask
+@{
+    ViewData["Title"] = Model.TaskNumber;
+    var agents = new[] {
+        (PasTech.AIOffice.Domain.Enums.AgentType.Sales,        "💼 Sales Agent",         "พิมพ์ inquiry หรือข้อความลูกค้า..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.SurveyDesign, "🔍 Survey & Design",     "ระบุข้อมูลหน้างาน: พื้นที่, จุดติดตั้ง, ระบบเดิม..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.Quotation,    "📋 Quotation Agent",     "วาง BOM จาก Survey & Design Agent..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.Project,      "📅 Project Agent",       "วาง Quotation ที่อนุมัติแล้ว + วันเริ่มงาน..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.Document,     "📄 Document Agent",      "ระบุอุปกรณ์ที่ติดตั้งจริง, serial number..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.Support,      "🛠️ Support Agent",       "อธิบายอาการที่ลูกค้าแจ้ง..."),
+        (PasTech.AIOffice.Domain.Enums.AgentType.Marketing,    "📣 Marketing Agent",     "สรุปงานที่เสร็จแล้ว รูปภาพ/ข้อมูลที่มี..."),
+    };
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <a asp-action="Index" class="btn btn-sm btn-outline-secondary mb-2">← Dashboard</a>
+        <h2 class="mb-0">@Model.TaskNumber — @Model.CustomerName</h2>
+        <span class="badge bg-primary">@Model.JobType</span>
+        <span class="badge bg-success">@Model.Status</span>
+    </div>
+    @if (Model.QuotationAmount.HasValue)
+    {
+        <div class="text-end">
+            <div class="fs-4 fw-bold text-success">฿@Model.QuotationAmount.Value.ToString("N0")</div>
+            <small class="text-muted">@Model.QuotationNumber</small>
+        </div>
+    }
+</div>
+
+<div class="row g-4">
+    <!-- Left: Task Info + Agent Runner -->
+    <div class="col-md-5">
+        <div class="card mb-4">
+            <div class="card-header"><strong>📌 ข้อมูลงาน</strong></div>
+            <div class="card-body">
+                <table class="table table-sm mb-0">
+                    <tr><td class="text-muted">ลูกค้า</td><td>@Model.CustomerName</td></tr>
+                    <tr><td class="text-muted">Email</td><td>@Model.CustomerEmail</td></tr>
+                    <tr><td class="text-muted">โทร</td><td>@Model.CustomerPhone</td></tr>
+                    <tr><td class="text-muted">สถานที่</td><td>@Model.Location</td></tr>
+                    <tr><td class="text-muted">วันที่</td><td>@Model.CreatedAt.ToString("dd/MM/yyyy")</td></tr>
+                </table>
+                <hr />
+                <p class="mb-0"><strong>Inquiry:</strong><br />@Model.Description</p>
+            </div>
+        </div>
+
+        <!-- Run Agent -->
+        <div class="card">
+            <div class="card-header"><strong>🤖 เรียกใช้ Agent</strong></div>
+            <div class="card-body">
+                <form asp-action="RunAgent" method="post" id="agentForm">
+                    <input type="hidden" name="taskId" value="@Model.Id" />
+                    <div class="mb-3">
+                        <label class="form-label">AI Model</label>
+                        <div class="d-flex gap-2">
+                            <div class="model-btn active" data-val="claude" onclick="selectModel(this)">
+                                <span>🤖</span> Claude
+                                <small style="display:block;font-size:.65rem;opacity:.7">claude-sonnet-4-6</small>
+                            </div>
+                            <div class="model-btn" data-val="gemini" onclick="selectModel(this)">
+                                <span>✨</span> Gemini
+                                <small style="display:block;font-size:.65rem;opacity:.7">gemini-1.5-pro</small>
+                            </div>
+                        </div>
+                        <input type="hidden" name="provider" id="providerInput" value="claude" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">เลือก Agent</label>
+                        <select name="agentType" class="form-select" id="agentSelect">
+                            @foreach (var a in agents)
+                            {
+                                <option value="@a.Item1" data-hint="@a.Item3">@a.Item2</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Input / คำสั่ง</label>
+                        <textarea name="input" id="agentInput" class="form-control" rows="5"
+                                  placeholder="@agents[0].Item3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100" id="runBtn">
+                        ▶ Run Agent
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right: Agent Logs -->
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <strong>📜 Agent Logs (@Model.Logs.Count รายการ)</strong>
+            </div>
+            <div class="card-body p-0" style="max-height:75vh;overflow-y:auto">
+                @if (!Model.Logs.Any())
+                {
+                    <div class="text-center p-4 text-muted">ยังไม่มี log — เรียกใช้ Agent ได้เลย</div>
+                }
+                @foreach (var log in Model.Logs.OrderByDescending(l => l.CreatedAt))
+                {
+                    <div class="log-entry border-bottom p-3">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge bg-primary">@log.Agent</span>
+                            <small class="text-muted">@log.CreatedAt.ToString("dd/MM HH:mm") · @log.TokensUsed tokens</small>
+                        </div>
+                        <div class="log-output" style="white-space:pre-wrap;font-size:.875rem">@log.Output</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+document.getElementById('agentSelect').addEventListener('change', function() {
+    const hint = this.options[this.selectedIndex].dataset.hint;
+    document.getElementById('agentInput').placeholder = hint;
+});
+function selectModel(el) {
+    document.querySelectorAll('.model-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('providerInput').value = el.dataset.val;
+}
+document.getElementById('agentForm').addEventListener('submit', function() {
+    document.getElementById('runBtn').disabled = true;
+    document.getElementById('runBtn').innerHTML = '⏳ Agent กำลังทำงาน...';
+});
+</script>
+}

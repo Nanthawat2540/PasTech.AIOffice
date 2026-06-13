@@ -1,0 +1,129 @@
+:root {
+    --bg: #0d1117;
+    --bg-card: #161b22;
+    --border: #30363d;
+    --accent: #58a6ff;
+    --green: #3fb950;
+    --yellow: #d29922;
+    --text: #e6edf3;
+    --muted: #8b949e;
+}
+
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+.navbar { background: var(--bg-card) !important; border-bottom: 1px solid var(--border); }
+.card { background: var(--bg-card); border: 1px solid var(--border); }
+.card-header { background: rgba(255,255,255,.04); border-bottom: 1px solid var(--border); }
+.table { color: var(--text); }
+.table-hover tbody tr:hover { background: rgba(88,166,255,.06); }
+.table thead th { border-color: var(--border); color: var(--muted); font-size: .8rem; text-transform: uppercase; }
+.table td, .table th { border-color: var(--border); }
+
+/* AI Office Header */
+.ai-office-header {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.ai-office-header h1 { font-family: 'Courier New', monospace; color: var(--accent); }
+.system-clock {
+    font-family: 'Courier New', monospace;
+    font-size: 1.5rem;
+    color: var(--green);
+    letter-spacing: 2px;
+}
+
+/* Agent Cards */
+.agent-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: .75rem .5rem;
+    transition: border-color .2s;
+}
+.agent-card:hover { border-color: var(--accent); }
+.agent-icon { font-size: 1.5rem; }
+.agent-name { font-size: .75rem; color: var(--muted); margin: .25rem 0; }
+.agent-status { font-size: .65rem; font-weight: 700; letter-spacing: 1px; padding: 2px 8px; border-radius: 20px; display: inline-block; }
+.agent-status.idle { background: rgba(139,148,158,.15); color: var(--muted); }
+.agent-status.working { background: rgba(88,166,255,.15); color: var(--accent); }
+.agent-status.done { background: rgba(63,185,80,.15); color: var(--green); }
+
+/* Stat Cards */
+.stat-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+}
+.stat-number { font-size: 1.75rem; font-weight: 700; color: var(--accent); font-family: 'Courier New', monospace; }
+.stat-label { font-size: .7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Log Entry */
+.log-entry { transition: background .15s; }
+.log-entry:hover { background: rgba(88,166,255,.04); }
+.log-output {
+    background: rgba(0,0,0,.3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: .75rem;
+    max-height: 300px;
+    overflow-y: auto;
+    font-family: 'Segoe UI', sans-serif;
+    line-height: 1.6;
+}
+
+/* Form */
+.form-control, .form-select {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+.form-control:focus, .form-select:focus {
+    background: var(--bg);
+    border-color: var(--accent);
+    color: var(--text);
+    box-shadow: 0 0 0 2px rgba(88,166,255,.2);
+}
+.form-control::placeholder { color: var(--muted); }
+
+/* Buttons */
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #0d1117; font-weight: 600; }
+.btn-primary:hover { background: #79b8ff; border-color: #79b8ff; color: #0d1117; }
+.btn-outline-secondary { border-color: var(--border); color: var(--muted); }
+.btn-outline-secondary:hover { background: var(--border); color: var(--text); }
+.btn-outline-primary { border-color: var(--accent); color: var(--accent); }
+.btn-outline-primary:hover { background: var(--accent); color: #0d1117; }
+
+/* Badge overrides */
+.badge.bg-secondary { background: #30363d !important; }
+
+/* Model selector */
+.model-btn {
+    flex: 1;
+    padding: .5rem .75rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--muted);
+    transition: all .2s;
+    user-select: none;
+}
+.model-btn:hover { border-color: var(--accent); color: var(--text); }
+.model-btn.active[data-val="claude"] {
+    border-color: #a78bfa;
+    color: #a78bfa;
+    background: rgba(167,139,250,.1);
+    box-shadow: 0 0 12px rgba(167,139,250,.2);
+}
+.model-btn.active[data-val="gemini"] {
+    border-color: #4ade80;
+    color: #4ade80;
+    background: rgba(74,222,128,.1);
+    box-shadow: 0 0 12px rgba(74,222,128,.2);
+}

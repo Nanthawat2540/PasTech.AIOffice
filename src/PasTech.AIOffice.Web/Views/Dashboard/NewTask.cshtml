@@ -1,0 +1,58 @@
+@{
+    ViewData["Title"] = "งานใหม่";
+}
+
+<div class="d-flex align-items-center mb-4">
+    <a asp-action="Index" class="btn btn-sm btn-outline-secondary me-3">← Dashboard</a>
+    <h2 class="mb-0">📥 รับงานใหม่</h2>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-header"><strong>ข้อมูล Inquiry</strong></div>
+            <div class="card-body">
+                <form asp-action="NewTask" method="post">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">ชื่อลูกค้า / บริษัท <span class="text-danger">*</span></label>
+                            <input name="CustomerName" class="form-control" required />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">ประเภทงาน <span class="text-danger">*</span></label>
+                            <select name="JobType" class="form-select" required>
+                                <option value="CCTV">📷 CCTV & Security</option>
+                                <option value="Network">🌐 Network Infrastructure</option>
+                                <option value="Server">🖥️ Server & Data Center</option>
+                                <option value="Solar">☀️ Solar Energy</option>
+                                <option value="SmartBuilding">🏢 Smart Building & IoT</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input name="CustomerEmail" type="email" class="form-control" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">เบอร์โทร</label>
+                            <input name="CustomerPhone" class="form-control" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">สถานที่ / จังหวัด</label>
+                            <input name="Location" class="form-control" placeholder="เช่น นิคมอมตะนคร จ.ชลบุรี" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">ข้อความ Inquiry <span class="text-danger">*</span></label>
+                            <textarea name="Description" class="form-control" rows="5" required
+                                placeholder="วาง email หรือข้อความที่ลูกค้าส่งมาได้เลย..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary w-100">
+                                ✅ บันทึกและเรียก Sales Agent
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
