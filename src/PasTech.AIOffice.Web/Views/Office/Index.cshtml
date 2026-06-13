@@ -11,13 +11,13 @@
     <div class="building-wrap">
         <div class="building">
 
-            <!-- ROOF / HEADER -->
+            <!-- ROOF -->
             <div class="building-roof">
                 <div class="roof-logo">
                     <div class="logo-icon">🏢</div>
                     <div>
                         <h1>PASTECH SYSTEM HQ</h1>
-                        <p>AI Agent Office — v1.0</p>
+                        <p>AI Agent Office — v2.0 · Room Edition</p>
                     </div>
                 </div>
                 <div class="text-center">
@@ -28,320 +28,472 @@
                 </div>
             </div>
 
-            <!-- PENTHOUSE — CEO -->
-            <div class="floor ceo-floor" onclick="selectAgent('ceo')">
+            <!-- ══ PENTHOUSE — CEO / BOSS ══ -->
+            <div class="floor ceo-floor" onclick="selectAgent('ceo',event)">
                 <div class="elevator-shaft">
                     <div class="elevator-car" id="elevatorCar" style="top:4px">🛗</div>
                 </div>
-                <div class="floor-number">
-                    <span>P</span>
-                    <span class="fl">👑</span>
+                <div class="floor-num-col">
+                    <div class="fl-num">P</div>
+                    <div class="fl-icon">👑</div>
                 </div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit"></div>
-                        <div class="window-unit lit"></div>
-                        <div class="window-unit lit"></div>
+                <div class="room-scene"
+                     style="--clr:240,192,64; --clr-hex:#f0c040; --clr-dim:#7c6000">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#7c6000,#b8860b)">
-                                <div class="char-head">😎</div>
-                                <div class="char-torso" style="background:#7c6000"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:85%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:72%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:90%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:60%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot done"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name" style="color:#f0c040">บอส (BOSS)</div>
-                            <div class="char-title">Chief Executive Officer</div>
-                            <div class="char-dept" style="background:rgba(240,192,64,.15);color:#f0c040">Orchestrator</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">📊</div>
-                            <div class="prop-label">Dashboard</div>
-                        </div>
-                        <div class="prop" style="background:rgba(240,192,64,.05)">🏆<div class="prop-label">Awards</div></div>
-                        <div class="prop" style="background:rgba(240,192,64,.05)">🌿<div class="prop-label">Plant</div></div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>🏆</span><span>☕</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">CEO Suite</div>
-                        <button class="btn-run-agent" style="border-color:#f0c040;color:#f0c040" onclick="event.stopPropagation();openAgentModal('ceo')">สั่งงาน</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">😎</div>
+                        <div class="r-agent-body"></div>
                     </div>
-                </div>
-            </div>
-
-            <!-- FLOOR 7 — MARKETING -->
-            <div class="floor" onclick="selectAgent('marketing')">
-                <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>7F</span><span class="fl">📣</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(244,114,182,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(244,114,182,.1)"></div>
-                        <div class="window-unit"></div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#7c6000"></div>
+                        <div class="r-arm-r" style="background:#7c6000"></div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">
-                                <div class="char-head">🎨</div>
-                                <div class="char-torso" style="background:#7c3aed"></div>
-                            </div>
-                            <div class="char-status-dot idle" id="status-marketing"></div>
-                        </div>
-                        <div class="char-info">
-                            <div class="char-name">มายา (Maya)</div>
-                            <div class="char-title">Marketing Manager</div>
-                            <div class="char-dept" style="background:rgba(167,139,250,.15);color:#a78bfa">ฝ่ายการตลาด</div>
-                        </div>
+                    <div class="r-props">
+                        <div class="r-prop">📊</div>
+                        <div class="r-prop">🌿</div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(167,139,250,.05)">📸<div class="prop-label">Camera</div></div>
-                        <div class="prop" style="background:rgba(167,139,250,.05)">🎬<div class="prop-label">Studio</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">📣</div>
-                            <div class="prop-label">Canva</div>
-                        </div>
+                    <div class="r-floor-prop">🏅</div>
+                    <div class="r-info">
+                        <div class="r-sdot done" id="dot-ceo"></div>
+                        <span class="r-agent-name">บอส (BOSS)</span>
+                        <span class="r-agent-role">Chief Executive Officer · Orchestrator</span>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Creative Studio</div>
-                        <button class="btn-run-agent" style="border-color:#a78bfa;color:#a78bfa" onclick="event.stopPropagation();openAgentModal('marketing')">สร้าง Content</button>
-                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('ceo')">สั่งงาน</button>
                 </div>
             </div>
 
-            <!-- FLOOR 6 — SUPPORT -->
-            <div class="floor" onclick="selectAgent('support')">
+            <!-- ══ FLOOR 7 — MARKETING / MAYA ══ -->
+            <div class="floor" onclick="selectAgent('marketing',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>6F</span><span class="fl">🛠️</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(251,146,60,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(251,146,60,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(251,146,60,.1)"></div>
+                <div class="floor-num-col"><div class="fl-num">7F</div><div class="fl-icon">📣</div></div>
+                <div class="room-scene"
+                     style="--clr:167,139,250; --clr-hex:#a78bfa; --clr-dim:#5b21b6">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#c2410c,#fb923c)">
-                                <div class="char-head">🎧</div>
-                                <div class="char-torso" style="background:#c2410c"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:90%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:75%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:85%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:50%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-support"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">ช่วย (Chuai)</div>
-                            <div class="char-title">Support Engineer</div>
-                            <div class="char-dept" style="background:rgba(251,146,60,.15);color:#fb923c">ฝ่ายบริการลูกค้า</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(251,146,60,.05)">🖥️<div class="prop-label">Monitor</div></div>
-                        <div class="prop" style="background:rgba(251,146,60,.05)">📡<div class="prop-label">Network</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">🎫</div>
-                            <div class="prop-label">Tickets</div>
-                        </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>🎬</span><span>☕</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Support Center</div>
-                        <button class="btn-run-agent" style="border-color:#fb923c;color:#fb923c" onclick="event.stopPropagation();openAgentModal('support')">แจ้งปัญหา</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">🎨</div>
+                        <div class="r-agent-body"></div>
                     </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#5b21b6"></div>
+                        <div class="r-arm-r" style="background:#5b21b6"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">📸</div>
+                        <div class="r-prop">🎞️</div>
+                    </div>
+                    <div class="r-floor-prop">🌸</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-marketing"></div>
+                        <span class="r-agent-name">มายา (Maya)</span>
+                        <span class="r-agent-role">Marketing Manager · ฝ่ายการตลาด</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('marketing')">สร้าง Content</button>
                 </div>
             </div>
 
-            <!-- FLOOR 5 — DOCUMENT -->
-            <div class="floor" onclick="selectAgent('document')">
+            <!-- ══ FLOOR 6 — SUPPORT / CHUAI ══ -->
+            <div class="floor" onclick="selectAgent('support',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>5F</span><span class="fl">📄</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(52,211,153,.1)"></div>
-                        <div class="window-unit"></div>
-                        <div class="window-unit lit" style="background:rgba(52,211,153,.1)"></div>
+                <div class="floor-num-col"><div class="fl-num">6F</div><div class="fl-icon">🛠️</div></div>
+                <div class="room-scene"
+                     style="--clr:251,146,60; --clr-hex:#fb923c; --clr-dim:#9a3412">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#065f46,#34d399)">
-                                <div class="char-head">📚</div>
-                                <div class="char-torso" style="background:#065f46"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:88%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:65%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:80%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:72%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-document"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">เอก (Ek)</div>
-                            <div class="char-title">Technical Writer</div>
-                            <div class="char-dept" style="background:rgba(52,211,153,.15);color:#34d399">ฝ่ายเอกสาร</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(52,211,153,.05)">🗄️<div class="prop-label">Files</div></div>
-                        <div class="prop" style="background:rgba(52,211,153,.05)">📐<div class="prop-label">Drawing</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">📄</div>
-                            <div class="prop-label">Word</div>
-                        </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>📋</span><span>🎧</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Document Center</div>
-                        <button class="btn-run-agent" style="border-color:#34d399;color:#34d399" onclick="event.stopPropagation();openAgentModal('document')">สร้างเอกสาร</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">🎧</div>
+                        <div class="r-agent-body"></div>
                     </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#9a3412"></div>
+                        <div class="r-arm-r" style="background:#9a3412"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">📡</div>
+                        <div class="r-prop">🖥️</div>
+                    </div>
+                    <div class="r-floor-prop">🔧</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-support"></div>
+                        <span class="r-agent-name">ช่วย (Chuai)</span>
+                        <span class="r-agent-role">Support Engineer · ฝ่ายบริการลูกค้า</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('support')">แจ้งปัญหา</button>
                 </div>
             </div>
 
-            <!-- FLOOR 4 — PROJECT -->
-            <div class="floor" onclick="selectAgent('project')">
+            <!-- ══ FLOOR 5 — DOCUMENT / EK ══ -->
+            <div class="floor" onclick="selectAgent('document',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>4F</span><span class="fl">📅</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(248,113,113,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(248,113,113,.1)"></div>
-                        <div class="window-unit"></div>
+                <div class="floor-num-col"><div class="fl-num">5F</div><div class="fl-icon">📄</div></div>
+                <div class="room-scene"
+                     style="--clr:52,211,153; --clr-hex:#34d399; --clr-dim:#065f46">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#991b1b,#f87171)">
-                                <div class="char-head">📊</div>
-                                <div class="char-torso" style="background:#991b1b"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:82%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:94%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:60%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:78%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-project"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">ปิ่น (Pim)</div>
-                            <div class="char-title">Project Manager</div>
-                            <div class="char-dept" style="background:rgba(248,113,113,.15);color:#f87171">ฝ่ายจัดการโครงการ</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(248,113,113,.05)">📋<div class="prop-label">Gantt</div></div>
-                        <div class="prop" style="background:rgba(248,113,113,.05)">📌<div class="prop-label">Kanban</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">⏱️</div>
-                            <div class="prop-label">Timeline</div>
-                        </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>📑</span><span>📐</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">War Room</div>
-                        <button class="btn-run-agent" style="border-color:#f87171;color:#f87171" onclick="event.stopPropagation();openAgentModal('project')">วางแผนงาน</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">📚</div>
+                        <div class="r-agent-body"></div>
                     </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#065f46"></div>
+                        <div class="r-arm-r" style="background:#065f46"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">🗄️</div>
+                        <div class="r-prop">📁</div>
+                    </div>
+                    <div class="r-floor-prop">🌿</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-document"></div>
+                        <span class="r-agent-name">เอก (Ek)</span>
+                        <span class="r-agent-role">Technical Writer · ฝ่ายเอกสาร</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('document')">สร้างเอกสาร</button>
                 </div>
             </div>
 
-            <!-- FLOOR 3 — QUOTATION -->
-            <div class="floor" onclick="selectAgent('quotation')">
+            <!-- ══ FLOOR 4 — PROJECT / PIM ══ -->
+            <div class="floor" onclick="selectAgent('project',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>3F</span><span class="fl">📋</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(250,204,21,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(250,204,21,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(250,204,21,.1)"></div>
+                <div class="floor-num-col"><div class="fl-num">4F</div><div class="fl-icon">📅</div></div>
+                <div class="room-scene"
+                     style="--clr:248,113,113; --clr-hex:#f87171; --clr-dim:#7f1d1d">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#78350f,#fbbf24)">
-                                <div class="char-head">💰</div>
-                                <div class="char-torso" style="background:#78350f"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:95%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:70%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:85%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:58%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-quotation"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">นับทอง (Nab)</div>
-                            <div class="char-title">Quotation Specialist</div>
-                            <div class="char-dept" style="background:rgba(251,191,36,.15);color:#fbbf24">ฝ่ายการเงิน</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(251,191,36,.05)">🧮<div class="prop-label">Calc</div></div>
-                        <div class="prop" style="background:rgba(251,191,36,.05)">📊<div class="prop-label">Excel</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">💵</div>
-                            <div class="prop-label">Finance</div>
-                        </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>📌</span><span>⏱️</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Finance Office</div>
-                        <button class="btn-run-agent" style="border-color:#fbbf24;color:#fbbf24" onclick="event.stopPropagation();openAgentModal('quotation')">ทำใบเสนอราคา</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">📊</div>
+                        <div class="r-agent-body"></div>
                     </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#7f1d1d"></div>
+                        <div class="r-arm-r" style="background:#7f1d1d"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">📋</div>
+                        <div class="r-prop">🗂️</div>
+                    </div>
+                    <div class="r-floor-prop">🖨️</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-project"></div>
+                        <span class="r-agent-name">ปิ่น (Pim)</span>
+                        <span class="r-agent-role">Project Manager · ฝ่ายจัดการโครงการ</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('project')">วางแผนงาน</button>
                 </div>
             </div>
 
-            <!-- FLOOR 2 — ENGINEERING -->
-            <div class="floor" onclick="selectAgent('survey')">
+            <!-- ══ FLOOR 3 — QUOTATION / NAB ══ -->
+            <div class="floor" onclick="selectAgent('quotation',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>2F</span><span class="fl">🔍</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(6,182,212,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(6,182,212,.1)"></div>
-                        <div class="window-unit"></div>
+                <div class="floor-num-col"><div class="fl-num">3F</div><div class="fl-icon">📋</div></div>
+                <div class="room-scene"
+                     style="--clr:251,191,36; --clr-hex:#fbbf24; --clr-dim:#78350f">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#0e7490,#22d3ee)">
-                                <div class="char-head">⚙️</div>
-                                <div class="char-torso" style="background:#0e7490"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:78%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:92%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:65%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:88%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-survey"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">วิศว (Wit)</div>
-                            <div class="char-title">Senior Engineer</div>
-                            <div class="char-dept" style="background:rgba(34,211,238,.15);color:#22d3ee">ฝ่ายวิศวกรรม</div>
-                        </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(34,211,238,.05)">📐<div class="prop-label">Blueprint</div></div>
-                        <div class="prop" style="background:rgba(34,211,238,.05)">🔭<div class="prop-label">Survey</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">🗺️</div>
-                            <div class="prop-label">AutoCAD</div>
-                        </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>🧮</span><span>💵</span></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Design Studio</div>
-                        <button class="btn-run-agent" style="border-color:#22d3ee;color:#22d3ee" onclick="event.stopPropagation();openAgentModal('survey')">ออกแบบระบบ</button>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">💰</div>
+                        <div class="r-agent-body"></div>
                     </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#78350f"></div>
+                        <div class="r-arm-r" style="background:#78350f"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">📊</div>
+                        <div class="r-prop">🗃️</div>
+                    </div>
+                    <div class="r-floor-prop">🧾</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-quotation"></div>
+                        <span class="r-agent-name">นับทอง (Nab)</span>
+                        <span class="r-agent-role">Quotation Specialist · ฝ่ายการเงิน</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('quotation')">ทำใบเสนอราคา</button>
                 </div>
             </div>
 
-            <!-- FLOOR 1 — SALES -->
-            <div class="floor" onclick="selectAgent('sales')">
+            <!-- ══ FLOOR 2 — ENGINEERING / WIT ══ -->
+            <div class="floor" onclick="selectAgent('survey',event)">
                 <div class="elevator-shaft"></div>
-                <div class="floor-number"><span>1F</span><span class="fl">💼</span></div>
-                <div class="floor-room">
-                    <div class="floor-windows">
-                        <div class="window-unit lit" style="background:rgba(88,166,255,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(88,166,255,.1)"></div>
-                        <div class="window-unit lit" style="background:rgba(88,166,255,.1)"></div>
+                <div class="floor-num-col"><div class="fl-num">2F</div><div class="fl-icon">🔍</div></div>
+                <div class="room-scene"
+                     style="--clr:34,211,238; --clr-hex:#22d3ee; --clr-dim:#0e4f5e">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                        </div>
                     </div>
-                    <div class="char-wrap">
-                        <div class="char-avatar-box">
-                            <div class="char-body" style="background:linear-gradient(135deg,#1e40af,#60a5fa)">
-                                <div class="char-head">😊</div>
-                                <div class="char-torso" style="background:#1e40af"></div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:86%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:68%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:95%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:62%"></div>
+                                <div class="r-code-ln"></div>
                             </div>
-                            <div class="char-status-dot idle" id="status-sales"></div>
                         </div>
-                        <div class="char-info">
-                            <div class="char-name">สมหมาย (Sommai)</div>
-                            <div class="char-title">Sales Manager</div>
-                            <div class="char-dept" style="background:rgba(88,166,255,.15);color:#60a5fa">ฝ่ายขาย</div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
+                    </div>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>📐</span><span>🔭</span></div>
+                    </div>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">⚙️</div>
+                        <div class="r-agent-body"></div>
+                    </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#0e4f5e"></div>
+                        <div class="r-arm-r" style="background:#0e4f5e"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">🗺️</div>
+                        <div class="r-prop">📡</div>
+                    </div>
+                    <div class="r-floor-prop">🔌</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-survey"></div>
+                        <span class="r-agent-name">วิศว (Wit)</span>
+                        <span class="r-agent-role">Senior Engineer · ฝ่ายวิศวกรรม</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('survey')">ออกแบบระบบ</button>
+                </div>
+            </div>
+
+            <!-- ══ FLOOR 1 — SALES / SOMMAI ══ -->
+            <div class="floor" onclick="selectAgent('sales',event)">
+                <div class="elevator-shaft"></div>
+                <div class="floor-num-col"><div class="fl-num">1F</div><div class="fl-icon">💼</div></div>
+                <div class="room-scene"
+                     style="--clr:88,166,255; --clr-hex:#60a5fa; --clr-dim:#1e40af">
+                    <div class="r-ceil"><div class="r-lamp"></div></div>
+                    <div class="r-wall">
+                        <div class="r-win"></div>
+                        <div class="r-wallboard">
+                            <div class="r-wb-line" style="width:100%"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
+                            <div class="r-wb-line"></div>
                         </div>
                     </div>
-                    <div class="room-props">
-                        <div class="prop" style="background:rgba(88,166,255,.05)">📞<div class="prop-label">Phone</div></div>
-                        <div class="prop" style="background:rgba(88,166,255,.05)">📧<div class="prop-label">Email</div></div>
-                        <div class="prop desk-computer">
-                            <div class="prop-screen on">💌</div>
-                            <div class="prop-label">CRM</div>
+                    <div class="r-mon">
+                        <div class="r-mon-scr">
+                            <div class="r-mon-code">
+                                <div class="r-code-ln" style="width:80%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:90%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:62%"></div>
+                                <div class="r-code-ln"></div>
+                                <div class="r-code-ln" style="width:84%"></div>
+                                <div class="r-code-ln"></div>
+                            </div>
                         </div>
+                        <div class="r-mon-neck"></div>
+                        <div class="r-mon-base"></div>
                     </div>
-                    <div class="floor-action">
-                        <div style="font-size:.65rem;color:var(--muted)">Sales Office</div>
-                        <button class="btn-run-agent" style="border-color:#60a5fa;color:#60a5fa" onclick="event.stopPropagation();openAgentModal('sales')">ตอบ Inquiry</button>
+                    <div class="r-desk">
+                        <div class="r-desk-items"><span>📞</span><span>📧</span></div>
                     </div>
+                    <div class="r-keyboard"></div>
+                    <div class="r-agent">
+                        <div class="r-agent-head">😊</div>
+                        <div class="r-agent-body"></div>
+                    </div>
+                    <div class="r-arms">
+                        <div class="r-arm-l" style="background:#1e40af"></div>
+                        <div class="r-arm-r" style="background:#1e40af"></div>
+                    </div>
+                    <div class="r-props">
+                        <div class="r-prop">📱</div>
+                        <div class="r-prop">💬</div>
+                    </div>
+                    <div class="r-floor-prop">🌱</div>
+                    <div class="r-info">
+                        <div class="r-sdot idle" id="dot-sales"></div>
+                        <span class="r-agent-name">สมหมาย (Sommai)</span>
+                        <span class="r-agent-role">Sales Manager · ฝ่ายขาย</span>
+                    </div>
+                    <button class="r-run-btn" onclick="event.stopPropagation();openAgentModal('sales')">ตอบ Inquiry</button>
                 </div>
             </div>
 
@@ -352,23 +504,24 @@
                     🏢 LOBBY — PasTech System HQ · Open 24/7 (AI Never Sleeps)
                 </div>
                 <div style="display:flex;gap:1rem">
-                    <span>🌐 pastechsystem.co.th</span>
+                    <span>🌐 ai-office.pastechsystem.co.th</span>
                     <span>👥 7 AI Agents Online</span>
                 </div>
             </div>
-        </div>
-    </div>
+
+        </div><!-- /.building -->
+    </div><!-- /.building-wrap -->
 
     <!-- ═══ SIDEBAR ═══ -->
     <div class="sidebar">
 
-        <!-- Active Agent Panel -->
+        <!-- Agent Panel -->
         <div class="card">
             <div class="card-header">🤖 Agent Panel</div>
             <div class="card-body" id="agentPanel">
                 <div style="text-align:center;padding:2rem;color:var(--muted)">
                     <div style="font-size:2.5rem">👆</div>
-                    <p style="font-size:.85rem;margin-top:.5rem">คลิกเลือกตัวละครบนตึกเพื่อเริ่มใช้งาน Agent</p>
+                    <p style="font-size:.85rem;margin-top:.5rem">คลิกห้องเพื่อเริ่มใช้งาน AI Agent</p>
                 </div>
             </div>
         </div>
@@ -406,9 +559,7 @@
             </div>
             <div class="card-body">
                 <div class="task-ticker" id="taskTicker">
-                    <div style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem">
-                        ยังไม่มีงาน
-                    </div>
+                    <div style="color:var(--muted);font-size:.8rem;text-align:center;padding:1rem">ยังไม่มีงาน</div>
                 </div>
                 <a href="/Dashboard/NewTask" class="btn-primary" style="display:block;text-align:center;text-decoration:none;margin-top:1rem;padding:.5rem;border-radius:6px;font-weight:700;font-size:.85rem">
                     + รับงานใหม่
@@ -417,14 +568,15 @@
         </div>
 
         <!-- System Bar -->
-        <div class="system-bar" style="border-radius:8px">
+        <div class="system-bar">
             <div class="sys-item"><div class="sys-dot" style="background:#3fb950"></div> AI: claude-sonnet-4-6</div>
             <div class="sys-item"><div class="sys-dot" style="background:#58a6ff"></div> DB: SQL Server</div>
             <div class="sys-item"><div class="sys-dot" style="background:#f0c040"></div> ERP: Connected</div>
             <div class="sys-item" style="margin-left:auto" id="agentRunCount">Runs: 0</div>
         </div>
-    </div>
-</div>
+
+    </div><!-- /.sidebar -->
+</div><!-- /.office-layout -->
 
 <!-- ═══ AGENT MODAL ═══ -->
 <div class="modal-overlay" id="agentModal" onclick="closeModal(event)">
@@ -436,46 +588,44 @@
 @section Scripts {
 <script>
 // ── Stars ──
-const starsContainer = document.getElementById('stars');
-for (let i = 0; i < 80; i++) {
-    const s = document.createElement('div');
-    s.className = 'star';
-    const size = Math.random() * 2.5 + .5;
-    s.style.cssText = `width:${size}px;height:${size}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*3}s;animation-duration:${2+Math.random()*3}s`;
-    starsContainer.appendChild(s);
-}
+(function(){
+    const c = document.getElementById('stars');
+    for (let i = 0; i < 90; i++) {
+        const s = document.createElement('div');
+        s.className = 'star';
+        const sz = Math.random() * 2.5 + .4;
+        s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;animation-delay:${Math.random()*4}s;animation-duration:${2+Math.random()*3}s`;
+        c.appendChild(s);
+    }
+})();
 
 // ── Clock ──
 function tick() {
-    const n = new Date();
     document.getElementById('clock').textContent =
-        n.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+        new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
 }
 tick(); setInterval(tick, 1000);
 
 // ── Agent Data ──
 const agents = {
-    ceo:       { name:'บอส (BOSS)',       title:'CEO / Orchestrator',         color:'#f0c040', emoji:'👑', dept:'Command Center',  hint:'มอบหมายงาน หรือถามภาพรวมบริษัท...', agentType: null },
-    sales:     { name:'สมหมาย (Sommai)',  title:'Sales Manager',              color:'#60a5fa', emoji:'💼', dept:'Sales Office',     hint:'วางข้อความจากลูกค้าได้เลย เช่น: "สอบถามกล้องวงจรปิด..."', agentType: 1 },
-    survey:    { name:'วิศว (Wit)',        title:'Senior Engineer',            color:'#22d3ee', emoji:'⚙️', dept:'Design Studio',    hint:'ระบุข้อมูลหน้างาน: พื้นที่, จำนวนจุด, ระบบที่ต้องการ...', agentType: 2 },
-    quotation: { name:'นับทอง (Nab)',     title:'Quotation Specialist',        color:'#fbbf24', emoji:'💰', dept:'Finance Office',   hint:'วาง BOM จาก Survey Agent เพื่อทำใบเสนอราคา...', agentType: 3 },
-    project:   { name:'ปิ่น (Pim)',       title:'Project Manager',             color:'#f87171', emoji:'📅', dept:'War Room',         hint:'วาง Quotation ที่อนุมัติแล้ว + วันเริ่มงาน...', agentType: 4 },
-    document:  { name:'เอก (Ek)',         title:'Technical Writer',            color:'#34d399', emoji:'📄', dept:'Document Center',  hint:'ระบุรายการอุปกรณ์ที่ติดตั้งจริงเพื่อทำ As-Built...', agentType: 5 },
-    support:   { name:'ช่วย (Chuai)',     title:'Support Engineer',            color:'#fb923c', emoji:'🛠️', dept:'Support Center',   hint:'บอกอาการที่ลูกค้าแจ้ง เช่น: "กล้องไม่ขึ้นภาพ..."', agentType: 6 },
-    marketing: { name:'มายา (Maya)',      title:'Marketing Manager',           color:'#a78bfa', emoji:'📣', dept:'Creative Studio',  hint:'สรุปงานที่เสร็จแล้ว เช่น: "CCTV 28 จุด โรงงานชลบุรี"...', agentType: 7 },
+    ceo:       { name:'บอส (BOSS)',        title:'CEO / Orchestrator',         color:'#f0c040', emoji:'👑', dept:'Command Center',   hint:'มอบหมายงาน หรือถามภาพรวมบริษัท...', agentType: null },
+    sales:     { name:'สมหมาย (Sommai)',   title:'Sales Manager',              color:'#60a5fa', emoji:'💼', dept:'Sales Office',      hint:'วางข้อความจากลูกค้าได้เลย เช่น: "สอบถามกล้องวงจรปิด..."', agentType: 1 },
+    survey:    { name:'วิศว (Wit)',         title:'Senior Engineer',            color:'#22d3ee', emoji:'⚙️', dept:'Design Studio',     hint:'ระบุข้อมูลหน้างาน: พื้นที่, จำนวนจุด, ระบบที่ต้องการ...', agentType: 2 },
+    quotation: { name:'นับทอง (Nab)',      title:'Quotation Specialist',       color:'#fbbf24', emoji:'💰', dept:'Finance Office',    hint:'วาง BOM จาก Survey Agent เพื่อทำใบเสนอราคา...', agentType: 3 },
+    project:   { name:'ปิ่น (Pim)',        title:'Project Manager',            color:'#f87171', emoji:'📅', dept:'War Room',          hint:'วาง Quotation ที่อนุมัติแล้ว + วันเริ่มงาน...', agentType: 4 },
+    document:  { name:'เอก (Ek)',          title:'Technical Writer',           color:'#34d399', emoji:'📄', dept:'Document Center',   hint:'ระบุรายการอุปกรณ์ที่ติดตั้งจริงเพื่อทำ As-Built...', agentType: 5 },
+    support:   { name:'ช่วย (Chuai)',      title:'Support Engineer',           color:'#fb923c', emoji:'🛠️', dept:'Support Center',    hint:'บอกอาการที่ลูกค้าแจ้ง เช่น: "กล้องไม่ขึ้นภาพ..."', agentType: 6 },
+    marketing: { name:'มายา (Maya)',       title:'Marketing Manager',          color:'#a78bfa', emoji:'📣', dept:'Creative Studio',   hint:'สรุปงานที่เสร็จแล้ว เช่น: "CCTV 28 จุด โรงงานชลบุรี"...', agentType: 7 },
 };
 
-let currentAgent = null;
-
-function selectAgent(key) {
-    currentAgent = key;
+function selectAgent(key, e) {
     document.querySelectorAll('.floor').forEach(f => f.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    if (e && e.currentTarget) e.currentTarget.classList.add('active');
     const a = agents[key];
     moveElevator(key);
     document.getElementById('agentPanel').innerHTML = `
         <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
-            <div style="width:48px;height:48px;border-radius:10px;background:${a.color}22;border:1px solid ${a.color}44;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${a.emoji}</div>
+            <div style="width:48px;height:48px;border-radius:10px;background:${a.color}22;border:1px solid ${a.color}55;display:flex;align-items:center;justify-content:center;font-size:1.5rem">${a.emoji}</div>
             <div>
                 <div style="font-weight:700;color:${a.color}">${a.name}</div>
                 <div style="font-size:.72rem;color:var(--muted)">${a.title} · ${a.dept}</div>
@@ -483,18 +633,18 @@ function selectAgent(key) {
         </div>
         ${a.agentType ? `
         <form onsubmit="runAgent(event,'${key}')">
-            <input type="hidden" name="agentType" value="${a.agentType}">
             <div style="margin-bottom:.75rem">
                 <label style="font-size:.78rem;color:var(--muted);display:block;margin-bottom:.3rem">Input / คำสั่ง</label>
-                <textarea name="input" rows="4" placeholder="${a.hint}" style="background:#0d1117;border:1px solid #30363d;color:#e6edf3;border-radius:6px;width:100%;padding:.5rem .75rem;font-size:.83rem;resize:vertical"></textarea>
+                <textarea name="input" rows="4" placeholder="${a.hint}" style="background:#060b14;border:1px solid #1e2d3d;color:#e6edf3;border-radius:6px;width:100%;padding:.5rem .75rem;font-size:.83rem;resize:vertical"></textarea>
             </div>
-            <button type="submit" style="background:${a.color};border:none;color:#0d1117;padding:.5rem 1rem;border-radius:6px;font-weight:700;cursor:pointer;width:100%;font-size:.85rem">▶ Run ${a.name}</button>
+            <button type="submit" style="background:${a.color};border:none;color:#060b14;padding:.5rem 1rem;border-radius:6px;font-weight:700;cursor:pointer;width:100%;font-size:.85rem">▶ Run ${a.name}</button>
         </form>
-        ` : `<p style="color:var(--muted);font-size:.85rem">CEO คือ Orchestrator — ใช้ Dashboard เพื่อจัดการงานทั้งหมด</p><a href="/Dashboard" style="display:block;text-align:center;background:#f0c040;color:#0d1117;padding:.5rem;border-radius:6px;font-weight:700;text-decoration:none;margin-top:.75rem">→ ไป Dashboard</a>`}
+        ` : `<p style="color:var(--muted);font-size:.85rem;line-height:1.6">CEO คือ Orchestrator — ใช้ Dashboard เพื่อจัดการและมอบหมายงานทั้งหมด</p>
+             <a href="/Dashboard" style="display:block;text-align:center;background:#f0c040;color:#060b14;padding:.5rem;border-radius:6px;font-weight:700;text-decoration:none;margin-top:.75rem">→ ไป Dashboard</a>`}
     `;
 }
 
-const floorMap = { ceo: 4, marketing: 36, support: 108, document: 180, project: 252, quotation: 324, survey: 396, sales: 468 };
+const floorMap = { ceo:4, marketing:36, support:108, document:180, project:252, quotation:324, survey:396, sales:468 };
 function moveElevator(key) {
     const car = document.getElementById('elevatorCar');
     if (car) car.style.top = (floorMap[key] || 4) + 'px';
@@ -504,7 +654,7 @@ function openAgentModal(key) {
     const a = agents[key];
     document.getElementById('modalContent').innerHTML = `
         <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem">
-            <div style="width:56px;height:56px;border-radius:12px;background:${a.color}22;border:2px solid ${a.color}44;display:flex;align-items:center;justify-content:center;font-size:2rem">${a.emoji}</div>
+            <div style="width:56px;height:56px;border-radius:12px;background:${a.color}22;border:2px solid ${a.color}55;display:flex;align-items:center;justify-content:center;font-size:2rem">${a.emoji}</div>
             <div>
                 <div style="font-size:1.1rem;font-weight:700;color:${a.color}">${a.name}</div>
                 <div style="color:var(--muted);font-size:.8rem">${a.title} · ${a.dept}</div>
@@ -513,10 +663,10 @@ function openAgentModal(key) {
         ${a.agentType ? `
         <form onsubmit="runAgent(event,'${key}');closeModal()">
             <label style="font-size:.8rem;color:var(--muted);display:block;margin-bottom:.5rem">Input ถึง ${a.name}</label>
-            <textarea name="input" rows="6" placeholder="${a.hint}" style="background:#0d1117;border:1px solid #30363d;color:#e6edf3;border-radius:6px;width:100%;padding:.75rem;font-size:.85rem;resize:vertical;margin-bottom:1rem"></textarea>
+            <textarea name="input" rows="6" placeholder="${a.hint}" style="background:#060b14;border:1px solid #1e2d3d;color:#e6edf3;border-radius:6px;width:100%;padding:.75rem;font-size:.85rem;resize:vertical;margin-bottom:1rem"></textarea>
             <div style="display:flex;gap:.75rem">
-                <button type="button" onclick="closeModal()" style="flex:1;background:transparent;border:1px solid #30363d;color:var(--muted);padding:.6rem;border-radius:6px;cursor:pointer">ยกเลิก</button>
-                <button type="submit" style="flex:2;background:${a.color};border:none;color:#0d1117;padding:.6rem;border-radius:6px;font-weight:700;cursor:pointer;font-size:.9rem">▶ Run Agent</button>
+                <button type="button" onclick="closeModal()" style="flex:1;background:transparent;border:1px solid #1e2d3d;color:var(--muted);padding:.6rem;border-radius:6px;cursor:pointer">ยกเลิก</button>
+                <button type="submit" style="flex:2;background:${a.color};border:none;color:#060b14;padding:.6rem;border-radius:6px;font-weight:700;cursor:pointer;font-size:.9rem">▶ Run Agent</button>
             </div>
         </form>
         ` : `<p style="color:var(--muted)">ใช้ Dashboard สำหรับ CEO Orchestrator</p>`}
@@ -531,16 +681,11 @@ function closeModal(e) {
 
 async function runAgent(e, key) {
     e.preventDefault();
-    const a = agents[key];
-    const form = e.target;
-    const input = form.querySelector('[name=input]')?.value;
-    if (!input) return;
-    const dot = document.getElementById('status-' + key);
-    if (dot) { dot.className = 'char-status-dot working'; }
-    const btn = form.querySelector('button[type=submit]');
+    const dot = document.getElementById('dot-' + key);
+    if (dot) dot.className = 'r-sdot working';
+    const btn = e.target.querySelector('button[type=submit]');
     if (btn) { btn.disabled = true; btn.textContent = '⏳ กำลังทำงาน...'; }
-    // Redirect to Dashboard with agent pre-selected (simplified)
-    setTimeout(() => { window.location.href = '/Dashboard'; }, 500);
+    setTimeout(() => { window.location.href = '/Dashboard'; }, 600);
 }
 </script>
 }
