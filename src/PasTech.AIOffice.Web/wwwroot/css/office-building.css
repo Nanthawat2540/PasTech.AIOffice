@@ -218,7 +218,7 @@ body { background:var(--bg); color:var(--txt); font-family:'Inter','Segoe UI',sa
 /* CMD workstations */
 .cmd-ws-row {
     position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
-    display:flex; gap:28px; align-items:flex-end; z-index:4;
+    display:flex; gap:32px; align-items:flex-end; z-index:4;
 }
 
 /* ════════════════════════════════════════
@@ -236,7 +236,7 @@ body { background:var(--bg); color:var(--txt); font-family:'Inter','Segoe UI',sa
    ROOM
    ════════════════════════════════════════ */
 .hq-room {
-    position:relative; overflow:hidden; min-height:185px;
+    position:relative; overflow:hidden; min-height:200px;
     border-right:1px solid #0c1828;
     background:linear-gradient(180deg,
         #040609 0%, #040609 7%,
@@ -290,7 +290,7 @@ body { background:var(--bg); color:var(--txt); font-family:'Inter','Segoe UI',sa
 /* Workstations row */
 .r-ws-row {
     position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
-    display:flex; gap:16px; align-items:flex-end; z-index:4;
+    display:flex; gap:20px; align-items:flex-end; z-index:4;
 }
 
 /* ════════════════════════════════════════
@@ -301,13 +301,13 @@ body { background:var(--bg); color:var(--txt); font-family:'Inter','Segoe UI',sa
     display:flex; flex-direction:column; align-items:center;
     width:56px;
 }
-/* Monitor */
+/* Monitor — z:4, paints over character head (sitting-at-screen effect) */
 .ws-mon {
     width:46px; height:32px;
     background:#010305; border:1.5px solid rgba(var(--wc,88,166,255),.6); border-radius:2px;
     overflow:hidden;
     animation:monGlow 3s ease-in-out infinite alternate;
-    position:relative; z-index:5;
+    position:relative; z-index:4;
 }
 @keyframes monGlow {
     from { box-shadow:0 0 6px  rgba(var(--wc,88,166,255),.18); }
@@ -321,98 +321,97 @@ body { background:var(--bg); color:var(--txt); font-family:'Inter','Segoe UI',sa
 .ws-code span:nth-child(3)    { width:92%; }
 .ws-mn { width:2px; height:5px; background:#14212e; margin:0 auto; }
 .ws-mb { width:14px; height:2px; background:#14212e; border-radius:1px; margin:0 auto; }
-/* Desk */
+/* Desk — z:2 so character (z:3) sits visually in front of desk surface */
 .ws-desk {
-    width:56px; height:6px;
+    width:56px; height:7px;
     background:#12203a; border-top:1.5px solid #1c3050;
-    border-radius:1px 1px 0 0; z-index:4; position:relative;
+    border-radius:1px 1px 0 0; z-index:2; position:relative;
 }
-/* keyboard drawn via ::after */
 .ws-desk::after {
     content:''; position:absolute; top:-5px; left:50%; transform:translateX(-50%);
     width:32px; height:4px; background:#0c1826; border:1px solid #162440; border-radius:1px;
 }
 
-/* ── PIXEL ART CHARACTER (CSS box-shadow) ── */
-/* Sitting position: upper body visible above desk */
-/* Each "pixel" = 3×3 actual pixels, 7 cols × 6 rows = 21×18px character */
+/* ── PIXEL ART CHARACTER (CSS box-shadow) ──
+   4×4px per pixel · 7 cols × 6 rows = 28×24px character
+   z-index:3 → visible above desk (z:2), monitor (z:4) stays in front
+   Stacking: monitor(4) > character(3) > desk(2)
+*/
 .pxc-box {
     position:absolute;
-    bottom:6px; left:50%; transform:translateX(-50%);
-    width:22px; height:18px;
-    animation:pxcBob .5s ease-in-out infinite alternate;
+    bottom:7px; left:50%; transform:translateX(-50%);
+    width:30px; height:26px; z-index:3;
+    animation:pxcBob .55s ease-in-out infinite alternate;
 }
 @keyframes pxcBob {
     0%   { transform:translateX(-50%) translateY(0); }
-    100% { transform:translateX(-50%) translateY(-2px); }
+    100% { transform:translateX(-50%) translateY(-3px); }
 }
+/* 4×4px pixel: offset grid is multiples of 4px */
 .pxc {
-    width:3px; height:3px;
+    width:4px; height:4px;
     position:absolute; left:0; top:0;
-    /* Custom properties: --h=hair, --s=shirt; skin is constant */
     box-shadow:
-        /* Row 0: hair */
-        0    0 0 0 var(--h,#2a1a0a),
-        3px  0 0 0 var(--h,#2a1a0a),
-        6px  0 0 0 var(--h,#2a1a0a),
-        9px  0 0 0 var(--h,#2a1a0a),
+        /* Row 0 (y=0): hair */
+        0   0 0 0 var(--h,#2a1a0a),
+        4px 0 0 0 var(--h,#2a1a0a),
+        8px 0 0 0 var(--h,#2a1a0a),
         12px 0 0 0 var(--h,#2a1a0a),
-        15px 0 0 0 var(--h,#2a1a0a),
-        18px 0 0 0 var(--h,#2a1a0a),
-        /* Row 1: face */
-        0    3px 0 0 #f3c49e,
-        3px  3px 0 0 #f3c49e,
-        6px  3px 0 0 #f3c49e,
-        9px  3px 0 0 #f3c49e,
-        12px 3px 0 0 #f3c49e,
-        15px 3px 0 0 #f3c49e,
-        18px 3px 0 0 #f3c49e,
-        /* Row 2: face + eyes */
-        0    6px 0 0 #f3c49e,
-        3px  6px 0 0 #111,
-        6px  6px 0 0 #f3c49e,
-        9px  6px 0 0 #f3c49e,
-        12px 6px 0 0 #111,
-        15px 6px 0 0 #f3c49e,
-        18px 6px 0 0 #f3c49e,
-        /* Row 3: face + smile */
-        0    9px 0 0 #f3c49e,
-        3px  9px 0 0 #f3c49e,
-        6px  9px 0 0 #c33,
-        9px  9px 0 0 #c33,
-        12px 9px 0 0 #f3c49e,
-        15px 9px 0 0 #f3c49e,
-        18px 9px 0 0 #f3c49e,
-        /* Row 4: shirt */
-        0    12px 0 0 var(--s,#1e40af),
-        3px  12px 0 0 var(--s,#1e40af),
-        6px  12px 0 0 var(--s,#1e40af),
-        9px  12px 0 0 var(--s,#1e40af),
-        12px 12px 0 0 var(--s,#1e40af),
-        15px 12px 0 0 var(--s,#1e40af),
-        18px 12px 0 0 var(--s,#1e40af),
-        /* Row 5: arms on desk */
-        0    15px 0 0 var(--s,#1e40af),
-        3px  15px 0 0 var(--s,#1e40af),
-        6px  15px 0 0 var(--s,#1e40af),
-        9px  15px 0 0 var(--s,#1e40af),
-        12px 15px 0 0 var(--s,#1e40af),
-        15px 15px 0 0 var(--s,#1e40af),
-        18px 15px 0 0 var(--s,#1e40af);
+        16px 0 0 0 var(--h,#2a1a0a),
+        20px 0 0 0 var(--h,#2a1a0a),
+        24px 0 0 0 var(--h,#2a1a0a),
+        /* Row 1 (y=4): face */
+        0   4px 0 0 #f3c49e,
+        4px 4px 0 0 #f3c49e,
+        8px 4px 0 0 #f3c49e,
+        12px 4px 0 0 #f3c49e,
+        16px 4px 0 0 #f3c49e,
+        20px 4px 0 0 #f3c49e,
+        24px 4px 0 0 #f3c49e,
+        /* Row 2 (y=8): eyes */
+        0   8px 0 0 #f3c49e,
+        4px 8px 0 0 #111,
+        8px 8px 0 0 #f3c49e,
+        12px 8px 0 0 #f3c49e,
+        16px 8px 0 0 #111,
+        20px 8px 0 0 #f3c49e,
+        24px 8px 0 0 #f3c49e,
+        /* Row 3 (y=12): mouth */
+        0   12px 0 0 #f3c49e,
+        4px 12px 0 0 #f3c49e,
+        8px 12px 0 0 #c33,
+        12px 12px 0 0 #c33,
+        16px 12px 0 0 #f3c49e,
+        20px 12px 0 0 #f3c49e,
+        24px 12px 0 0 #f3c49e,
+        /* Row 4 (y=16): shirt */
+        0   16px 0 0 var(--s,#1e40af),
+        4px 16px 0 0 var(--s,#1e40af),
+        8px 16px 0 0 var(--s,#1e40af),
+        12px 16px 0 0 var(--s,#1e40af),
+        16px 16px 0 0 var(--s,#1e40af),
+        20px 16px 0 0 var(--s,#1e40af),
+        24px 16px 0 0 var(--s,#1e40af),
+        /* Row 5 (y=20): arms */
+        0   20px 0 0 var(--s,#1e40af),
+        4px 20px 0 0 var(--s,#1e40af),
+        8px 20px 0 0 var(--s,#1e40af),
+        12px 20px 0 0 var(--s,#1e40af),
+        16px 20px 0 0 var(--s,#1e40af),
+        20px 20px 0 0 var(--s,#1e40af),
+        24px 20px 0 0 var(--s,#1e40af);
 }
-/* Secondary (generic) worker: different face + no name */
+/* Secondary worker: darker skin + expressionless face */
 .pxc.worker {
     box-shadow:
-        0 0 0 0 #1a1a1a, 3px 0 0 0 #1a1a1a, 6px 0 0 0 #1a1a1a, 9px 0 0 0 #1a1a1a, 12px 0 0 0 #1a1a1a, 15px 0 0 0 #1a1a1a, 18px 0 0 0 #1a1a1a,
-        0 3px 0 0 #dba07a, 3px 3px 0 0 #dba07a, 6px 3px 0 0 #dba07a, 9px 3px 0 0 #dba07a, 12px 3px 0 0 #dba07a, 15px 3px 0 0 #dba07a, 18px 3px 0 0 #dba07a,
-        0 6px 0 0 #dba07a, 3px 6px 0 0 #090909, 6px 6px 0 0 #dba07a, 9px 6px 0 0 #dba07a, 12px 6px 0 0 #090909, 15px 6px 0 0 #dba07a, 18px 6px 0 0 #dba07a,
-        0 9px 0 0 #dba07a, 3px 9px 0 0 #dba07a, 6px 9px 0 0 #dba07a, 9px 9px 0 0 #dba07a, 12px 9px 0 0 #dba07a, 15px 9px 0 0 #dba07a, 18px 9px 0 0 #dba07a,
-        0 12px 0 0 var(--s,#1e40af), 3px 12px 0 0 var(--s,#1e40af), 6px 12px 0 0 var(--s,#1e40af), 9px 12px 0 0 var(--s,#1e40af), 12px 12px 0 0 var(--s,#1e40af), 15px 12px 0 0 var(--s,#1e40af), 18px 12px 0 0 var(--s,#1e40af),
-        0 15px 0 0 var(--s,#1e40af), 3px 15px 0 0 var(--s,#1e40af), 6px 15px 0 0 var(--s,#1e40af), 9px 15px 0 0 var(--s,#1e40af), 12px 15px 0 0 var(--s,#1e40af), 15px 15px 0 0 var(--s,#1e40af), 18px 15px 0 0 var(--s,#1e40af);
+        0 0 0 0 #1a1a1a, 4px 0 0 0 #1a1a1a, 8px 0 0 0 #1a1a1a, 12px 0 0 0 #1a1a1a, 16px 0 0 0 #1a1a1a, 20px 0 0 0 #1a1a1a, 24px 0 0 0 #1a1a1a,
+        0 4px 0 0 #dba07a, 4px 4px 0 0 #dba07a, 8px 4px 0 0 #dba07a, 12px 4px 0 0 #dba07a, 16px 4px 0 0 #dba07a, 20px 4px 0 0 #dba07a, 24px 4px 0 0 #dba07a,
+        0 8px 0 0 #dba07a, 4px 8px 0 0 #111,    8px 8px 0 0 #dba07a, 12px 8px 0 0 #dba07a, 16px 8px 0 0 #111,    20px 8px 0 0 #dba07a, 24px 8px 0 0 #dba07a,
+        0 12px 0 0 #dba07a, 4px 12px 0 0 #dba07a, 8px 12px 0 0 #dba07a, 12px 12px 0 0 #dba07a, 16px 12px 0 0 #dba07a, 20px 12px 0 0 #dba07a, 24px 12px 0 0 #dba07a,
+        0 16px 0 0 var(--s,#1e40af), 4px 16px 0 0 var(--s,#1e40af), 8px 16px 0 0 var(--s,#1e40af), 12px 16px 0 0 var(--s,#1e40af), 16px 16px 0 0 var(--s,#1e40af), 20px 16px 0 0 var(--s,#1e40af), 24px 16px 0 0 var(--s,#1e40af),
+        0 20px 0 0 var(--s,#1e40af), 4px 20px 0 0 var(--s,#1e40af), 8px 20px 0 0 var(--s,#1e40af), 12px 20px 0 0 var(--s,#1e40af), 16px 20px 0 0 var(--s,#1e40af), 20px 20px 0 0 var(--s,#1e40af), 24px 20px 0 0 var(--s,#1e40af);
 }
-/* Bigger main-agent pixel character (4x scale = 28×24px) */
-.ws.main .pxc-box { width:29px; height:24px; bottom:6px; }
-.ws.main .pxc     { width:4px; height:4px; }
+/* Main agent: same pixel size, bigger monitor */
 .ws.main .ws-mon  { width:52px; height:38px; }
 .ws.main .ws-desk { width:62px; }
 .ws.main { width:64px; }
