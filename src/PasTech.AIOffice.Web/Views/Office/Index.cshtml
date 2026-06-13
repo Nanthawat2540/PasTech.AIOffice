@@ -3,623 +3,826 @@
     Layout = "~/Views/Shared/_OfficeLayout.cshtml";
 }
 
-<div class="stars"></div>
 <div class="hq-page">
 
-    <!-- ══════════════════════════════════════════
-         LEFT PANEL
-    ══════════════════════════════════════════ -->
-    <div class="hq-left">
-        <div class="lp-brand">
-            <div class="lp-brand-ttl">PASTECHAI<span class="lp-brand-v">v3</span></div>
-            <div class="lp-clock" id="lp-clock">--:--:--</div>
-            <div class="lp-date" id="lp-date">—</div>
-        </div>
-
-        <div class="lp-sec">
-            <div class="lp-sec-ttl">Company Status</div>
-            <div class="lp-row"><span>Tasks Active</span><span class="lp-val" style="color:#58a6ff">24</span></div>
-            <div class="lp-row"><span>Completed Today</span><span class="lp-val" style="color:#3fb950">156</span></div>
-            <div class="lp-row"><span>Revenue (MTD)</span><span class="lp-val" style="color:#f0c040">฿1.2M</span></div>
-            <div class="lp-spark">
-                <div class="lp-bar" style="height:30%"></div>
-                <div class="lp-bar" style="height:55%"></div>
-                <div class="lp-bar" style="height:40%"></div>
-                <div class="lp-bar" style="height:70%"></div>
-                <div class="lp-bar" style="height:50%"></div>
-                <div class="lp-bar" style="height:85%"></div>
-                <div class="lp-bar" style="height:60%"></div>
-                <div class="lp-bar" style="height:100%"></div>
-            </div>
-        </div>
-
-        <div class="lp-sec">
-            <div class="lp-sec-ttl">System Health</div>
-            <div class="lp-srow"><span style="font-size:.65rem">AI API</span><span class="lp-tag ok">OK</span></div>
-            <div class="lp-srow"><span style="font-size:.65rem">Database</span><span class="lp-tag ok">OK</span></div>
-            <div class="lp-srow"><span style="font-size:.65rem">Cloudflare</span><span class="lp-tag secure">SECURE</span></div>
-            <div class="lp-srow"><span style="font-size:.65rem">CI/CD</span><span class="lp-tag ok">OK</span></div>
-        </div>
-
-        <div class="lp-sec">
-            <div class="lp-sec-ttl">Notifications</div>
-            <div class="notif-item"><div class="notif-dot"></div>Sales: Inquiry ใหม่จาก บริษัท ABC</div>
-            <div class="notif-item"><div class="notif-dot"></div>Project: งาน PT-2024-089 อัปเดต</div>
-            <div class="notif-item"><div class="notif-dot"></div>Support: Ticket #142 ปิดแล้ว</div>
-        </div>
-
-        <div class="lp-sec" style="flex:1">
-            <div class="lp-sec-ttl">AI Agents Online</div>
-            <div class="agent-row">
-                <div class="agent-mini" onclick="selectRoom('cmd')"><div class="agent-mini-icon">🤖</div>Boss</div>
-                <div class="agent-mini" onclick="selectRoom('sales')"><div class="agent-mini-icon">😊</div>Sales</div>
-                <div class="agent-mini" onclick="selectRoom('survey')"><div class="agent-mini-icon">🔍</div>Survey</div>
-                <div class="agent-mini" onclick="selectRoom('quotation')"><div class="agent-mini-icon">📋</div>Quote</div>
-                <div class="agent-mini" onclick="selectRoom('project')"><div class="agent-mini-icon">📅</div>Project</div>
-                <div class="agent-mini" onclick="selectRoom('document')"><div class="agent-mini-icon">📄</div>Doc</div>
-                <div class="agent-mini" onclick="selectRoom('support')"><div class="agent-mini-icon">🛠️</div>Support</div>
-                <div class="agent-mini" onclick="selectRoom('marketing')"><div class="agent-mini-icon">📣</div>Mktg</div>
-            </div>
-        </div>
+<!-- ═══════════════════════ LEFT PANEL ═══════════════════════ -->
+<div class="hq-left">
+    <div class="lp-brand">
+        <div class="lp-logo">PASTECHAI<sup>v4</sup></div>
+        <div class="lp-clock" id="lp-clock">--:--:--</div>
+        <div class="lp-date"  id="lp-date">—</div>
     </div>
-
-    <!-- ══════════════════════════════════════════
-         CENTER BUILDING
-    ══════════════════════════════════════════ -->
-    <div class="hq-center">
-        <div class="hq-roof">
-            <div class="hq-roof-brand">
-                <div class="hq-roof-icon">🏢</div>
-                <div>
-                    <div class="hq-roof-name">PASTECHAI HQ</div>
-                    <div class="hq-roof-sub">Intelligent AI Office · Multi-Department Operations</div>
-                </div>
-            </div>
-            <div class="hq-roof-right">
-                <div class="roof-pulse"></div>
-                ALL SYSTEMS OPERATIONAL
-            </div>
-        </div>
-
-        <!-- COMMAND CENTER -->
-        <div class="hq-cmd" id="room-cmd" onclick="selectRoom('cmd')">
-            <div class="cmd-ceil"></div>
-            <div class="cmd-lamps">
-                <div class="cmd-lamp"></div>
-                <div class="cmd-lamp"></div>
-                <div class="cmd-lamp"></div>
-                <div class="cmd-lamp"></div>
-                <div class="cmd-lamp"></div>
-            </div>
-            <div class="cmd-wall-disp">
-                <div class="cmd-disp-grid"></div>
-                <div class="cmd-disp-data">
-                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
-                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
-                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
-                    <div class="cmd-dl"></div><div class="cmd-dl"></div>
-                </div>
-                <div class="cmd-orb">BOSS</div>
-            </div>
-            <div class="cmd-ws-row">
-                <!-- CEO workstation (large) -->
-                <div class="ws main" style="--wc:240,192,64">
-                    <div class="ws-mon"><div class="ws-code">
-                        <span style="width:88%"></span><span style="width:60%"></span>
-                        <span style="width:75%"></span><span style="width:92%"></span>
-                        <span style="width:50%"></span><span style="width:80%"></span>
-                    </div></div>
-                    <div class="ws-mn"></div><div class="ws-mb"></div>
-                    <div class="ws-desk"></div>
-                    <div class="pxc-box" style="--h:#1a0d00;--s:#7c5c00"><div class="pxc"></div></div>
-                </div>
-                <div class="ws" style="--wc:240,192,64">
-                    <div class="ws-mon"><div class="ws-code">
-                        <span style="width:72%"></span><span style="width:55%"></span>
-                        <span style="width:90%"></span><span style="width:40%"></span>
-                    </div></div>
-                    <div class="ws-mn"></div><div class="ws-mb"></div>
-                    <div class="ws-desk"></div>
-                    <div class="pxc-box" style="--h:#1a1a1a;--s:#5c4500"><div class="pxc worker"></div></div>
-                </div>
-                <div class="ws" style="--wc:240,192,64">
-                    <div class="ws-mon"><div class="ws-code">
-                        <span style="width:65%"></span><span style="width:82%"></span>
-                        <span style="width:48%"></span><span style="width:95%"></span>
-                    </div></div>
-                    <div class="ws-mn"></div><div class="ws-mb"></div>
-                    <div class="ws-desk"></div>
-                    <div class="pxc-box" style="--h:#2d0a0a;--s:#5c4500"><div class="pxc worker"></div></div>
-                </div>
-            </div>
-            <div class="r-label" style="top:auto;bottom:10px;left:10px;transform:none;--clr:240,192,64">
-                <div class="r-sdot working" style="display:inline-block;margin-right:5px;vertical-align:middle"></div>
-                Boss (Director) · COMMAND CENTER
+    <div class="lp-body">
+        <!-- Company status -->
+        <div class="lp-sec">
+            <div class="lp-ttl">Company Status</div>
+            <div class="lp-row"><span>Active Tasks</span><span class="lp-val" style="color:#58a6ff">24</span></div>
+            <div class="lp-row"><span>Done Today</span><span class="lp-val" style="color:#3fb950">156</span></div>
+            <div class="lp-row"><span>Revenue MTD</span><span class="lp-val" style="color:#f0c040">฿1.2M</span></div>
+            <div class="spark">
+                <div class="spark-bar" style="height:30%"></div>
+                <div class="spark-bar" style="height:55%"></div>
+                <div class="spark-bar" style="height:40%"></div>
+                <div class="spark-bar" style="height:72%"></div>
+                <div class="spark-bar" style="height:52%"></div>
+                <div class="spark-bar" style="height:86%"></div>
+                <div class="spark-bar" style="height:60%"></div>
+                <div class="spark-bar hi" style="height:100%"></div>
             </div>
         </div>
-
-        <!-- FLOOR 2: Sales | Survey | Quotation -->
-        <div class="hq-floor-row">
-
-            <!-- SALES -->
-            <div class="hq-room" id="room-sales" style="--clr:88,166,255" onclick="selectRoom('sales')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:88,166,255">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:80%"></span><span style="width:55%"></span>
-                            <span style="width:92%"></span><span style="width:65%"></span>
-                            <span style="width:45%"></span><span style="width:78%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a120a;--s:#1e40af"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:88,166,255">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:70%"></span><span style="width:88%"></span>
-                            <span style="width:50%"></span><span style="width:75%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#1e40af"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">💼</div>
-                <div class="r-flt r-flt-r">📞</div>
-                <div class="r-info">
-                    <div class="r-sdot working" id="dot-sales"></div>
-                    <div><div class="r-nm">สมหมาย (Sommai)</div><div class="r-rl">Sales Manager</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('sales')">ตอบ Inquiry</button>
-                <div class="r-label">ฝ่ายขาย</div>
-            </div>
-
-            <!-- SURVEY -->
-            <div class="hq-room" id="room-survey" style="--clr:34,211,238" onclick="selectRoom('survey')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:34,211,238">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:92%"></span><span style="width:60%"></span>
-                            <span style="width:75%"></span><span style="width:85%"></span>
-                            <span style="width:50%"></span><span style="width:70%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#0a1a2a;--s:#0e7490"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:34,211,238">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:65%"></span><span style="width:80%"></span>
-                            <span style="width:48%"></span><span style="width:92%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#0e7490"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">📐</div>
-                <div class="r-flt r-flt-r">🔭</div>
-                <div class="r-info">
-                    <div class="r-sdot working" id="dot-survey"></div>
-                    <div><div class="r-nm">วิท (Wit)</div><div class="r-rl">Survey & Design</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('survey')">วิเคราะห์หน้างาน</button>
-                <div class="r-label">สำรวจ & ออกแบบ</div>
-            </div>
-
-            <!-- QUOTATION -->
-            <div class="hq-room" id="room-quotation" style="--clr:251,191,36" onclick="selectRoom('quotation')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:251,191,36">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:85%"></span><span style="width:55%"></span>
-                            <span style="width:98%"></span><span style="width:70%"></span>
-                            <span style="width:45%"></span><span style="width:82%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a0a00;--s:#92400e"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:251,191,36">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:72%"></span><span style="width:90%"></span>
-                            <span style="width:55%"></span><span style="width:68%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#92400e"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">💰</div>
-                <div class="r-flt r-flt-r">🧾</div>
-                <div class="r-info">
-                    <div class="r-sdot idle" id="dot-quotation"></div>
-                    <div><div class="r-nm">นาบ (Nab)</div><div class="r-rl">Quotation Specialist</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('quotation')">ออกใบเสนอ</button>
-                <div class="r-label">ใบเสนอราคา</div>
-            </div>
+        <!-- System health -->
+        <div class="lp-sec">
+            <div class="lp-ttl">System Health</div>
+            <div class="hlth-row"><span style="font-size:.6rem">AI API</span><span class="hlth-tag ok">OK</span></div>
+            <div class="hlth-row"><span style="font-size:.6rem">Database</span><span class="hlth-tag ok">OK</span></div>
+            <div class="hlth-row"><span style="font-size:.6rem">Cloudflare</span><span class="hlth-tag secure">SECURE</span></div>
+            <div class="hlth-row"><span style="font-size:.6rem">CI/CD</span><span class="hlth-tag ok">OK</span></div>
         </div>
-
-        <!-- FLOOR 1: Project | Document | Support -->
-        <div class="hq-floor-row">
-
-            <!-- PROJECT -->
-            <div class="hq-room" id="room-project" style="--clr:248,113,113" onclick="selectRoom('project')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:248,113,113">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:78%"></span><span style="width:58%"></span>
-                            <span style="width:90%"></span><span style="width:45%"></span>
-                            <span style="width:70%"></span><span style="width:85%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#2a0a1a;--s:#7f1d1d"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:248,113,113">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:80%"></span><span style="width:52%"></span>
-                            <span style="width:65%"></span><span style="width:88%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#7f1d1d"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">📅</div>
-                <div class="r-flt r-flt-r">📌</div>
-                <div class="r-info">
-                    <div class="r-sdot working" id="dot-project"></div>
-                    <div><div class="r-nm">พิม (Pim)</div><div class="r-rl">Project Manager</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('project')">วางแผนงาน</button>
-                <div class="r-label">จัดการโครงการ</div>
-            </div>
-
-            <!-- DOCUMENT -->
-            <div class="hq-room" id="room-document" style="--clr:52,211,153" onclick="selectRoom('document')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:52,211,153">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:95%"></span><span style="width:60%"></span>
-                            <span style="width:80%"></span><span style="width:72%"></span>
-                            <span style="width:55%"></span><span style="width:88%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#0a1a0a;--s:#065f46"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:52,211,153">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:68%"></span><span style="width:85%"></span>
-                            <span style="width:50%"></span><span style="width:78%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#065f46"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">📄</div>
-                <div class="r-flt r-flt-r">🖨️</div>
-                <div class="r-info">
-                    <div class="r-sdot done" id="dot-document"></div>
-                    <div><div class="r-nm">เอก (Ek)</div><div class="r-rl">Document Officer</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('document')">ออกเอกสาร</button>
-                <div class="r-label">งานเอกสาร</div>
-            </div>
-
-            <!-- SUPPORT -->
-            <div class="hq-room" id="room-support" style="--clr:251,146,60" onclick="selectRoom('support')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
-                </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:251,146,60">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:75%"></span><span style="width:90%"></span>
-                            <span style="width:62%"></span><span style="width:80%"></span>
-                            <span style="width:48%"></span><span style="width:95%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a0a00;--s:#7c2d12"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:251,146,60">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:82%"></span><span style="width:58%"></span>
-                            <span style="width:70%"></span><span style="width:92%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#7c2d12"><div class="pxc worker"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">🛠️</div>
-                <div class="r-flt r-flt-r">📟</div>
-                <div class="r-info">
-                    <div class="r-sdot working" id="dot-support"></div>
-                    <div><div class="r-nm">ช่วย (Chuai)</div><div class="r-rl">Support Engineer</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('support')">แก้ไขปัญหา</button>
-                <div class="r-label">ฝ่ายซ่อมบำรุง</div>
-            </div>
+        <!-- Notifications -->
+        <div class="lp-sec">
+            <div class="lp-ttl">Notifications</div>
+            <div class="notif"><div class="notif-dot"></div>Inquiry ใหม่จาก บ.ABC จำกัด</div>
+            <div class="notif"><div class="notif-dot"></div>PT-2024-089 งานอัปเดต</div>
+            <div class="notif"><div class="notif-dot"></div>Ticket #142 ปิดแล้ว</div>
         </div>
-
-        <!-- GROUND: Server Room | Marketing | Lobby -->
-        <div class="hq-floor-row ground">
-
-            <!-- SERVER ROOM -->
-            <div class="hq-room server" id="room-server" style="--clr:88,166,255" onclick="selectRoom('server')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall"><div class="r-win"></div></div>
-                <div class="srv-racks">
-                    <div class="srv-rack">
-                        <div class="srv-ru" style="--d:.9s"></div><div class="srv-ru" style="--d:1.3s"></div>
-                        <div class="srv-ru" style="--d:.7s"></div><div class="srv-ru" style="--d:1.6s"></div>
-                        <div class="srv-ru" style="--d:1.1s"></div><div class="srv-ru" style="--d:.8s"></div>
-                    </div>
-                    <div class="srv-rack">
-                        <div class="srv-ru" style="--d:1.4s"></div><div class="srv-ru" style="--d:.6s"></div>
-                        <div class="srv-ru" style="--d:1.0s"></div><div class="srv-ru" style="--d:1.7s"></div>
-                        <div class="srv-ru" style="--d:.85s"></div><div class="srv-ru" style="--d:1.2s"></div>
-                    </div>
-                    <div class="srv-rack">
-                        <div class="srv-ru" style="--d:.95s"></div><div class="srv-ru" style="--d:1.5s"></div>
-                        <div class="srv-ru" style="--d:.75s"></div><div class="srv-ru" style="--d:1.0s"></div>
-                        <div class="srv-ru" style="--d:1.3s"></div><div class="srv-ru" style="--d:.65s"></div>
-                    </div>
+        <!-- Mini floor map -->
+        <div class="lp-sec">
+            <div class="lp-ttl">Building Map</div>
+            <div class="mini-map">
+                <div class="mm-floor active" id="mm-0" onclick="switchFloor(0)">
+                    <div class="mm-dot"></div><span class="mm-label">CMD · Boss</span>
                 </div>
-                <div class="ai-robot">🤖</div>
-                <div class="r-info" style="--clr:88,166,255">
-                    <div class="r-sdot working"></div>
-                    <div><div class="r-nm">AI Core Engine</div><div class="r-rl">Server Infrastructure</div></div>
+                <div class="mm-floor" id="mm-1" onclick="switchFloor(1)">
+                    <div class="mm-dot"></div><span class="mm-label">F2 · Operations</span>
                 </div>
-                <div class="r-label">ห้อง Server</div>
-            </div>
-
-            <!-- MARKETING -->
-            <div class="hq-room" id="room-marketing" style="--clr:167,139,250" onclick="selectRoom('marketing')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall">
-                    <div class="r-win"></div>
-                    <div class="r-wscr"><div class="r-wscr-lines">
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                        <div class="r-wl"></div><div class="r-wl"></div><div class="r-wl"></div>
-                    </div></div>
+                <div class="mm-floor" id="mm-2" onclick="switchFloor(2)">
+                    <div class="mm-dot"></div><span class="mm-label">F1 · Projects</span>
                 </div>
-                <div class="r-ws-row">
-                    <div class="ws main" style="--wc:167,139,250">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:88%"></span><span style="width:55%"></span>
-                            <span style="width:72%"></span><span style="width:90%"></span>
-                            <span style="width:48%"></span><span style="width:80%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a0a2a;--s:#4c1d95"><div class="pxc"></div></div>
-                    </div>
-                    <div class="ws" style="--wc:167,139,250">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:75%"></span><span style="width:92%"></span>
-                            <span style="width:58%"></span><span style="width:80%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk"></div>
-                        <div class="pxc-box" style="--h:#1a1a1a;--s:#4c1d95"><div class="pxc worker"></div></div>
-                    </div>
+                <div class="mm-floor" id="mm-3" onclick="switchFloor(3)">
+                    <div class="mm-dot"></div><span class="mm-label">GND · Ground</span>
                 </div>
-                <div class="r-flt r-flt-l">📣</div>
-                <div class="r-flt r-flt-r">🎨</div>
-                <div class="r-info">
-                    <div class="r-sdot idle" id="dot-marketing"></div>
-                    <div><div class="r-nm">มายา (Maya)</div><div class="r-rl">Marketing Mgr</div></div>
-                </div>
-                <button class="r-btn" onclick="event.stopPropagation();openModal('marketing')">สร้างคอนเทนต์</button>
-                <div class="r-label">ฝ่ายการตลาด</div>
-            </div>
-
-            <!-- LOBBY -->
-            <div class="hq-room" id="room-lobby" style="--clr:148,163,184" onclick="selectRoom('lobby')">
-                <div class="r-ceil"><div class="r-lamp"></div></div>
-                <div class="r-wall"><div class="r-win"></div></div>
-                <div class="r-ws-row">
-                    <div class="ws" style="--wc:148,163,184">
-                        <div class="ws-mon"><div class="ws-code">
-                            <span style="width:78%"></span><span style="width:55%"></span>
-                            <span style="width:90%"></span><span style="width:65%"></span>
-                        </div></div>
-                        <div class="ws-mn"></div><div class="ws-mb"></div>
-                        <div class="ws-desk" style="width:72px;background:#1a2a40;border-color:#243850"></div>
-                        <div class="pxc-box" style="--h:#1a1a0a;--s:#334155"><div class="pxc"></div></div>
-                    </div>
-                </div>
-                <div class="r-flt r-flt-l">🌱</div>
-                <div class="r-flt r-flt-r" style="font-size:.9rem">🛋️</div>
-                <div class="r-info">
-                    <div class="r-sdot idle"></div>
-                    <div><div class="r-nm">Lobby</div><div class="r-rl">Reception / Visitor</div></div>
-                </div>
-                <div class="r-label">Lobby</div>
-            </div>
-        </div>
-
-        <div class="hq-base">
-            <span><span class="base-dot"></span>PasTech AI HQ · ai-office.pastechsystem.co.th</span>
-            <span id="base-clock" style="font-family:'JetBrains Mono',monospace;font-size:.65rem"></span>
-            <span>8 AI Agents · Online</span>
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════
-         RIGHT PANEL
-    ══════════════════════════════════════════ -->
-    <div class="hq-right">
-        <div class="rp-head">
-            <div id="rp-agent-name" style="color:#58a6ff;font-family:'JetBrains Mono',monospace">Select a room...</div>
-            <div id="rp-agent-role" style="font-size:.6rem;color:#8b949e;margin-top:2px"></div>
-        </div>
-        <div class="rp-body">
-            <div class="rp-sec-ttl" style="margin-bottom:.45rem">Department Status</div>
-            <div class="dp-row"><span style="font-size:.65rem">Sales</span><div class="dp-bar-bg"><div class="dp-bar" style="width:78%;background:rgba(88,166,255,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">78%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Survey</span><div class="dp-bar-bg"><div class="dp-bar" style="width:62%;background:rgba(34,211,238,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">62%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Quotation</span><div class="dp-bar-bg"><div class="dp-bar" style="width:45%;background:rgba(251,191,36,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">45%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Project</span><div class="dp-bar-bg"><div class="dp-bar" style="width:88%;background:rgba(248,113,113,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">88%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Document</span><div class="dp-bar-bg"><div class="dp-bar" style="width:92%;background:rgba(52,211,153,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">92%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Support</span><div class="dp-bar-bg"><div class="dp-bar" style="width:55%;background:rgba(251,146,60,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">55%</span></div>
-            <div class="dp-row"><span style="font-size:.65rem">Marketing</span><div class="dp-bar-bg"><div class="dp-bar" style="width:38%;background:rgba(167,139,250,.6)"></div></div><span style="font-size:.6rem;font-family:monospace;color:#8b949e">38%</span></div>
-
-            <div style="display:flex;gap:6px;margin:1rem 0 .6rem">
-                <div class="mini-m"><div class="mini-m-v" style="color:#3fb950">24</div><div class="mini-m-l">Active</div></div>
-                <div class="mini-m"><div class="mini-m-v" style="color:#58a6ff">156</div><div class="mini-m-l">MTD Done</div></div>
-                <div class="mini-m"><div class="mini-m-v" style="color:#f0c040">8</div><div class="mini-m-l">Agents</div></div>
-            </div>
-
-            <div class="rp-sec-ttl" style="margin-bottom:.4rem">Active Projects</div>
-            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-089 Network CCTV</span><span class="proj-badge">ON</span></div>
-            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-090 Server Setup</span><span class="proj-badge">ON</span></div>
-            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-091 Fiber WAN</span><span class="proj-badge" style="background:rgba(251,191,36,.15);color:#fbbf24">NEW</span></div>
-            <div class="proj-item"><span style="color:#e6edf3;font-size:.63rem">PT-2024-087 UPS Replace</span><span class="proj-badge" style="background:rgba(248,113,113,.15);color:#f87171">HOT</span></div>
-
-            <div class="rp-sec-ttl" style="margin-top:1rem;margin-bottom:.3rem">AI Data Flow</div>
-            <div class="flow-chart">
-                <svg width="100%" height="100%" viewBox="0 0 200 42" preserveAspectRatio="none">
-                    <polyline points="0,35 20,28 40,32 60,18 80,22 100,15 120,20 140,10 160,18 180,8 200,12" fill="none" stroke="rgba(88,166,255,.5)" stroke-width="1.5"/>
-                    <polyline points="0,38 20,36 40,35 60,32 80,28 100,30 120,24 140,28 160,22 180,25 200,20" fill="none" stroke="rgba(52,211,153,.35)" stroke-width="1"/>
-                </svg>
-                <div class="flow-line"></div>
-            </div>
-        </div>
-
-        <div class="ai-workflow">
-            <div style="color:#e6edf3;font-weight:600">AI Workflow Pipeline</div>
-            <div class="wf-steps">
-                <span class="wf-step">Inquiry</span><span class="wf-arr">→</span>
-                <span class="wf-step">Survey</span><span class="wf-arr">→</span>
-                <span class="wf-step">Quote</span><span class="wf-arr">→</span>
-                <span class="wf-step">Project</span><span class="wf-arr">→</span>
-                <span class="wf-step">Document</span>
             </div>
         </div>
     </div>
 </div>
 
+<!-- ═══════════════════════ CENTER ═══════════════════════ -->
+<div class="hq-center">
+    <!-- Floor tabs -->
+    <div class="floor-nav">
+        <div class="floor-tab active" id="tab-0" onclick="switchFloor(0)">⬛ CMD</div>
+        <div class="floor-tab" id="tab-1" onclick="switchFloor(1)">F2 · Sales·Survey·Quote</div>
+        <div class="floor-tab" id="tab-2" onclick="switchFloor(2)">F1 · Proj·Doc·Support</div>
+        <div class="floor-tab" id="tab-3" onclick="switchFloor(3)">GND · Server·Mktg·Lobby</div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="office-canvas-wrap" id="canvasWrap">
+        <canvas id="officeCanvas"></canvas>
+        <!-- Tooltip -->
+        <div class="px-tooltip" id="pxTip" style="display:none"></div>
+        <!-- Loading overlay -->
+        <div class="canvas-loading" id="loadOv">
+            <div style="font-size:.75rem;letter-spacing:1px">Loading sprites...</div>
+            <div class="load-bar"><div class="load-fill" id="loadFill" style="width:0%"></div></div>
+            <div style="font-size:.55rem;color:#5a7090" id="loadTxt">Fetching pixel-agents assets</div>
+        </div>
+    </div>
+
+    <!-- Status bar -->
+    <div class="hq-base">
+        <span><span class="base-dot"></span>PasTech AI HQ · ai-office.pastechsystem.co.th</span>
+        <span id="base-clock" style="font-family:'JetBrains Mono',monospace"></span>
+        <span id="base-floor">CMD · Command Center</span>
+    </div>
+</div>
+
+<!-- ═══════════════════════ RIGHT PANEL ═══════════════════════ -->
+<div class="hq-right">
+    <div class="rp-head">
+        <div class="rp-agent-name" id="rp-name">Select a room...</div>
+        <div class="rp-agent-role" id="rp-role"></div>
+    </div>
+    <div class="rp-body">
+        <div class="rp-ttl" style="margin-bottom:.4rem">Department Status</div>
+        <div class="dp-row"><span>Sales</span><div class="dp-bg"><div class="dp-fill" style="width:78%;background:rgba(88,166,255,.6)"></div></div><span class="dp-pct">78%</span></div>
+        <div class="dp-row"><span>Survey</span><div class="dp-bg"><div class="dp-fill" style="width:62%;background:rgba(34,211,238,.6)"></div></div><span class="dp-pct">62%</span></div>
+        <div class="dp-row"><span>Quotation</span><div class="dp-bg"><div class="dp-fill" style="width:45%;background:rgba(251,191,36,.6)"></div></div><span class="dp-pct">45%</span></div>
+        <div class="dp-row"><span>Project</span><div class="dp-bg"><div class="dp-fill" style="width:88%;background:rgba(248,113,113,.6)"></div></div><span class="dp-pct">88%</span></div>
+        <div class="dp-row"><span>Document</span><div class="dp-bg"><div class="dp-fill" style="width:92%;background:rgba(52,211,153,.6)"></div></div><span class="dp-pct">92%</span></div>
+        <div class="dp-row"><span>Support</span><div class="dp-bg"><div class="dp-fill" style="width:55%;background:rgba(251,146,60,.6)"></div></div><span class="dp-pct">55%</span></div>
+        <div class="dp-row"><span>Marketing</span><div class="dp-bg"><div class="dp-fill" style="width:38%;background:rgba(167,139,250,.6)"></div></div><span class="dp-pct">38%</span></div>
+
+        <div class="mini3">
+            <div class="m3-box"><div class="m3-v" style="color:#3fb950">24</div><div class="m3-l">Active</div></div>
+            <div class="m3-box"><div class="m3-v" style="color:#58a6ff">156</div><div class="m3-l">Done</div></div>
+            <div class="m3-box"><div class="m3-v" style="color:#f0c040">8</div><div class="m3-l">Agents</div></div>
+        </div>
+
+        <div class="rp-ttl" style="margin-bottom:.35rem">Active Projects</div>
+        <div class="proj-row"><span style="color:#e6edf3">PT-2024-089 Network CCTV</span><span class="proj-badge b-on">ON</span></div>
+        <div class="proj-row"><span style="color:#e6edf3">PT-2024-090 Server Setup</span><span class="proj-badge b-on">ON</span></div>
+        <div class="proj-row"><span style="color:#e6edf3">PT-2024-091 Fiber WAN</span><span class="proj-badge b-new">NEW</span></div>
+        <div class="proj-row"><span style="color:#e6edf3">PT-2024-087 UPS Replace</span><span class="proj-badge b-hot">HOT</span></div>
+    </div>
+
+    <div class="wf-box">
+        <div class="wf-ttl">AI Workflow Pipeline</div>
+        <div class="wf-steps">
+            <span class="wf-step">Inquiry</span><span class="wf-arr">→</span>
+            <span class="wf-step">Survey</span><span class="wf-arr">→</span>
+            <span class="wf-step">Quote</span><span class="wf-arr">→</span>
+            <span class="wf-step">Project</span><span class="wf-arr">→</span>
+            <span class="wf-step">Doc</span>
+        </div>
+    </div>
+</div>
+</div>
+
 <!-- MODAL -->
-<div class="modal-overlay" id="agentModal" onclick="closeModal()">
+<div class="modal-ov" id="modal" onclick="closeModal()">
     <div class="modal-box" onclick="event.stopPropagation()">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
             <div>
-                <div id="modal-title" style="font-size:1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:#58a6ff"></div>
-                <div id="modal-role" style="font-size:.65rem;color:#8b949e;margin-top:2px"></div>
+                <div id="modal-name" style="font-size:1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:#58a6ff"></div>
+                <div id="modal-role" style="font-size:.65rem;color:#5a7090;margin-top:2px"></div>
             </div>
-            <button onclick="closeModal()" style="background:none;border:1px solid #21262d;color:#8b949e;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.8rem">✕ ปิด</button>
+            <button onclick="closeModal()" style="background:none;border:1px solid #1a2840;color:#5a7090;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.8rem">✕</button>
         </div>
-        <a id="modal-link" href="/Dashboard" style="display:inline-block;margin-bottom:1rem;background:#238636;color:#fff;border:none;border-radius:6px;padding:.4rem 1.2rem;font-size:.8rem;font-weight:600;text-decoration:none">
-            เปิดหน้า Dashboard →
-        </a>
-        <div style="font-size:.75rem;color:#8b949e">คลิก "เปิดหน้า Dashboard" เพื่อสร้างงานหรือดู log ของ Agent นี้</div>
+        <a id="modal-link" href="/Dashboard" style="display:inline-block;margin-bottom:1rem;background:#238636;color:#fff;border:none;border-radius:6px;padding:.4rem 1.2rem;font-size:.8rem;font-weight:600;text-decoration:none">เปิด Dashboard →</a>
+        <div style="font-size:.72rem;color:#5a7090">คลิกเพื่อดู log ของ Agent หรือสร้างงานใหม่</div>
     </div>
 </div>
 
 @section Scripts {
 <script>
-const AGENTS = {
-    cmd:       { name:'Boss (Director)', role:'Command Center · CEO', link:'/Office' },
-    sales:     { name:'สมหมาย (Sommai)', role:'Sales Manager · ฝ่ายขาย', link:'/Dashboard' },
-    survey:    { name:'วิท (Wit)', role:'Survey & Design · สำรวจ&ออกแบบ', link:'/Dashboard' },
-    quotation: { name:'นาบ (Nab)', role:'Quotation Specialist · ใบเสนอราคา', link:'/Dashboard' },
-    project:   { name:'พิม (Pim)', role:'Project Manager · จัดการโครงการ', link:'/Dashboard' },
-    document:  { name:'เอก (Ek)', role:'Document Officer · งานเอกสาร', link:'/Dashboard' },
-    support:   { name:'ช่วย (Chuai)', role:'Support Engineer · ซ่อมบำรุง', link:'/Dashboard' },
-    marketing: { name:'มายา (Maya)', role:'Marketing Manager · การตลาด', link:'/Dashboard' },
-    server:    { name:'AI Core Engine', role:'Server Room · Infrastructure', link:'/Dashboard' },
-    lobby:     { name:'Lobby', role:'Reception / Visitor Area', link:'/Dashboard' },
-};
+/* ════════════════════════════════════════════════════════════
+   ROOM / FLOOR DATA
+   ════════════════════════════════════════════════════════════ */
+const FLOORS = [
+  /* 0: CMD */
+  { label: 'CMD · Command Center', rooms: [
+      { id:'cmd', name:'Boss', role:'Director · Command Center',
+        accent:[240,192,64], wall:'#0f0900', floor:'#0a0700', charIdx:0, workerIdx:1,
+        props:['📺','🖥️'], status:'working', link:'/Office' }
+  ]},
+  /* 1: Floor 2 */
+  { label: 'F2 · Operations', rooms: [
+      { id:'sales', name:'สมหมาย (Sommai)', role:'Sales Manager · ฝ่ายขาย',
+        accent:[88,166,255], wall:'#030c1a', floor:'#020810', charIdx:1, workerIdx:2,
+        props:['💼','📞'], status:'working', link:'/Dashboard' },
+      { id:'survey', name:'วิท (Wit)', role:'Survey & Design · สำรวจ',
+        accent:[34,211,238], wall:'#001214', floor:'#000d10', charIdx:2, workerIdx:3,
+        props:['📐','🔭'], status:'working', link:'/Dashboard' },
+      { id:'quotation', name:'นาบ (Nab)', role:'Quotation · ใบเสนอราคา',
+        accent:[251,191,36], wall:'#120c00', floor:'#0d0800', charIdx:4, workerIdx:0,
+        props:['💰','🧾'], status:'idle', link:'/Dashboard' }
+  ]},
+  /* 2: Floor 1 */
+  { label: 'F1 · Projects', rooms: [
+      { id:'project', name:'พิม (Pim)', role:'Project Manager · โครงการ',
+        accent:[248,113,113], wall:'#140505', floor:'#0e0404', charIdx:3, workerIdx:5,
+        props:['📅','📌'], status:'working', link:'/Dashboard' },
+      { id:'document', name:'เอก (Ek)', role:'Document Officer · เอกสาร',
+        accent:[52,211,153], wall:'#011408', floor:'#010e06', charIdx:5, workerIdx:1,
+        props:['📄','🖨️'], status:'done', link:'/Dashboard' },
+      { id:'support', name:'ช่วย (Chuai)', role:'Support Eng · ซ่อมบำรุง',
+        accent:[251,146,60], wall:'#120700', floor:'#0d0500', charIdx:0, workerIdx:4,
+        props:['🛠️','📟'], status:'working', link:'/Dashboard' }
+  ]},
+  /* 3: Ground */
+  { label: 'GND · Ground Floor', rooms: [
+      { id:'server', name:'AI Core Engine', role:'Server Room · Infrastructure',
+        accent:[88,166,255], wall:'#030b18', floor:'#020810', charIdx:-1, workerIdx:-1,
+        props:['🖥️','💾'], status:'working', isServer:true, link:'/Dashboard' },
+      { id:'marketing', name:'มายา (Maya)', role:'Marketing Mgr · การตลาด',
+        accent:[167,139,250], wall:'#0a0514', floor:'#07040e', charIdx:2, workerIdx:3,
+        props:['📣','🎨'], status:'idle', link:'/Dashboard' },
+      { id:'lobby', name:'Lobby', role:'Reception · Visitor Area',
+        accent:[148,163,184], wall:'#08101a', floor:'#060c14', charIdx:5, workerIdx:-1,
+        props:['🌱','🛋️'], status:'idle', isLobby:true, link:'/Dashboard' }
+  ]}
+];
 
-let curRoom = null;
-function selectRoom(id) {
-    if (curRoom) document.getElementById('room-'+curRoom)?.classList.remove('active');
-    curRoom = id;
-    document.getElementById('room-'+id)?.classList.add('active');
-    const a = AGENTS[id] || {};
-    document.getElementById('rp-agent-name').textContent = a.name || id;
-    document.getElementById('rp-agent-role').textContent = a.role || '';
+const AGENTS = {};
+FLOORS.forEach(f => f.rooms.forEach(r => { AGENTS[r.id] = r; }));
+
+/* ════════════════════════════════════════════════════════════
+   SPRITE LOADING (pixel-agents-hq raw assets)
+   ════════════════════════════════════════════════════════════ */
+const GH_RAW = 'https://raw.githubusercontent.com/pixel-agents-hq/pixel-agents/main/webview-ui/public/assets';
+const CHAR_COUNT = 6;
+
+let charImgs = new Array(CHAR_COUNT).fill(null);
+let deskImg  = null;
+let pcImgs   = [null, null, null];  // PC_FRONT_ON_1,2,3
+let plantImg = null;
+let spritesReady = false;
+let loadedCount  = 0;
+const TOTAL_LOADS = CHAR_COUNT + 1 + 3 + 1; // chars + desk + pcs + plant
+
+function loadImg(src, onload) {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload  = () => { onload(img); tick(); };
+    img.onerror = () => { onload(null); tick(); };
+    img.src = src;
 }
-function openModal(id) {
-    const a = AGENTS[id] || {};
-    document.getElementById('modal-title').textContent = a.name || id;
-    document.getElementById('modal-role').textContent  = a.role || '';
-    document.getElementById('modal-link').href = a.link || '/Dashboard';
-    document.getElementById('agentModal').classList.add('open');
-}
-function closeModal() { document.getElementById('agentModal').classList.remove('open'); }
-
-// Generate stars
-(function() {
-    const s = document.querySelector('.stars');
-    for (let i = 0; i < 55; i++) {
-        const d = document.createElement('div'); d.className = 'star';
-        const sz = (Math.random()*1.4+.4).toFixed(1)+'px';
-        d.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz};height:${sz};animation-delay:${(Math.random()*5).toFixed(2)}s;animation-duration:${(Math.random()*3+2).toFixed(1)}s`;
-        s.appendChild(d);
-    }
-})();
-
-// Clock
 function tick() {
-    const now = new Date();
-    const t = now.toLocaleTimeString('th-TH', { hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false });
-    const d = now.toLocaleDateString('th-TH', { weekday:'short', year:'2-digit', month:'short', day:'numeric' });
-    const lc = document.getElementById('lp-clock'); if (lc) lc.textContent = t;
-    const ld = document.getElementById('lp-date');  if (ld) ld.textContent = d;
-    const bc = document.getElementById('base-clock'); if (bc) bc.textContent = t;
+    loadedCount++;
+    const pct = Math.round(loadedCount / TOTAL_LOADS * 100);
+    const fill = document.getElementById('loadFill');
+    const txt  = document.getElementById('loadTxt');
+    if (fill) fill.style.width = pct + '%';
+    if (txt)  txt.textContent  = `${loadedCount}/${TOTAL_LOADS} assets`;
+    if (loadedCount >= TOTAL_LOADS) {
+        spritesReady = true;
+        const ov = document.getElementById('loadOv');
+        if (ov) ov.classList.add('hidden');
+    }
 }
-tick(); setInterval(tick, 1000);
+
+// Load characters
+for (let i = 0; i < CHAR_COUNT; i++) {
+    (function(idx) {
+        loadImg(`${GH_RAW}/characters/char_${idx}.png`, img => { charImgs[idx] = img; });
+    })(i);
+}
+// Load desk
+loadImg(`${GH_RAW}/furniture/DESK/DESK_FRONT.png`, img => { deskImg = img; });
+// Load PC frames
+[1,2,3].forEach((n,i) => {
+    loadImg(`${GH_RAW}/furniture/PC/PC_FRONT_ON_${n}.png`, img => { pcImgs[i] = img; });
+});
+// Load plant
+loadImg(`${GH_RAW}/furniture/PLANT/PLANT.png`, img => { plantImg = img; });
+
+/* ════════════════════════════════════════════════════════════
+   CANVAS SETUP
+   ════════════════════════════════════════════════════════════ */
+const canvas  = document.getElementById('officeCanvas');
+const ctx     = canvas.getContext('2d');
+const wrap    = document.getElementById('canvasWrap');
+
+let CW = 0, CH = 0;
+
+function resizeCanvas() {
+    CW = wrap.clientWidth;
+    CH = wrap.clientHeight;
+    canvas.width  = CW;
+    canvas.height = CH;
+}
+resizeCanvas();
+window.addEventListener('resize', () => { resizeCanvas(); });
+
+/* ════════════════════════════════════════════════════════════
+   FLOOR STATE
+   ════════════════════════════════════════════════════════════ */
+let currentFloor = 0;
+
+function switchFloor(idx) {
+    currentFloor = idx;
+    // Update tabs
+    document.querySelectorAll('.floor-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
+    // Update mini-map
+    document.querySelectorAll('.mm-floor').forEach((m,i) => m.classList.toggle('active', i === idx));
+    // Update base label
+    const bl = document.getElementById('base-floor');
+    if (bl) bl.textContent = FLOORS[idx].label;
+    // Reset right panel
+    document.getElementById('rp-name').textContent = 'Select a room...';
+    document.getElementById('rp-role').textContent  = '';
+}
+
+/* ════════════════════════════════════════════════════════════
+   SPRITE UTILS
+   ════════════════════════════════════════════════════════════ */
+/*  Character spritesheet assumed layout (pixel-agents format):
+    7 frames wide × 3 rows tall
+    Row 0 = Down  (frames 0-6)
+    Row 1 = Up    (frames 0-6)
+    Row 2 = Right (frames 0-6)
+    Frame size: 16×32 px
+    Walk: frames 0,1,2,1
+    Typing: frames 3,4
+    Reading: frames 5,6                                      */
+const FRAME_W = 16, FRAME_H = 32;
+
+function drawChar(img, dx, dy, frameIdx, dirRow, zoom) {
+    if (!img) return;
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img,
+        frameIdx * FRAME_W, dirRow * FRAME_H, FRAME_W, FRAME_H,
+        dx, dy, FRAME_W * zoom, FRAME_H * zoom);
+}
+
+/* Fallback char (if PNG failed): colored pixel-art via fillRect at zoom */
+function drawFallbackChar(dx, dy, accent, zoom) {
+    const [r,g,b] = accent;
+    const px = zoom;
+    // Hair (row 0)
+    ctx.fillStyle = '#2a1a0a';
+    for (let i = 0; i < 7; i++) ctx.fillRect(dx + i*px, dy, px, px);
+    // Face rows 1-3
+    ctx.fillStyle = '#f3c49e';
+    for (let row = 1; row <= 3; row++)
+        for (let col = 0; col < 7; col++)
+            ctx.fillRect(dx + col*px, dy + row*px, px, px);
+    // Eyes row 2
+    ctx.fillStyle = '#111';
+    ctx.fillRect(dx + 1*px, dy + 2*px, px, px);
+    ctx.fillRect(dx + 4*px, dy + 2*px, px, px);
+    // Mouth row 3
+    ctx.fillStyle = '#cc3333';
+    ctx.fillRect(dx + 2*px, dy + 3*px, px, px);
+    ctx.fillRect(dx + 3*px, dy + 3*px, px, px);
+    // Shirt rows 4-5
+    ctx.fillStyle = `rgb(${r},${g},${b})`;
+    for (let row = 4; row <= 5; row++)
+        for (let col = 0; col < 7; col++)
+            ctx.fillRect(dx + col*px, dy + row*px, px, px);
+}
+
+/* Fallback desk */
+function drawFallbackDesk(dx, dy, accent, zoom) {
+    const [r,g,b] = accent;
+    const dw = 48*zoom, dh = 10*zoom;
+    ctx.fillStyle = '#12203a';
+    ctx.fillRect(dx, dy, dw, dh);
+    ctx.fillStyle = `rgba(${r},${g},${b},0.5)`;
+    ctx.fillRect(dx, dy, dw, 2);
+    // Legs
+    ctx.fillStyle = '#0a1828';
+    ctx.fillRect(dx, dy+dh, 4, 8*zoom);
+    ctx.fillRect(dx+dw-4, dy+dh, 4, 8*zoom);
+}
+
+/* Fallback PC monitor */
+function drawFallbackPC(dx, dy, accent, zoom, frame) {
+    const [r,g,b] = accent;
+    const alpha = 0.4 + 0.3 * Math.sin(frame * 0.8);
+    ctx.fillStyle = '#010305';
+    ctx.fillRect(dx, dy, 20*zoom, 16*zoom);
+    ctx.strokeStyle = `rgba(${r},${g},${b},0.7)`;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(dx, dy, 20*zoom, 16*zoom);
+    // Code lines
+    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
+    for (let l = 0; l < 3; l++) {
+        const w = (8 + Math.random()*8) * zoom;
+        ctx.fillRect(dx + 2, dy + 3 + l*4*zoom, w, 2);
+    }
+}
+
+/* Draw floor tile grid */
+function drawFloorTiles(x, y, w, h, color1, color2) {
+    const TS = 16; // tile size in canvas px
+    ctx.fillStyle = color1;
+    ctx.fillRect(x, y, w, h);
+    ctx.fillStyle = color2;
+    const cols = Math.ceil(w / TS);
+    const rows = Math.ceil(h / TS);
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            if ((r + c) % 2 === 0) {
+                ctx.fillRect(x + c*TS, y + r*TS, TS, TS);
+            }
+        }
+    }
+}
+
+/* Draw wall accent line */
+function drawWallAccent(rx, ry, rw, accent) {
+    const [ar,ag,ab] = accent;
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.7)`;
+    ctx.fillRect(rx, ry + 28, rw, 2);
+}
+
+/* Draw city window */
+function drawWindow(wx, wy, ww, wh) {
+    ctx.fillStyle = '#020b1e';
+    ctx.fillRect(wx, wy, ww, wh);
+    // Stars
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    [[2,3],[6,1],[9,5],[13,2],[3,7],[10,4]].forEach(([cx,cy]) => {
+        ctx.fillRect(wx+cx, wy+cy, 1, 1);
+    });
+    // City silhouette
+    ctx.fillStyle = '#040e22';
+    const blocks = [[0,8,4,wh-8],[4,12,3,wh-12],[7,6,5,wh-6],[12,10,ww-12,wh-10]];
+    blocks.forEach(([bx,by,bw,bh]) => ctx.fillRect(wx+bx, wy+by, bw, bh));
+    // Window frame
+    ctx.strokeStyle = 'rgba(30,60,100,0.8)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(wx, wy, ww, wh);
+}
+
+/* Draw status dot */
+function drawStatusDot(sx, sy, status) {
+    const colors = { working:'#3fb950', idle:'#3a5070', done:'#58a6ff' };
+    ctx.fillStyle = colors[status] || '#3a5070';
+    ctx.beginPath();
+    ctx.arc(sx, sy, 3, 0, Math.PI*2);
+    ctx.fill();
+}
+
+/* Draw room label */
+function drawLabel(rx, ry, rw, text, accent) {
+    const [ar,ag,ab] = accent;
+    const lw = Math.min(ctx.measureText(text).width + 14, rw - 4);
+    const lx = rx + (rw - lw) / 2;
+    ctx.fillStyle = 'rgba(3,5,10,0.85)';
+    ctx.beginPath();
+    ctx.roundRect(lx, ry + 5, lw, 14, 3);
+    ctx.fill();
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},1)`;
+    ctx.font = '600 7px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(text, rx + rw/2, ry + 15);
+}
+
+/* Draw agent name tag near desk */
+function drawNametag(tx, ty, name, accent) {
+    const [ar,ag,ab] = accent;
+    ctx.font = '500 6px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    const tw = ctx.measureText(name).width;
+    ctx.fillStyle = 'rgba(3,5,10,0.75)';
+    ctx.fillRect(tx - tw/2 - 3, ty - 8, tw + 6, 10);
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.9)`;
+    ctx.fillText(name, tx, ty);
+}
+
+/* ════════════════════════════════════════════════════════════
+   ROOM RENDERING
+   ════════════════════════════════════════════════════════════ */
+function renderRoom(room, rx, ry, rw, rh, zoom, time) {
+    const [ar,ag,ab] = room.accent;
+
+    // Floor
+    drawFloorTiles(rx, ry, rw, rh, room.floor,
+        `rgba(${ar},${ag},${ab},0.03)`);
+
+    // Back wall strip
+    const wallH = 32;
+    ctx.fillStyle = room.wall;
+    ctx.fillRect(rx, ry, rw, wallH);
+    drawWallAccent(rx, ry, rw, room.accent);
+
+    // City window (left side of wall)
+    drawWindow(rx + 8, ry + 4, 28, 22);
+
+    // Wall screen / whiteboard (right of wall)
+    const scrX = rx + rw - 48, scrY = ry + 3;
+    ctx.fillStyle = '#010305';
+    ctx.fillRect(scrX, scrY, 40, 24);
+    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.6)`;
+    ctx.lineWidth = 1;
+    ctx.strokeRect(scrX, scrY, 40, 24);
+    // Scrolling code lines on screen
+    const scroll = (time * 0.03) % 40;
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.45)`;
+    for (let l = 0; l < 5; l++) {
+        const lw = [28,18,22,12,25][l];
+        const ly = scrY + 3 + ((l * 5 + scroll) % 22);
+        if (ly < scrY + 24) ctx.fillRect(scrX + 3, ly, lw, 2);
+    }
+
+    // Room label top-center
+    ctx.font = '700 7px "JetBrains Mono", monospace';
+    drawLabel(rx, ry, rw, room.id.toUpperCase(), room.accent);
+
+    // ── Workstation 1 (main agent) ──
+    if (!room.isServer && !room.isLobby) {
+        const ws1x = Math.round(rw * 0.22);
+        const deskY = Math.round(rh * 0.55);
+        const deskW = 48 * zoom, deskH = 16;
+        const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
+        const charX = rx + ws1x + Math.round((deskW - charW) / 2);
+        const charY = ry + deskY - charH + 8; // feet overlap desk slightly
+
+        // Typing frame: cycles between frame 3 and 4
+        const typFrame = (Math.floor(time * 0.003) % 2 === 0) ? 3 : 4;
+
+        // Draw character (before desk, so desk covers feet)
+        if (room.charIdx >= 0) {
+            const cImg = charImgs[room.charIdx];
+            if (cImg) {
+                drawChar(cImg, charX, charY, typFrame, 0, zoom);
+            } else {
+                drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
+            }
+        }
+
+        // Desk
+        const deskX = rx + ws1x;
+        if (deskImg) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(deskImg, 0, 0, 48, 32, deskX, ry + deskY, deskW, 20);
+        } else {
+            drawFallbackDesk(deskX, ry + deskY, room.accent, zoom);
+        }
+
+        // PC (animated 3 frames)
+        const pcFrame = Math.floor(time / 400) % 3;
+        const pcX = deskX + deskW / 2 - 12;
+        const pcY = ry + deskY - 22;
+        if (pcImgs[pcFrame]) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32, pcX, pcY - 14, 16*zoom, 20);
+        } else {
+            drawFallbackPC(pcX, pcY, room.accent, 1, time);
+        }
+
+        // Name tag
+        drawNametag(deskX + deskW/2, ry + deskY + 24, room.name.split(' ')[0], room.accent);
+
+        // Status dot
+        drawStatusDot(deskX - 5, ry + deskY + 4, room.status);
+    }
+
+    // ── Workstation 2 (worker) ──
+    if (room.workerIdx >= 0 && !room.isServer && !room.isLobby) {
+        const ws2x = Math.round(rw * 0.60);
+        const deskY = Math.round(rh * 0.55);
+        const deskW = 48 * zoom;
+        const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
+        const charX = rx + ws2x + Math.round((deskW - charW) / 2);
+        const charY = ry + deskY - charH + 8;
+
+        const typFrame = (Math.floor(time * 0.0025 + 1) % 2 === 0) ? 3 : 4;
+
+        if (room.workerIdx >= 0) {
+            const wImg = charImgs[room.workerIdx];
+            if (wImg) {
+                drawChar(wImg, charX, charY, typFrame, 0, zoom);
+            } else {
+                drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
+            }
+        }
+
+        const desk2X = rx + ws2x;
+        if (deskImg) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(deskImg, 0, 0, 48, 32, desk2X, ry + deskY, deskW, 20);
+        } else {
+            drawFallbackDesk(desk2X, ry + deskY, room.accent, zoom);
+        }
+
+        const pcFrame = (Math.floor(time / 400) + 1) % 3;
+        if (pcImgs[pcFrame]) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32,
+                desk2X + deskW/2 - 12, ry + deskY - 36, 16*zoom, 20);
+        }
+
+        drawStatusDot(desk2X - 5, ry + deskY + 4, room.status);
+    }
+
+    // Server room: racks
+    if (room.isServer) {
+        const rackColors = ['#1a3a60','#162e50','#1e4070'];
+        for (let rack = 0; rack < 3; rack++) {
+            const rx2 = rx + 20 + rack * 35;
+            ctx.fillStyle = rackColors[rack];
+            ctx.fillRect(rx2, ry + 38, 24, rh - 48);
+            ctx.strokeStyle = 'rgba(88,166,255,0.3)';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(rx2, ry + 38, 24, rh - 48);
+            // Units
+            for (let u = 0; u < 6; u++) {
+                ctx.fillStyle = 'rgba(88,166,255,0.1)';
+                ctx.fillRect(rx2 + 2, ry + 42 + u*12, 20, 8);
+                const on = (time/500 + rack*2 + u) % 4 < 1;
+                ctx.fillStyle = on ? '#3fb950' : '#1a3030';
+                ctx.fillRect(rx2 + 18, ry + 45 + u*12, 2, 2);
+            }
+        }
+        // Robot
+        ctx.font = '22px serif';
+        ctx.textAlign = 'center';
+        const bobY = Math.sin(time * 0.003) * 3;
+        ctx.fillText('🤖', rx + rw - 28, ry + rh - 20 + bobY);
+    }
+
+    // Lobby: sofa, plant
+    if (room.isLobby) {
+        ctx.font = '18px serif'; ctx.textAlign = 'center';
+        ctx.fillText('🛋️', rx + rw/2, ry + rh * 0.6);
+        ctx.fillText('🌱', rx + 18, ry + rh - 24);
+        ctx.fillText('🌱', rx + rw - 18, ry + rh - 24);
+    }
+
+    // Plant decoration (all rooms)
+    if (plantImg && !room.isServer) {
+        ctx.imageSmoothingEnabled = false;
+        ctx.drawImage(plantImg, rx + 4, ry + rh - 22, 14, 20);
+    } else if (!room.isServer && !room.isLobby) {
+        ctx.font = '10px serif';
+        ctx.textAlign = 'left';
+        ctx.fillText('🌿', rx + 4, ry + rh - 10);
+    }
+
+    // Room border
+    ctx.strokeStyle = 'rgba(20,40,60,0.8)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(rx + 0.5, ry + 0.5, rw - 1, rh - 1);
+}
+
+/* ════════════════════════════════════════════════════════════
+   MAIN RENDER LOOP
+   ════════════════════════════════════════════════════════════ */
+function renderFrame(time) {
+    ctx.clearRect(0, 0, CW, CH);
+
+    const floor = FLOORS[currentFloor];
+    const rooms = floor.rooms;
+
+    if (currentFloor === 0) {
+        // CMD: 1 room, full canvas
+        const room = rooms[0];
+        const zoom = 2;
+        renderCMD(room, 0, 0, CW, CH, zoom, time);
+    } else {
+        // 3 rooms side by side
+        const rw = Math.floor(CW / 3);
+        const rh = CH;
+        const zoom = 2;
+        rooms.forEach((room, i) => {
+            renderRoom(room, i * rw, 0, i === 2 ? CW - 2*rw : rw, rh, zoom, time);
+            // Divider
+            if (i < 2) {
+                ctx.fillStyle = 'rgba(10,20,35,0.9)';
+                ctx.fillRect(i*rw + rw - 2, 0, 4, CH);
+            }
+        });
+    }
+
+    requestAnimationFrame(renderFrame);
+}
+
+/* CMD floor: large single room with 3 workstations */
+function renderCMD(room, rx, ry, rw, rh, zoom, time) {
+    const [ar,ag,ab] = room.accent;
+
+    // Floor
+    drawFloorTiles(rx, ry, rw, rh, room.floor, `rgba(${ar},${ag},${ab},0.04)`);
+
+    // Wall
+    ctx.fillStyle = room.wall;
+    ctx.fillRect(rx, ry, rw, 40);
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.7)`;
+    ctx.fillRect(rx, ry + 38, rw, 3);
+
+    // Large wall display (center)
+    const dispW = Math.min(400, rw * 0.5);
+    const dispX = rx + (rw - dispW) / 2;
+    ctx.fillStyle = '#010307';
+    ctx.fillRect(dispX, ry + 3, dispW, 32);
+    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.6)`;
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(dispX, ry + 3, dispW, 32);
+    // Grid on display
+    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.1)`;
+    ctx.lineWidth = 0.5;
+    for (let gx = dispX + 20; gx < dispX + dispW; gx += 20) {
+        ctx.beginPath(); ctx.moveTo(gx, ry+3); ctx.lineTo(gx, ry+35); ctx.stroke();
+    }
+    for (let gy = ry + 10; gy < ry + 35; gy += 8) {
+        ctx.beginPath(); ctx.moveTo(dispX, gy); ctx.lineTo(dispX+dispW, gy); ctx.stroke();
+    }
+    // Orb
+    const orbR = 14;
+    const orbX = dispX + dispW / 2, orbY = ry + 19;
+    const pulse = 0.4 + 0.35 * Math.sin(time * 0.004);
+    const grd = ctx.createRadialGradient(orbX, orbY, 0, orbX, orbY, orbR);
+    grd.addColorStop(0, `rgba(${ar},${ag},${ab},${pulse})`);
+    grd.addColorStop(1, `rgba(${ar},${ag},${ab},0)`);
+    ctx.fillStyle = grd;
+    ctx.beginPath(); ctx.arc(orbX, orbY, orbR, 0, Math.PI*2); ctx.fill();
+    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.8)`;
+    ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.arc(orbX, orbY, orbR, 0, Math.PI*2); ctx.stroke();
+    ctx.fillStyle = `rgba(${ar},${ag},${ab},1)`;
+    ctx.font = '700 7px "JetBrains Mono", monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('BOSS', orbX, orbY + 3);
+
+    // Windows
+    drawWindow(rx + 10, ry + 5, 40, 28);
+    drawWindow(rx + rw - 52, ry + 5, 40, 28);
+
+    // 3 workstations
+    const wsPositions = [0.22, 0.50, 0.78];
+    const charIndices = [room.charIdx, 1, 2];
+    const deskY = Math.round(rh * 0.52);
+    const deskW = 56 * zoom, deskH = 20;
+    const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
+
+    wsPositions.forEach((pct, wi) => {
+        const wsX = Math.round(rw * pct - deskW/2);
+        const charX = rx + wsX + Math.round((deskW - charW) / 2);
+        const charY = ry + deskY - charH + 8;
+        const typFrame = (Math.floor(time * 0.003 + wi * 0.7) % 2 === 0) ? 3 : 4;
+        const cIdx = charIndices[wi];
+        const cImg = cIdx >= 0 ? charImgs[cIdx] : null;
+
+        // Character
+        if (cImg) {
+            drawChar(cImg, charX, charY, typFrame, 0, zoom);
+        } else {
+            drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
+        }
+
+        // Desk
+        if (deskImg) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(deskImg, 0, 0, 48, 32, rx + wsX, ry + deskY, deskW, deskH);
+        } else {
+            drawFallbackDesk(rx + wsX, ry + deskY, room.accent, zoom);
+        }
+
+        // PC
+        const pcFrame = (Math.floor(time / 400) + wi) % 3;
+        const pcX = rx + wsX + deskW/2 - 12;
+        if (pcImgs[pcFrame]) {
+            ctx.imageSmoothingEnabled = false;
+            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32, pcX, ry + deskY - 38, 16*zoom, 22);
+        }
+
+        drawStatusDot(rx + wsX - 5, ry + deskY + 4, 'working');
+    });
+
+    // Room label
+    drawLabel(rx, ry, rw, 'COMMAND CENTER · CEO', room.accent);
+}
+
+/* ════════════════════════════════════════════════════════════
+   CANVAS CLICK → ROOM SELECT
+   ════════════════════════════════════════════════════════════ */
+canvas.addEventListener('click', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const floor = FLOORS[currentFloor];
+    let roomIdx = 0;
+    if (currentFloor !== 0) {
+        roomIdx = Math.min(2, Math.floor(mx / (CW / 3)));
+    }
+    const room = floor.rooms[roomIdx];
+    if (!room) return;
+    document.getElementById('rp-name').textContent = room.name;
+    document.getElementById('rp-role').textContent  = room.role;
+});
+
+/* Canvas hover tooltip */
+const tip = document.getElementById('pxTip');
+canvas.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left;
+    const floor = FLOORS[currentFloor];
+    let room;
+    if (currentFloor === 0) {
+        room = floor.rooms[0];
+    } else {
+        const idx = Math.min(2, Math.floor(mx / (CW / 3)));
+        room = floor.rooms[idx];
+    }
+    if (room) {
+        tip.style.display = 'block';
+        tip.style.left = (e.clientX - rect.left + 10) + 'px';
+        tip.style.top  = (e.clientY - rect.top  - 30) + 'px';
+        tip.textContent = room.name;
+    }
+});
+canvas.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+
+/* ════════════════════════════════════════════════════════════
+   CLOCK
+   ════════════════════════════════════════════════════════════ */
+function tick2() {
+    const now = new Date();
+    const t = now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+    const d = now.toLocaleDateString('th-TH',{weekday:'short',year:'2-digit',month:'short',day:'numeric'});
+    const lc = document.getElementById('lp-clock'); if(lc) lc.textContent = t;
+    const ld = document.getElementById('lp-date');  if(ld) ld.textContent = d;
+    const bc = document.getElementById('base-clock'); if(bc) bc.textContent = t;
+}
+tick2(); setInterval(tick2, 1000);
+
+/* ════════════════════════════════════════════════════════════
+   MODAL HELPERS
+   ════════════════════════════════════════════════════════════ */
+function openModal(id) {
+    const r = AGENTS[id];
+    if (!r) return;
+    document.getElementById('modal-name').textContent = r.name;
+    document.getElementById('modal-role').textContent  = r.role;
+    document.getElementById('modal-link').href = r.link || '/Dashboard';
+    document.getElementById('modal').classList.add('open');
+}
+function closeModal() { document.getElementById('modal').classList.remove('open'); }
+
+/* Start render loop */
+requestAnimationFrame(renderFrame);
 </script>
 }
