@@ -56,11 +56,10 @@ body { color:var(--txt); font-family:'Inter','Segoe UI',sans-serif; }
     border-bottom:2px solid var(--bdr2);
     flex-shrink:0;
 }
-.l-brand {
-    font-family:var(--mono); font-size:.95rem; font-weight:700;
-    color:var(--cyan); letter-spacing:2.5px; text-shadow:0 0 12px rgba(0,200,255,.5);
+.l-logo {
+    display:block; max-width:140px; height:auto; margin-bottom:.3rem;
+    filter: drop-shadow(0 0 8px rgba(0,180,255,.4));
 }
-.l-brand sup { font-size:.5rem; color:var(--muted); vertical-align:super; margin-left:3px; }
 .l-time { font-family:var(--mono); font-size:.75rem; color:#88aacc; margin-top:.3rem; }
 .l-date { font-size:.6rem; color:var(--muted); margin-top:1px; }
 

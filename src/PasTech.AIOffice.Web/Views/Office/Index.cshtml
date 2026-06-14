@@ -8,7 +8,7 @@
     <!-- ══════════════════ LEFT PANEL ══════════════════ -->
     <div class="hq-left">
         <div class="l-head">
-            <div class="l-brand">AI OFFICE <sup>v1.0</sup></div>
+            <img src="~/images/PAS-Logo.png" alt="PasTech" class="l-logo" />
             <div class="l-time">TIME: <span id="lTime">--:--</span></div>
             <div class="l-date" id="lDate">DATE: -- --- ----</div>
         </div>
@@ -49,13 +49,17 @@
             <div class="l-sec">
                 <div class="l-sec-ttl">AI AGENTS ONLINE</div>
                 <div class="l-avatars">
-                    <div class="l-av"><div class="l-av-icon">🤖</div><div class="l-av-name">ALPHA</div></div>
-                    <div class="l-av"><div class="l-av-icon">🦾</div><div class="l-av-name">BETA</div></div>
-                    <div class="l-av"><div class="l-av-icon">⚙️</div><div class="l-av-name">GAMMA</div></div>
-                    <div class="l-av"><div class="l-av-icon">🧠</div><div class="l-av-name">DELTA</div></div>
-                    <div class="l-av"><div class="l-av-icon">💡</div><div class="l-av-name">EPS</div></div>
+                    <div class="l-av" onclick="focusAgent('aria')"><div class="l-av-icon">👩‍💼</div><div class="l-av-name">ARIA</div></div>
+                    <div class="l-av" onclick="focusAgent('victor')"><div class="l-av-icon">💼</div><div class="l-av-name">VICTOR</div></div>
+                    <div class="l-av" onclick="focusAgent('sam')"><div class="l-av-icon">🔧</div><div class="l-av-name">SAM</div></div>
+                    <div class="l-av" onclick="focusAgent('noah')"><div class="l-av-icon">📋</div><div class="l-av-name">NOAH</div></div>
+                    <div class="l-av" onclick="focusAgent('emma')"><div class="l-av-icon">📅</div><div class="l-av-name">EMMA</div></div>
+                    <div class="l-av" onclick="focusAgent('eric')"><div class="l-av-icon">📄</div><div class="l-av-name">ERIC</div></div>
+                    <div class="l-av" onclick="focusAgent('chris')"><div class="l-av-icon">🛠️</div><div class="l-av-name">CHRIS</div></div>
+                    <div class="l-av" onclick="focusAgent('maya')"><div class="l-av-icon">📣</div><div class="l-av-name">MAYA</div></div>
+                    <div class="l-av" onclick="focusAgent('iris')"><div class="l-av-icon">📨</div><div class="l-av-name">IRIS</div></div>
+                    <div class="l-av" onclick="focusAgent('rex')"><div class="l-av-icon">⚙️</div><div class="l-av-name">REX</div></div>
                 </div>
-                <div class="l-av-more">...and 13 more agents active</div>
             </div>
         </div>
     </div>
@@ -213,16 +217,23 @@ boot();
   Based on the reference screenshot of pixel-agent-desk office map.
   Desk positions correspond to the office_bg_32.webp layout.
 */
+/* ─────────────────────────────────────────────
+   PasTech AI Agent Roster  (10 agents)
+   Domains: CCTV · Network · Server · Solar · Smart Building
+   Channels: ERP · Facebook · Line OA
+───────────────────────────────────────────── */
 const AGENT_DEFS = [
-    // id, name, label, avatarIdx, charIdx, deskTX, deskTY, initStatus
-    { id:'director', name:'Director',   label:'director-ai',   av:0, ci:0, tx:0.64, ty:0.19, st:'DONE'     },
-    { id:'sommai',   name:'สมหมาย',    label:'sales-agent',   av:1, ci:1, tx:0.44, ty:0.42, st:'THINKING'  },
-    { id:'wit',      name:'วิท',       label:'survey-agent',  av:2, ci:2, tx:0.34, ty:0.57, st:'THINKING'  },
-    { id:'nab',      name:'นาบ',       label:'quotation-a.',  av:3, ci:4, tx:0.46, ty:0.65, st:'THINKING'  },
-    { id:'pim',      name:'พิม',       label:'project-mgr',   av:4, ci:3, tx:0.22, ty:0.80, st:'THINKING'  },
-    { id:'ek',       name:'เอก',       label:'doc-agent',     av:5, ci:5, tx:0.38, ty:0.80, st:'THINKING'  },
-    { id:'chuai',    name:'ช่วย',      label:'support-ag.',   av:6, ci:0, tx:0.19, ty:0.48, st:'THINKING'  },
-    { id:'maya',     name:'มายา',      label:'marketing-a.',  av:7, ci:2, tx:0.60, ty:0.55, st:'THINKING'  },
+    // id, name, label, av(color idx), tx, ty (fraction of canvas), initStatus
+    { id:'aria',   name:'ARIA',   label:'cmd-director',   av:0, tx:0.64, ty:0.19, st:'DONE'    },
+    { id:'victor', name:'Victor', label:'sales-engineer',  av:1, tx:0.44, ty:0.42, st:'THINKING' },
+    { id:'sam',    name:'Sam',    label:'field-engineer',  av:2, tx:0.34, ty:0.57, st:'THINKING' },
+    { id:'noah',   name:'Noah',   label:'commercial-mgr',  av:3, tx:0.46, ty:0.65, st:'THINKING' },
+    { id:'emma',   name:'Emma',   label:'project-mgr',     av:4, tx:0.22, ty:0.80, st:'THINKING' },
+    { id:'eric',   name:'Eric',   label:'tech-writer',     av:5, tx:0.38, ty:0.80, st:'THINKING' },
+    { id:'chris',  name:'Chris',  label:'support-eng',     av:6, tx:0.19, ty:0.48, st:'THINKING' },
+    { id:'maya',   name:'Maya',   label:'digital-mktg',    av:7, tx:0.60, ty:0.55, st:'THINKING' },
+    { id:'iris',   name:'Iris',   label:'inbox-monitor',   av:0, tx:0.30, ty:0.31, st:'THINKING' },
+    { id:'rex',    name:'Rex',    label:'erp-agent',       av:3, tx:0.52, ty:0.31, st:'THINKING' },
 ];
 
 let AGENTS=[];
@@ -573,14 +584,36 @@ canvas.addEventListener('click',e=>{
     if(h) showSel(h.agent);
 });
 
+const AGENT_INFO = {
+    aria:   { role:'Command Director',      domains:'All Departments',                                channels:'ERP Dashboard'            },
+    victor: { role:'Sales Engineer',        domains:'CCTV · Network · Server · Solar · Smart Bldg',  channels:'Facebook DM · Line OA'    },
+    sam:    { role:'Field Solution Eng.',   domains:'Survey & Design — all 5 domains',               channels:'—'                        },
+    noah:   { role:'Commercial Estimator',  domains:'BOM & Pricing — all 5 domains',                 channels:'—'                        },
+    emma:   { role:'Project Manager',       domains:'Project Planning & Timeline',                    channels:'ERP — task sync'          },
+    eric:   { role:'Technical Writer',      domains:'As-Built · Commissioning · Manuals',            channels:'ERP — document upload'    },
+    chris:  { role:'Support Engineer',      domains:'After-Sales · Maintenance · Troubleshoot',      channels:'Line OA — support inbox'  },
+    maya:   { role:'Digital Marketing',     domains:'Content — all 5 domains',                       channels:'Facebook Page · Line OA'  },
+    iris:   { role:'Omnichannel Monitor',   domains:'Message Routing & Triage',                      channels:'Facebook + Line OA 24/7'  },
+    rex:    { role:'ERP Operations Bot',    domains:'Inventory · Invoice · Task Monitor',            channels:'ERP — alerts & reports'   },
+};
+function focusAgent(id){
+    if(!AGENTS) return;
+    const a = AGENTS.find(x=>x.id===id);
+    if(a) showSel(a);
+}
 function showSel(a){
     const el=document.getElementById('rSelected'), cnt=document.getElementById('rSelectedContent');
     el.style.display='block';
-    const sc={'THINKING':'#9333ea','DONE':'#22c55e','IDLE':'#888'}[a.status]||'#888';
+    const sc={'THINKING':'#9333ea','DONE':'#22c55e','IDLE':'#6b7280'}[a.status]||'#6b7280';
+    const info=AGENT_INFO[a.id]||{role:'AI Agent',domains:'—',channels:'—'};
     cnt.innerHTML=`<div class="r-agent-card">
-        <div class="r-agent-nm">${a.name} (${a.label})</div>
-        <div class="r-agent-rl" style="color:${sc};font-weight:700">${a.status}</div>
-        <div class="r-agent-rl" style="margin-top:3px">${a.id} · AI Agent</div>
+        <div class="r-agent-nm">${a.name}</div>
+        <div class="r-agent-rl">${info.role}</div>
+        <div style="margin-top:5px;font-size:.55rem;color:#3a6080;font-family:var(--mono)">DOMAINS</div>
+        <div style="font-size:.6rem;color:#88aac8;margin-bottom:4px">${info.domains}</div>
+        <div style="font-size:.55rem;color:#3a6080;font-family:var(--mono)">CHANNELS</div>
+        <div style="font-size:.6rem;color:#00c8ff;margin-bottom:6px">${info.channels}</div>
+        <div style="font-size:.58rem;font-family:var(--mono);color:${sc};font-weight:700">● ${a.status}</div>
         <a class="r-agent-open" href="/Dashboard">OPEN WORKSPACE ›</a>
     </div>`;
 }
