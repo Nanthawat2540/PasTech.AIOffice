@@ -422,39 +422,103 @@ function drawAgent(a,W,H){
     if(AV&&AV.complete&&AV.naturalWidth>0){
         const nw=AV.naturalWidth, nh=AV.naturalHeight;
         ctx.save(); ctx.imageSmoothingEnabled=false;
-        if(nh>nw*1.5||nw>nh*1.5){
+        const baseUnit=Math.min(nw,nh);
+        if(nw>baseUnit*1.4||nh>baseUnit*1.4){
             // Spritesheet — pick direction row & walk frame
-            const cols=Math.max(1,Math.round(nw/48)), rows=Math.max(1,Math.round(nh/48));
-            const fw=Math.floor(nw/cols), fh=Math.floor(nh/rows);
+            const fw=baseUnit, fh=baseUnit;
+            const cols=Math.max(1,Math.floor(nw/fw)), rows=Math.max(1,Math.floor(nh/fh));
             const row=Math.min(a.dir,rows-1);
             const col=isWalking?Math.min(a.walkFrame%cols,cols-1):Math.min(1,cols-1);
-            ctx.drawImage(AV,col*fw,row*fh,fw,fh,cx-20,cy-36,40,56);
+            const scale=Math.max(1.5,48/fh);
+            const dw=fw*scale, dh=fh*scale;
+            ctx.drawImage(AV,col*fw,row*fh,fw,fh,cx-dw/2,cy-dh,dw,dh);
         } else {
-            // Single pose
-            const s=Math.min(48,Math.min(nw,nh));
-            ctx.drawImage(AV,cx-s/2,cy-s,s,s);
+            // Single pose — draw crisp at 2-3× for pixel clarity
+            const scale=Math.max(1,Math.min(3,48/baseUnit));
+            const dw=nw*scale, dh=nh*scale;
+            ctx.drawImage(AV,cx-dw/2,cy-dh,dw,dh);
         }
         ctx.restore();
     } else {
-        // Pure pixel-art fallback (no external deps)
-        drawPixelChar(cx,cy-32,a.av);
+        drawPixelChar(cx,cy,a.av,a.walkFrame);
     }
 
-    hitRects.push({x:cx-20,y:cy-50,w:40,h:55,agent:a});
+    hitRects.push({x:cx-20,y:cy-54,w:40,h:58,agent:a});
 }
 
-function drawPixelChar(x,y,idx){
-    const cols=[[88,166,255],[251,191,36],[34,211,238],[248,113,113],[52,211,153],[251,146,60],[167,139,250],[240,192,64]];
-    const [r,g,b]=cols[idx%cols.length];
-    const p=4;
-    ctx.fillStyle='rgba(255,210,160,.9)'; ctx.fillRect(x-p,y,p*2,p*2.5);
-    ctx.fillStyle=`rgba(${r},${g},${b},.85)`; ctx.fillRect(x-p-1,y-p,p*2+2,p);
-    ctx.fillStyle=`rgba(${r},${g},${b},.7)`; ctx.fillRect(x-p*1.5,y+p*2.5,p*3,p*3);
+/* RPG-style pixel character: head/hair/body/arms/legs/shadow */
+function drawPixelChar(cx,cy,idx,walkPhase){
+    const SHIRTS=[[88,166,255],[251,191,36],[34,211,238],[248,113,113],[52,211,153],[251,146,60],[167,139,250],[240,192,64]];
+    const HAIRS=['#1a1008','#4a3010','#152840','#3a1010','#102a10','#4a1e04','#1a1040','#2a1c04'];
+    const [sr,sg,sb]=SHIRTS[idx%SHIRTS.length];
+    const hair=HAIRS[idx%HAIRS.length];
+    const p=3.5; // pixel unit size
+    const leg=Math.sin((walkPhase/4)*Math.PI)*p*0.85;
+
+    // Shadow
+    ctx.fillStyle='rgba(0,0,0,0.22)';
+    ctx.beginPath(); ctx.ellipse(cx,cy-1,p*2.8,p*0.7,0,0,Math.PI*2); ctx.fill();
+
+    // Legs (animated)
+    ctx.fillStyle='#2e3d58';
+    ctx.fillRect(Math.round(cx-p*1.4), Math.round(cy-p*3.8+leg),  Math.round(p), Math.round(p*3.8));
+    ctx.fillRect(Math.round(cx+p*0.4), Math.round(cy-p*3.8-leg),  Math.round(p), Math.round(p*3.8));
+    // Shoes
+    ctx.fillStyle='#111820';
+    ctx.fillRect(Math.round(cx-p*1.6), Math.round(cy-1.5+leg),    Math.round(p*1.4), Math.round(p*0.7));
+    ctx.fillRect(Math.round(cx+p*0.2), Math.round(cy-1.5-leg),    Math.round(p*1.4), Math.round(p*0.7));
+
+    // Body / shirt
+    ctx.fillStyle=`rgba(${sr},${sg},${sb},0.95)`;
+    ctx.fillRect(Math.round(cx-p*2),   Math.round(cy-p*7.5),  Math.round(p*4),  Math.round(p*3.7));
+    // Belt
+    ctx.fillStyle=`rgba(${Math.max(0,sr-50)},${Math.max(0,sg-50)},${Math.max(0,sb-50)},0.8)`;
+    ctx.fillRect(Math.round(cx-p*2),   Math.round(cy-p*4.2),  Math.round(p*4),  Math.round(p*0.6));
+
+    // Arms (swing with legs)
+    const armSwing=leg*0.5;
+    ctx.fillStyle=`rgba(${Math.max(0,sr-25)},${Math.max(0,sg-25)},${Math.max(0,sb-25)},0.9)`;
+    ctx.fillRect(Math.round(cx-p*3.1), Math.round(cy-p*7.2+armSwing), Math.round(p), Math.round(p*3));
+    ctx.fillRect(Math.round(cx+p*2.1), Math.round(cy-p*7.2-armSwing), Math.round(p), Math.round(p*3));
+    // Hands
+    ctx.fillStyle='rgba(255,200,150,0.9)';
+    ctx.fillRect(Math.round(cx-p*3.2), Math.round(cy-p*4.5+armSwing), Math.round(p*1.2), Math.round(p));
+    ctx.fillRect(Math.round(cx+p*2),   Math.round(cy-p*4.5-armSwing), Math.round(p*1.2), Math.round(p));
+
+    // Neck
+    ctx.fillStyle='rgba(255,205,155,0.9)';
+    ctx.fillRect(Math.round(cx-p*0.5), Math.round(cy-p*7.8), Math.round(p), Math.round(p*0.8));
+
+    // Head
+    ctx.fillStyle='rgba(255,208,158,0.97)';
+    ctx.fillRect(Math.round(cx-p*1.8), Math.round(cy-p*11.8), Math.round(p*3.6), Math.round(p*4));
+    // Ears
+    ctx.fillStyle='rgba(240,190,140,0.8)';
+    ctx.fillRect(Math.round(cx-p*2.3), Math.round(cy-p*10.5), Math.round(p*0.7), Math.round(p*1.5));
+    ctx.fillRect(Math.round(cx+p*1.6), Math.round(cy-p*10.5), Math.round(p*0.7), Math.round(p*1.5));
+
+    // Hair
+    ctx.fillStyle=hair;
+    ctx.fillRect(Math.round(cx-p*1.8), Math.round(cy-p*11.8), Math.round(p*3.6), Math.round(p*1.2)); // top
+    ctx.fillRect(Math.round(cx-p*1.8), Math.round(cy-p*10.8), Math.round(p*0.9), Math.round(p*2.2)); // left side
+    ctx.fillRect(Math.round(cx+p*0.9), Math.round(cy-p*10.8), Math.round(p*0.9), Math.round(p*1.5)); // right side
+
+    // Eyes
+    ctx.fillStyle='#0e1520';
+    ctx.fillRect(Math.round(cx-p*1.1), Math.round(cy-p*10), Math.round(p*0.8), Math.round(p*0.8));
+    ctx.fillRect(Math.round(cx+p*0.3), Math.round(cy-p*10), Math.round(p*0.8), Math.round(p*0.8));
+    // Eye whites
+    ctx.fillStyle='rgba(220,235,255,0.7)';
+    ctx.fillRect(Math.round(cx-p*1.1), Math.round(cy-p*10.1), Math.round(p*0.5), Math.round(p*0.5));
+    ctx.fillRect(Math.round(cx+p*0.3), Math.round(cy-p*10.1), Math.round(p*0.5), Math.round(p*0.5));
+    // Mouth
+    ctx.fillStyle='rgba(160,80,60,0.6)';
+    ctx.fillRect(Math.round(cx-p*0.4), Math.round(cy-p*8.4), Math.round(p*0.8), Math.round(p*0.4));
 }
 
 /* ── Speech bubble (pixel-agent-desk style) ── */
 function drawBubble(a,W,H){
-    const cx=a.px, cy=a.py-48;
+    const cx=a.px, cy=a.py-52;
     const dots=['.','..','. . .'][Math.floor(a.ellipsis/20)%3];
     const txt=a.status==='DONE'?'Done!':('Thinking'+dots);
     const badgeTxt=a.status;
