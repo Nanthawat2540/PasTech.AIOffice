@@ -177,9 +177,8 @@ resize(); window.addEventListener('resize',()=>{resize();});
    ASSET LOADING
 ══════════════════════════════════════════════════════ */
 const DESK_REPO = 'https://raw.githubusercontent.com/zep-ia/pixel-agent-desk/master/public';
-const CHAR_REPO = 'https://raw.githubusercontent.com/pixel-agents-hq/pixel-agents/main/webview-ui/public/assets';
 
-const assets = { mapBg:null, mapFg:null, avatars:[], chars:[] };
+const assets = { mapBg:null, mapFg:null, avatars:[] };
 let loadedCount=0, totalAssets=0;
 
 function setLoad(sub){document.getElementById('loadSub').textContent=sub;}
@@ -197,8 +196,8 @@ function ldImg(src){
 }
 
 async function boot(){
-    // Count total assets: 2 map + 8 avatars + 6 chars = 16
-    totalAssets=16;
+    // 2 map + 8 avatars = 10
+    totalAssets=10;
 
     setLoad('Loading office map...');
     assets.mapBg = await ldImg(`${DESK_REPO}/office/map/office_bg_32.webp`);
@@ -206,9 +205,6 @@ async function boot(){
 
     setLoad('Loading agent avatars...');
     for(let i=0;i<8;i++) assets.avatars[i]=await ldImg(`${DESK_REPO}/characters/avatar_${i}.webp`);
-
-    setLoad('Loading character sprites...');
-    for(let i=0;i<6;i++) assets.chars[i]=await ldImg(`${CHAR_REPO}/char_${i}.png`);
 
     document.getElementById('loadOv').classList.add('gone');
     initAgents();
@@ -420,39 +416,27 @@ function drawRoomFurniture(r){
 /* ── Draw single agent ── */
 function drawAgent(a,W,H){
     const cx=a.px, cy=a.py;
-    const AV=assets.avatars[a.av], CH=assets.chars[a.ci];
+    const AV=assets.avatars[a.av];
     const isWalking=a.wander!==null;
 
-    // Try avatar first (pixel-agent-desk style)
     if(AV&&AV.complete&&AV.naturalWidth>0){
         const nw=AV.naturalWidth, nh=AV.naturalHeight;
-        // Avatar might be: single sprite, 4-dir spritesheet, or walking spritesheet
         ctx.save(); ctx.imageSmoothingEnabled=false;
         if(nh>nw*1.5||nw>nh*1.5){
-            // Likely a spritesheet — pick frame from direction
+            // Spritesheet — pick direction row & walk frame
             const cols=Math.max(1,Math.round(nw/48)), rows=Math.max(1,Math.round(nh/48));
             const fw=Math.floor(nw/cols), fh=Math.floor(nh/rows);
             const row=Math.min(a.dir,rows-1);
             const col=isWalking?Math.min(a.walkFrame%cols,cols-1):Math.min(1,cols-1);
             ctx.drawImage(AV,col*fw,row*fh,fw,fh,cx-20,cy-36,40,56);
         } else {
-            // Single pose — just draw centered
-            const s=Math.min(40,Math.min(nw,nh));
+            // Single pose
+            const s=Math.min(48,Math.min(nw,nh));
             ctx.drawImage(AV,cx-s/2,cy-s,s,s);
         }
         ctx.restore();
-    } else if(CH&&CH.complete&&CH.naturalWidth>0){
-        // Fallback: pixel-agents spritesheet (7 cols × 3 rows, 16×32 per frame)
-        ctx.save(); ctx.imageSmoothingEnabled=false;
-        const dirRow=[0,1,2,2][a.dir]; // row mapping
-        const frame=isWalking?(a.walkFrame%4):(a.walkFrame<2?3:4);
-        const sx=frame*16, sy=dirRow*32;
-        const flip=a.dir===3;
-        if(flip){ ctx.translate(cx+16,0); ctx.scale(-1,1); ctx.drawImage(CH,sx,sy,16,32,0,cy-48,32,64); }
-        else { ctx.drawImage(CH,sx,sy,16,32,cx-16,cy-48,32,64); }
-        ctx.restore();
     } else {
-        // Pixel fallback
+        // Pure pixel-art fallback (no external deps)
         drawPixelChar(cx,cy-32,a.av);
     }
 
