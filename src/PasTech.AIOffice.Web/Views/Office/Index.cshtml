@@ -1,828 +1,731 @@
 @{
-    ViewData["Title"] = "AI HQ";
-    Layout = "~/Views/Shared/_OfficeLayout.cshtml";
+    Layout = "_OfficeLayout";
+    ViewData["Title"] = "AI Office HQ";
 }
 
 <div class="hq-page">
 
-<!-- ═══════════════════════ LEFT PANEL ═══════════════════════ -->
-<div class="hq-left">
-    <div class="lp-brand">
-        <div class="lp-logo">PASTECHAI<sup>v4</sup></div>
-        <div class="lp-clock" id="lp-clock">--:--:--</div>
-        <div class="lp-date"  id="lp-date">—</div>
-    </div>
-    <div class="lp-body">
-        <!-- Company status -->
-        <div class="lp-sec">
-            <div class="lp-ttl">Company Status</div>
-            <div class="lp-row"><span>Active Tasks</span><span class="lp-val" style="color:#58a6ff">24</span></div>
-            <div class="lp-row"><span>Done Today</span><span class="lp-val" style="color:#3fb950">156</span></div>
-            <div class="lp-row"><span>Revenue MTD</span><span class="lp-val" style="color:#f0c040">฿1.2M</span></div>
-            <div class="spark">
-                <div class="spark-bar" style="height:30%"></div>
-                <div class="spark-bar" style="height:55%"></div>
-                <div class="spark-bar" style="height:40%"></div>
-                <div class="spark-bar" style="height:72%"></div>
-                <div class="spark-bar" style="height:52%"></div>
-                <div class="spark-bar" style="height:86%"></div>
-                <div class="spark-bar" style="height:60%"></div>
-                <div class="spark-bar hi" style="height:100%"></div>
-            </div>
+    <!-- ══════════════════ LEFT PANEL ══════════════════ -->
+    <div class="hq-left">
+        <div class="l-head">
+            <div class="l-brand">AI OFFICE <sup>v1.0</sup></div>
+            <div class="l-time">TIME: <span id="lTime">--:--</span></div>
+            <div class="l-date" id="lDate">DATE: -- --- ----</div>
         </div>
-        <!-- System health -->
-        <div class="lp-sec">
-            <div class="lp-ttl">System Health</div>
-            <div class="hlth-row"><span style="font-size:.6rem">AI API</span><span class="hlth-tag ok">OK</span></div>
-            <div class="hlth-row"><span style="font-size:.6rem">Database</span><span class="hlth-tag ok">OK</span></div>
-            <div class="hlth-row"><span style="font-size:.6rem">Cloudflare</span><span class="hlth-tag secure">SECURE</span></div>
-            <div class="hlth-row"><span style="font-size:.6rem">CI/CD</span><span class="hlth-tag ok">OK</span></div>
-        </div>
-        <!-- Notifications -->
-        <div class="lp-sec">
-            <div class="lp-ttl">Notifications</div>
-            <div class="notif"><div class="notif-dot"></div>Inquiry ใหม่จาก บ.ABC จำกัด</div>
-            <div class="notif"><div class="notif-dot"></div>PT-2024-089 งานอัปเดต</div>
-            <div class="notif"><div class="notif-dot"></div>Ticket #142 ปิดแล้ว</div>
-        </div>
-        <!-- Mini floor map -->
-        <div class="lp-sec">
-            <div class="lp-ttl">Building Map</div>
-            <div class="mini-map">
-                <div class="mm-floor active" id="mm-0" onclick="switchFloor(0)">
-                    <div class="mm-dot"></div><span class="mm-label">CMD · Boss</span>
-                </div>
-                <div class="mm-floor" id="mm-1" onclick="switchFloor(1)">
-                    <div class="mm-dot"></div><span class="mm-label">F2 · Operations</span>
-                </div>
-                <div class="mm-floor" id="mm-2" onclick="switchFloor(2)">
-                    <div class="mm-dot"></div><span class="mm-label">F1 · Projects</span>
-                </div>
-                <div class="mm-floor" id="mm-3" onclick="switchFloor(3)">
-                    <div class="mm-dot"></div><span class="mm-label">GND · Ground</span>
+
+        <div class="l-scroll">
+            <div class="l-sec">
+                <div class="l-sec-ttl">COMPANY STATUS</div>
+                <div class="l-stat"><span class="l-stat-lbl">OPERATIONAL</span><span class="l-stat-val gv">100%</span></div>
+                <div class="l-stat"><span class="l-stat-lbl">PRODUCTIVITY</span><span class="l-stat-val cv">92%</span></div>
+                <div class="l-stat"><span class="l-stat-lbl">AI AGENTS</span><span class="l-stat-val cv">18/20</span></div>
+                <div class="l-stat"><span class="l-stat-lbl">PROJECTS</span><span class="l-stat-val yv">7</span></div>
+                <div class="l-stat"><span class="l-stat-lbl">TASKS</span><span class="l-stat-val cv">128</span></div>
+                <div class="l-stat"><span class="l-stat-lbl">UPTIME</span><span class="l-stat-val gv">99.9%</span></div>
+                <div class="l-bars">
+                    <div class="l-bar" style="height:55%"></div>
+                    <div class="l-bar" style="height:70%"></div>
+                    <div class="l-bar" style="height:45%"></div>
+                    <div class="l-bar" style="height:80%"></div>
+                    <div class="l-bar" style="height:65%"></div>
+                    <div class="l-bar" style="height:90%;background:#00c8ff"></div>
+                    <div class="l-bar" style="height:75%"></div>
+                    <div class="l-bar" style="height:85%"></div>
+                    <div class="l-bar" style="height:95%;background:#00c8ff"></div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
-<!-- ═══════════════════════ CENTER ═══════════════════════ -->
-<div class="hq-center">
-    <!-- Floor tabs -->
-    <div class="floor-nav">
-        <div class="floor-tab active" id="tab-0" onclick="switchFloor(0)">⬛ CMD</div>
-        <div class="floor-tab" id="tab-1" onclick="switchFloor(1)">F2 · Sales·Survey·Quote</div>
-        <div class="floor-tab" id="tab-2" onclick="switchFloor(2)">F1 · Proj·Doc·Support</div>
-        <div class="floor-tab" id="tab-3" onclick="switchFloor(3)">GND · Server·Mktg·Lobby</div>
-    </div>
-
-    <!-- Canvas -->
-    <div class="office-canvas-wrap" id="canvasWrap">
-        <canvas id="officeCanvas"></canvas>
-        <!-- Tooltip -->
-        <div class="px-tooltip" id="pxTip" style="display:none"></div>
-        <!-- Loading overlay -->
-        <div class="canvas-loading" id="loadOv">
-            <div style="font-size:.75rem;letter-spacing:1px">Loading sprites...</div>
-            <div class="load-bar"><div class="load-fill" id="loadFill" style="width:0%"></div></div>
-            <div style="font-size:.55rem;color:#5a7090" id="loadTxt">Fetching pixel-agents assets</div>
-        </div>
-    </div>
-
-    <!-- Status bar -->
-    <div class="hq-base">
-        <span><span class="base-dot"></span>PasTech AI HQ · ai-office.pastechsystem.co.th</span>
-        <span id="base-clock" style="font-family:'JetBrains Mono',monospace"></span>
-        <span id="base-floor">CMD · Command Center</span>
-    </div>
-</div>
-
-<!-- ═══════════════════════ RIGHT PANEL ═══════════════════════ -->
-<div class="hq-right">
-    <div class="rp-head">
-        <div class="rp-agent-name" id="rp-name">Select a room...</div>
-        <div class="rp-agent-role" id="rp-role"></div>
-    </div>
-    <div class="rp-body">
-        <div class="rp-ttl" style="margin-bottom:.4rem">Department Status</div>
-        <div class="dp-row"><span>Sales</span><div class="dp-bg"><div class="dp-fill" style="width:78%;background:rgba(88,166,255,.6)"></div></div><span class="dp-pct">78%</span></div>
-        <div class="dp-row"><span>Survey</span><div class="dp-bg"><div class="dp-fill" style="width:62%;background:rgba(34,211,238,.6)"></div></div><span class="dp-pct">62%</span></div>
-        <div class="dp-row"><span>Quotation</span><div class="dp-bg"><div class="dp-fill" style="width:45%;background:rgba(251,191,36,.6)"></div></div><span class="dp-pct">45%</span></div>
-        <div class="dp-row"><span>Project</span><div class="dp-bg"><div class="dp-fill" style="width:88%;background:rgba(248,113,113,.6)"></div></div><span class="dp-pct">88%</span></div>
-        <div class="dp-row"><span>Document</span><div class="dp-bg"><div class="dp-fill" style="width:92%;background:rgba(52,211,153,.6)"></div></div><span class="dp-pct">92%</span></div>
-        <div class="dp-row"><span>Support</span><div class="dp-bg"><div class="dp-fill" style="width:55%;background:rgba(251,146,60,.6)"></div></div><span class="dp-pct">55%</span></div>
-        <div class="dp-row"><span>Marketing</span><div class="dp-bg"><div class="dp-fill" style="width:38%;background:rgba(167,139,250,.6)"></div></div><span class="dp-pct">38%</span></div>
-
-        <div class="mini3">
-            <div class="m3-box"><div class="m3-v" style="color:#3fb950">24</div><div class="m3-l">Active</div></div>
-            <div class="m3-box"><div class="m3-v" style="color:#58a6ff">156</div><div class="m3-l">Done</div></div>
-            <div class="m3-box"><div class="m3-v" style="color:#f0c040">8</div><div class="m3-l">Agents</div></div>
-        </div>
-
-        <div class="rp-ttl" style="margin-bottom:.35rem">Active Projects</div>
-        <div class="proj-row"><span style="color:#e6edf3">PT-2024-089 Network CCTV</span><span class="proj-badge b-on">ON</span></div>
-        <div class="proj-row"><span style="color:#e6edf3">PT-2024-090 Server Setup</span><span class="proj-badge b-on">ON</span></div>
-        <div class="proj-row"><span style="color:#e6edf3">PT-2024-091 Fiber WAN</span><span class="proj-badge b-new">NEW</span></div>
-        <div class="proj-row"><span style="color:#e6edf3">PT-2024-087 UPS Replace</span><span class="proj-badge b-hot">HOT</span></div>
-    </div>
-
-    <div class="wf-box">
-        <div class="wf-ttl">AI Workflow Pipeline</div>
-        <div class="wf-steps">
-            <span class="wf-step">Inquiry</span><span class="wf-arr">→</span>
-            <span class="wf-step">Survey</span><span class="wf-arr">→</span>
-            <span class="wf-step">Quote</span><span class="wf-arr">→</span>
-            <span class="wf-step">Project</span><span class="wf-arr">→</span>
-            <span class="wf-step">Doc</span>
-        </div>
-    </div>
-</div>
-</div>
-
-<!-- MODAL -->
-<div class="modal-ov" id="modal" onclick="closeModal()">
-    <div class="modal-box" onclick="event.stopPropagation()">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-            <div>
-                <div id="modal-name" style="font-size:1rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:#58a6ff"></div>
-                <div id="modal-role" style="font-size:.65rem;color:#5a7090;margin-top:2px"></div>
+            <div class="l-sec">
+                <div class="l-sec-ttl">SYSTEM HEALTH</div>
+                <div class="l-hlth"><span>AI SYSTEM</span><span class="badge-opt">OPTIMAL</span></div>
+                <div class="l-hlth"><span>NETWORK</span><span class="badge-opt">OPTIMAL</span></div>
+                <div class="l-hlth"><span>SECURITY</span><span class="badge-sec">SECURE</span></div>
+                <div class="l-hlth"><span>DATABASE</span><span class="badge-opt">OPTIMAL</span></div>
+                <div class="l-hlth"><span>CLOUD</span><span class="badge-opt">OPTIMAL</span></div>
             </div>
-            <button onclick="closeModal()" style="background:none;border:1px solid #1a2840;color:#5a7090;border-radius:6px;padding:4px 10px;cursor:pointer;font-size:.8rem">✕</button>
+
+            <div class="l-sec">
+                <div class="l-sec-ttl">NOTIFICATIONS</div>
+                <div class="l-notif">AI Report generated successfully</div>
+                <div class="l-notif">3 Tasks completed by agents</div>
+                <div class="l-notif">New project: AI Chatbot System</div>
+                <div class="l-notif">Security scan passed (00:04)</div>
+                <div class="l-notif">Maya: Marketing post published</div>
+                <button class="l-btn">VIEW ALL</button>
+            </div>
+
+            <div class="l-sec">
+                <div class="l-sec-ttl">AI AGENTS ONLINE</div>
+                <div class="l-avatars">
+                    <div class="l-av"><div class="l-av-icon">🤖</div><div class="l-av-name">ALPHA</div></div>
+                    <div class="l-av"><div class="l-av-icon">🦾</div><div class="l-av-name">BETA</div></div>
+                    <div class="l-av"><div class="l-av-icon">⚙️</div><div class="l-av-name">GAMMA</div></div>
+                    <div class="l-av"><div class="l-av-icon">🧠</div><div class="l-av-name">DELTA</div></div>
+                    <div class="l-av"><div class="l-av-icon">💡</div><div class="l-av-name">EPS</div></div>
+                </div>
+                <div class="l-av-more">...and 13 more agents active</div>
+            </div>
         </div>
-        <a id="modal-link" href="/Dashboard" style="display:inline-block;margin-bottom:1rem;background:#238636;color:#fff;border:none;border-radius:6px;padding:.4rem 1.2rem;font-size:.8rem;font-weight:600;text-decoration:none">เปิด Dashboard →</a>
-        <div style="font-size:.72rem;color:#5a7090">คลิกเพื่อดู log ของ Agent หรือสร้างงานใหม่</div>
+    </div>
+
+    <!-- ══════════════════ CENTER ══════════════════ -->
+    <div class="hq-center">
+        <div class="c-topbar">
+            <span class="c-topbar-deco">◈</span>
+            <span class="c-topbar-title">AI&nbsp;OFFICE</span>
+            <span class="c-topbar-deco">◈</span>
+        </div>
+
+        <div class="c-canvas-wrap" id="canvasWrap">
+            <canvas id="officeCanvas"></canvas>
+            <div class="c-loading" id="loadOv">
+                <div class="c-load-title">INITIALIZING AI SYSTEMS</div>
+                <div class="c-load-bar"><div class="c-load-fill" id="loadFill" style="width:0%"></div></div>
+                <div class="c-load-sub" id="loadSub">Loading assets...</div>
+            </div>
+            <div class="c-tip" id="cTip"></div>
+        </div>
+
+        <div class="c-workflow">
+            <div class="wf-title">AI WORKFLOW</div>
+            <div class="wf-steps">
+                <div class="wf-step"><div class="wf-step-icon">🗃️</div><div class="wf-step-lbl">DATA<br>COLLECT</div></div>
+                <div class="wf-arr">›</div>
+                <div class="wf-step"><div class="wf-step-icon">⚙️</div><div class="wf-step-lbl">DATA<br>PROCESS</div></div>
+                <div class="wf-arr">›</div>
+                <div class="wf-step"><div class="wf-step-icon">🧠</div><div class="wf-step-lbl">AI<br>ANALYSIS</div></div>
+                <div class="wf-arr">›</div>
+                <div class="wf-step"><div class="wf-step-icon">💡</div><div class="wf-step-lbl">DECISION<br>MAKING</div></div>
+                <div class="wf-arr">›</div>
+                <div class="wf-step"><div class="wf-step-icon">🚀</div><div class="wf-step-lbl">ACTION<br>EXECUTE</div></div>
+                <div class="wf-arr">›</div>
+                <div class="wf-step"><div class="wf-step-icon">📊</div><div class="wf-step-lbl">RESULTS<br>REPORT</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════ RIGHT PANEL ══════════════════ -->
+    <div class="hq-right">
+        <div class="r-head"><div class="r-head-ttl">COMPANY OVERVIEW</div></div>
+        <div class="r-scroll">
+
+            <div class="r-sec">
+                <div class="r-ov-row">
+                    <span class="r-ov-icon">🏢</span>
+                    <div><div class="r-ov-count">18/20</div><div class="r-ov-lbl">AI AGENTS ONLINE</div></div>
+                </div>
+                <div class="r-donut-wrap">
+                    <canvas id="donutCanvas" width="72" height="72"></canvas>
+                    <div class="r-donut-text">
+                        <div class="r-donut-pct">75%</div>
+                        <div class="r-donut-lbl">EFFICIENCY</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="r-selected" id="rSelected" style="display:none">
+                <div class="r-sec-ttl">SELECTED AGENT</div>
+                <div id="rSelectedContent"></div>
+            </div>
+
+            <div class="r-sec">
+                <div class="r-sec-ttl">DEPARTMENT STATUS</div>
+                <div class="r-dept"><span class="r-dept-n">1.</span><span class="r-dept-nm">Admin</span><span class="r-dept-pct gv">100%</span></div>
+                <div class="r-dept"><span class="r-dept-n">2.</span><span class="r-dept-nm">R&amp;D</span><span class="r-dept-pct gv">95%</span></div>
+                <div class="r-dept"><span class="r-dept-n">3.</span><span class="r-dept-nm">Sales</span><span class="r-dept-pct cv">88%</span></div>
+                <div class="r-dept"><span class="r-dept-n">4.</span><span class="r-dept-nm">Operations</span><span class="r-dept-pct cv">92%</span></div>
+                <div class="r-dept"><span class="r-dept-n">5.</span><span class="r-dept-nm">Finance</span><span class="r-dept-pct gv">97%</span></div>
+                <div class="r-dept"><span class="r-dept-n">6.</span><span class="r-dept-nm">Marketing</span><span class="r-dept-pct yv">78%</span></div>
+                <div class="r-dept"><span class="r-dept-n">7.</span><span class="r-dept-nm">IT Support</span><span class="r-dept-pct gv">99%</span></div>
+            </div>
+
+            <div class="r-sec">
+                <div class="r-sec-ttl">ACTIVE PROJECTS</div>
+                <div class="r-proj"><span class="r-proj-nm">AI Chatbot System</span><span class="r-prog-badge">IN PROGRESS</span></div>
+                <div class="r-proj"><span class="r-proj-nm">Network Upgrade</span><span class="r-prog-badge">IN PROGRESS</span></div>
+                <div class="r-proj"><span class="r-proj-nm">ERP Integration</span><span class="r-prog-badge">IN PROGRESS</span></div>
+                <div class="r-proj"><span class="r-proj-nm">Data Analytics v2</span><span class="r-prog-badge">IN PROGRESS</span></div>
+                <div class="r-proj"><span class="r-proj-nm">Security Audit</span><span class="r-prog-badge">IN PROGRESS</span></div>
+                <button class="r-view-btn">VIEW ALL PROJECTS</button>
+            </div>
+
+            <div class="r-sec">
+                <div class="r-sec-ttl">DATA FLOW</div>
+                <canvas id="flowCanvas" height="55"></canvas>
+            </div>
+
+            <div class="r-sec">
+                <div class="r-sec-ttl">SYSTEM LOAD</div>
+                <div class="r-load-bar"><div class="r-load-fill"></div></div>
+                <div class="r-load-pct">72% · CPU / MEM / NET</div>
+            </div>
+        </div>
     </div>
 </div>
 
 @section Scripts {
 <script>
-/* ════════════════════════════════════════════════════════════
-   ROOM / FLOOR DATA
-   ════════════════════════════════════════════════════════════ */
+'use strict';
+
+/* ── Clock ── */
+const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+function tick() {
+    const n = new Date();
+    const pad = v => String(v).padStart(2,'0');
+    document.getElementById('lTime').textContent = `${pad(n.getHours())}:${pad(n.getMinutes())}:${pad(n.getSeconds())}`;
+    document.getElementById('lDate').textContent  = `DATE: ${pad(n.getDate())} ${MONTHS[n.getMonth()]} ${n.getFullYear()}`;
+}
+tick(); setInterval(tick,1000);
+
+/* ── Canvas setup ── */
+const canvas = document.getElementById('officeCanvas');
+const ctx    = canvas.getContext('2d');
+const wrap   = document.getElementById('canvasWrap');
+const tip    = document.getElementById('cTip');
+
+function resize() { canvas.width = wrap.clientWidth; canvas.height = wrap.clientHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+/* ── Sprite loading ── */
+const GH = 'https://raw.githubusercontent.com/pixel-agents-hq/pixel-agents/main/webview-ui/public/assets';
+const spr = { chars: new Array(6).fill(null), desk: null, plant: null };
+let loaded = 0;
+const TOTAL = 8;
+
+function ldImg(src) {
+    return new Promise(res => {
+        const img = new Image(); img.crossOrigin = 'anonymous';
+        img.onload  = () => { loaded++; pct(); res(img); };
+        img.onerror = () => { loaded++; pct(); res(null); };
+        img.src = src;
+    });
+}
+function pct() { document.getElementById('loadFill').style.width = Math.min(100,Math.round(loaded/TOTAL*100))+'%'; }
+
+async function boot() {
+    document.getElementById('loadSub').textContent = 'Loading character sprites...';
+    for (let i = 0; i < 6; i++) spr.chars[i] = await ldImg(`${GH}/char_${i}.png`);
+    document.getElementById('loadSub').textContent = 'Loading furniture...';
+    spr.desk  = await ldImg(`${GH}/DESK/DESK_FRONT.png`);
+    spr.plant = await ldImg(`${GH}/PLANT/PLANT.png`);
+    document.getElementById('loadOv').classList.add('gone');
+    startLoop();
+}
+boot();
+
+/* ── Floor / Room data ── */
 const FLOORS = [
-  /* 0: CMD */
-  { label: 'CMD · Command Center', rooms: [
-      { id:'cmd', name:'Boss', role:'Director · Command Center',
-        accent:[240,192,64], wall:'#0f0900', floor:'#0a0700', charIdx:0, workerIdx:1,
-        props:['📺','🖥️'], status:'working', link:'/Office' }
-  ]},
-  /* 1: Floor 2 */
-  { label: 'F2 · Operations', rooms: [
-      { id:'sales', name:'สมหมาย (Sommai)', role:'Sales Manager · ฝ่ายขาย',
-        accent:[88,166,255], wall:'#030c1a', floor:'#020810', charIdx:1, workerIdx:2,
-        props:['💼','📞'], status:'working', link:'/Dashboard' },
-      { id:'survey', name:'วิท (Wit)', role:'Survey & Design · สำรวจ',
-        accent:[34,211,238], wall:'#001214', floor:'#000d10', charIdx:2, workerIdx:3,
-        props:['📐','🔭'], status:'working', link:'/Dashboard' },
-      { id:'quotation', name:'นาบ (Nab)', role:'Quotation · ใบเสนอราคา',
-        accent:[251,191,36], wall:'#120c00', floor:'#0d0800', charIdx:4, workerIdx:0,
-        props:['💰','🧾'], status:'idle', link:'/Dashboard' }
-  ]},
-  /* 2: Floor 1 */
-  { label: 'F1 · Projects', rooms: [
-      { id:'project', name:'พิม (Pim)', role:'Project Manager · โครงการ',
-        accent:[248,113,113], wall:'#140505', floor:'#0e0404', charIdx:3, workerIdx:5,
-        props:['📅','📌'], status:'working', link:'/Dashboard' },
-      { id:'document', name:'เอก (Ek)', role:'Document Officer · เอกสาร',
-        accent:[52,211,153], wall:'#011408', floor:'#010e06', charIdx:5, workerIdx:1,
-        props:['📄','🖨️'], status:'done', link:'/Dashboard' },
-      { id:'support', name:'ช่วย (Chuai)', role:'Support Eng · ซ่อมบำรุง',
-        accent:[251,146,60], wall:'#120700', floor:'#0d0500', charIdx:0, workerIdx:4,
-        props:['🛠️','📟'], status:'working', link:'/Dashboard' }
-  ]},
-  /* 3: Ground */
-  { label: 'GND · Ground Floor', rooms: [
-      { id:'server', name:'AI Core Engine', role:'Server Room · Infrastructure',
-        accent:[88,166,255], wall:'#030b18', floor:'#020810', charIdx:-1, workerIdx:-1,
-        props:['🖥️','💾'], status:'working', isServer:true, link:'/Dashboard' },
-      { id:'marketing', name:'มายา (Maya)', role:'Marketing Mgr · การตลาด',
-        accent:[167,139,250], wall:'#0a0514', floor:'#07040e', charIdx:2, workerIdx:3,
-        props:['📣','🎨'], status:'idle', link:'/Dashboard' },
-      { id:'lobby', name:'Lobby', role:'Reception · Visitor Area',
-        accent:[148,163,184], wall:'#08101a', floor:'#060c14', charIdx:5, workerIdx:-1,
-        props:['🌱','🛋️'], status:'idle', isLobby:true, link:'/Dashboard' }
-  ]}
+    { label:'COMMAND CENTER', isCmd:true, rooms:[
+        { id:'cmd', name:'AI Director', eng:'AI Director', role:'System Coordinator', dept:'CMD', charIdx:0, accent:[240,192,64] }
+    ]},
+    { label:'F2 · OPERATIONS', rooms:[
+        { id:'sales',     name:'สมหมาย', eng:'Sommai', role:'Sales Agent',     dept:'Sales',     charIdx:1, accent:[88,166,255]  },
+        { id:'survey',    name:'วิท',    eng:'Wit',    role:'Survey & Design', dept:'Survey',    charIdx:2, accent:[34,211,238]  },
+        { id:'quotation', name:'นาบ',    eng:'Nab',    role:'Quotation Agent', dept:'Quotation', charIdx:4, accent:[251,191,36]  },
+    ]},
+    { label:'F1 · PROJECTS', rooms:[
+        { id:'project',  name:'พิม', eng:'Pim',   role:'Project Manager', dept:'Project',  charIdx:3, accent:[248,113,113] },
+        { id:'document', name:'เอก', eng:'Ek',    role:'Technical Docs',  dept:'Document', charIdx:5, accent:[52,211,153]  },
+        { id:'support',  name:'ช่วย', eng:'Chuai', role:'IT Support',     dept:'Support',  charIdx:0, accent:[251,146,60]  },
+    ]},
+    { label:'GND · GROUND', rooms:[
+        { id:'server',    name:'Server Room', isServer:true, dept:'Server',    charIdx:-1, accent:[88,166,255]  },
+        { id:'marketing', name:'มายา', eng:'Maya', role:'Marketing', dept:'Marketing', charIdx:2,  accent:[167,139,250] },
+        { id:'lobby',     name:'Lobby', isLobby:true,         dept:'Lobby',     charIdx:5,  accent:[0,200,255]   },
+    ]},
 ];
 
-const AGENTS = {};
-FLOORS.forEach(f => f.rooms.forEach(r => { AGENTS[r.id] = r; }));
+/* ── Stars ── */
+const STARS = Array.from({length:80}, () => ({
+    x: Math.random(), y: Math.random(), r: Math.random()*1.3+0.2, a: Math.random()*0.5+0.2
+}));
 
-/* ════════════════════════════════════════════════════════════
-   SPRITE LOADING (pixel-agents-hq raw assets)
-   ════════════════════════════════════════════════════════════ */
-const GH_RAW = 'https://raw.githubusercontent.com/pixel-agents-hq/pixel-agents/main/webview-ui/public/assets';
-const CHAR_COUNT = 6;
+/* ── Render loop ── */
+let af = 0, roomHits = [];
 
-let charImgs = new Array(CHAR_COUNT).fill(null);
-let deskImg  = null;
-let pcImgs   = [null, null, null];  // PC_FRONT_ON_1,2,3
-let plantImg = null;
-let spritesReady = false;
-let loadedCount  = 0;
-const TOTAL_LOADS = CHAR_COUNT + 1 + 3 + 1; // chars + desk + pcs + plant
-
-function loadImg(src, onload) {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.onload  = () => { onload(img); tick(); };
-    img.onerror = () => { onload(null); tick(); };
-    img.src = src;
-}
-function tick() {
-    loadedCount++;
-    const pct = Math.round(loadedCount / TOTAL_LOADS * 100);
-    const fill = document.getElementById('loadFill');
-    const txt  = document.getElementById('loadTxt');
-    if (fill) fill.style.width = pct + '%';
-    if (txt)  txt.textContent  = `${loadedCount}/${TOTAL_LOADS} assets`;
-    if (loadedCount >= TOTAL_LOADS) {
-        spritesReady = true;
-        const ov = document.getElementById('loadOv');
-        if (ov) ov.classList.add('hidden');
-    }
+function startLoop() {
+    const FPS = 1000/20; let last = 0;
+    (function loop(ts) {
+        if (ts - last >= FPS) { last = ts; af = (af+1)%600; draw(); }
+        requestAnimationFrame(loop);
+    })(0);
 }
 
-// Load characters
-for (let i = 0; i < CHAR_COUNT; i++) {
-    (function(idx) {
-        loadImg(`${GH_RAW}/characters/char_${idx}.png`, img => { charImgs[idx] = img; });
-    })(i);
-}
-// Load desk
-loadImg(`${GH_RAW}/furniture/DESK/DESK_FRONT.png`, img => { deskImg = img; });
-// Load PC frames
-[1,2,3].forEach((n,i) => {
-    loadImg(`${GH_RAW}/furniture/PC/PC_FRONT_ON_${n}.png`, img => { pcImgs[i] = img; });
-});
-// Load plant
-loadImg(`${GH_RAW}/furniture/PLANT/PLANT.png`, img => { plantImg = img; });
+/* ════════════════════════════════════
+   MAIN DRAW
+════════════════════════════════════ */
+function draw() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0,0,W,H);
+    roomHits = [];
 
-/* ════════════════════════════════════════════════════════════
-   CANVAS SETUP
-   ════════════════════════════════════════════════════════════ */
-const canvas  = document.getElementById('officeCanvas');
-const ctx     = canvas.getContext('2d');
-const wrap    = document.getElementById('canvasWrap');
-
-let CW = 0, CH = 0;
-
-function resizeCanvas() {
-    CW = wrap.clientWidth;
-    CH = wrap.clientHeight;
-    canvas.width  = CW;
-    canvas.height = CH;
-}
-resizeCanvas();
-window.addEventListener('resize', () => { resizeCanvas(); });
-
-/* ════════════════════════════════════════════════════════════
-   FLOOR STATE
-   ════════════════════════════════════════════════════════════ */
-let currentFloor = 0;
-
-function switchFloor(idx) {
-    currentFloor = idx;
-    // Update tabs
-    document.querySelectorAll('.floor-tab').forEach((t,i) => t.classList.toggle('active', i === idx));
-    // Update mini-map
-    document.querySelectorAll('.mm-floor').forEach((m,i) => m.classList.toggle('active', i === idx));
-    // Update base label
-    const bl = document.getElementById('base-floor');
-    if (bl) bl.textContent = FLOORS[idx].label;
-    // Reset right panel
-    document.getElementById('rp-name').textContent = 'Select a room...';
-    document.getElementById('rp-role').textContent  = '';
-}
-
-/* ════════════════════════════════════════════════════════════
-   SPRITE UTILS
-   ════════════════════════════════════════════════════════════ */
-/*  Character spritesheet assumed layout (pixel-agents format):
-    7 frames wide × 3 rows tall
-    Row 0 = Down  (frames 0-6)
-    Row 1 = Up    (frames 0-6)
-    Row 2 = Right (frames 0-6)
-    Frame size: 16×32 px
-    Walk: frames 0,1,2,1
-    Typing: frames 3,4
-    Reading: frames 5,6                                      */
-const FRAME_W = 16, FRAME_H = 32;
-
-function drawChar(img, dx, dy, frameIdx, dirRow, zoom) {
-    if (!img) return;
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(img,
-        frameIdx * FRAME_W, dirRow * FRAME_H, FRAME_W, FRAME_H,
-        dx, dy, FRAME_W * zoom, FRAME_H * zoom);
-}
-
-/* Fallback char (if PNG failed): colored pixel-art via fillRect at zoom */
-function drawFallbackChar(dx, dy, accent, zoom) {
-    const [r,g,b] = accent;
-    const px = zoom;
-    // Hair (row 0)
-    ctx.fillStyle = '#2a1a0a';
-    for (let i = 0; i < 7; i++) ctx.fillRect(dx + i*px, dy, px, px);
-    // Face rows 1-3
-    ctx.fillStyle = '#f3c49e';
-    for (let row = 1; row <= 3; row++)
-        for (let col = 0; col < 7; col++)
-            ctx.fillRect(dx + col*px, dy + row*px, px, px);
-    // Eyes row 2
-    ctx.fillStyle = '#111';
-    ctx.fillRect(dx + 1*px, dy + 2*px, px, px);
-    ctx.fillRect(dx + 4*px, dy + 2*px, px, px);
-    // Mouth row 3
-    ctx.fillStyle = '#cc3333';
-    ctx.fillRect(dx + 2*px, dy + 3*px, px, px);
-    ctx.fillRect(dx + 3*px, dy + 3*px, px, px);
-    // Shirt rows 4-5
-    ctx.fillStyle = `rgb(${r},${g},${b})`;
-    for (let row = 4; row <= 5; row++)
-        for (let col = 0; col < 7; col++)
-            ctx.fillRect(dx + col*px, dy + row*px, px, px);
-}
-
-/* Fallback desk */
-function drawFallbackDesk(dx, dy, accent, zoom) {
-    const [r,g,b] = accent;
-    const dw = 48*zoom, dh = 10*zoom;
-    ctx.fillStyle = '#12203a';
-    ctx.fillRect(dx, dy, dw, dh);
-    ctx.fillStyle = `rgba(${r},${g},${b},0.5)`;
-    ctx.fillRect(dx, dy, dw, 2);
-    // Legs
-    ctx.fillStyle = '#0a1828';
-    ctx.fillRect(dx, dy+dh, 4, 8*zoom);
-    ctx.fillRect(dx+dw-4, dy+dh, 4, 8*zoom);
-}
-
-/* Fallback PC monitor */
-function drawFallbackPC(dx, dy, accent, zoom, frame) {
-    const [r,g,b] = accent;
-    const alpha = 0.4 + 0.3 * Math.sin(frame * 0.8);
-    ctx.fillStyle = '#010305';
-    ctx.fillRect(dx, dy, 20*zoom, 16*zoom);
-    ctx.strokeStyle = `rgba(${r},${g},${b},0.7)`;
-    ctx.lineWidth = 1;
-    ctx.strokeRect(dx, dy, 20*zoom, 16*zoom);
-    // Code lines
-    ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-    for (let l = 0; l < 3; l++) {
-        const w = (8 + Math.random()*8) * zoom;
-        ctx.fillRect(dx + 2, dy + 3 + l*4*zoom, w, 2);
-    }
-}
-
-/* Draw floor tile grid */
-function drawFloorTiles(x, y, w, h, color1, color2) {
-    const TS = 16; // tile size in canvas px
-    ctx.fillStyle = color1;
-    ctx.fillRect(x, y, w, h);
-    ctx.fillStyle = color2;
-    const cols = Math.ceil(w / TS);
-    const rows = Math.ceil(h / TS);
-    for (let r = 0; r < rows; r++) {
-        for (let c = 0; c < cols; c++) {
-            if ((r + c) % 2 === 0) {
-                ctx.fillRect(x + c*TS, y + r*TS, TS, TS);
-            }
-        }
-    }
-}
-
-/* Draw wall accent line */
-function drawWallAccent(rx, ry, rw, accent) {
-    const [ar,ag,ab] = accent;
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.7)`;
-    ctx.fillRect(rx, ry + 28, rw, 2);
-}
-
-/* Draw city window */
-function drawWindow(wx, wy, ww, wh) {
-    ctx.fillStyle = '#020b1e';
-    ctx.fillRect(wx, wy, ww, wh);
-    // Stars
-    ctx.fillStyle = 'rgba(255,255,255,0.5)';
-    [[2,3],[6,1],[9,5],[13,2],[3,7],[10,4]].forEach(([cx,cy]) => {
-        ctx.fillRect(wx+cx, wy+cy, 1, 1);
+    /* Background */
+    ctx.fillStyle = '#030610'; ctx.fillRect(0,0,W,H);
+    STARS.forEach(s => {
+        const p = 0.6 + 0.4*Math.sin((af/600)*Math.PI*2 + s.x*12);
+        ctx.beginPath(); ctx.arc(s.x*W, s.y*H, s.r, 0, Math.PI*2);
+        ctx.fillStyle = `rgba(160,210,255,${s.a*p})`; ctx.fill();
     });
-    // City silhouette
-    ctx.fillStyle = '#040e22';
-    const blocks = [[0,8,4,wh-8],[4,12,3,wh-12],[7,6,5,wh-6],[12,10,ww-12,wh-10]];
-    blocks.forEach(([bx,by,bw,bh]) => ctx.fillRect(wx+bx, wy+by, bw, bh));
-    // Window frame
-    ctx.strokeStyle = 'rgba(30,60,100,0.8)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(wx, wy, ww, wh);
+
+    /* Building geometry */
+    const PX=14, PY=12;
+    const bx=PX, by=PY, bw=W-PX*2, bh=H-PY-10;
+    const avail = bh - 12; // subtract 3 × 4px separators
+    const cmdH  = Math.floor(avail*0.31);
+    const fh    = Math.floor(avail*0.22);
+    const gndH  = avail - cmdH - fh*2;
+
+    drawShell(bx, by, bw, bh);
+
+    let cy = by + 2;
+    drawCMD   (bx+2, cy, bw-4, cmdH);            cy += cmdH;
+    drawSep   (bx+2, cy, bw-4);                   cy += 4;
+    drawFRow  (bx+2, cy, bw-4, fh,   FLOORS[1]); cy += fh;
+    drawSep   (bx+2, cy, bw-4);                   cy += 4;
+    drawFRow  (bx+2, cy, bw-4, fh,   FLOORS[2]); cy += fh;
+    drawSep   (bx+2, cy, bw-4);                   cy += 4;
+    drawFRow  (bx+2, cy, bw-4, gndH, FLOORS[3]);
 }
 
-/* Draw status dot */
-function drawStatusDot(sx, sy, status) {
-    const colors = { working:'#3fb950', idle:'#3a5070', done:'#58a6ff' };
-    ctx.fillStyle = colors[status] || '#3a5070';
+/* ── Building outer shell ── */
+function drawShell(bx,by,bw,bh) {
+    const r=7;
     ctx.beginPath();
-    ctx.arc(sx, sy, 3, 0, Math.PI*2);
-    ctx.fill();
+    ctx.moveTo(bx+r,by); ctx.lineTo(bx+bw-r,by);
+    ctx.quadraticCurveTo(bx+bw,by, bx+bw,by+r);
+    ctx.lineTo(bx+bw,by+bh); ctx.lineTo(bx,by+bh); ctx.lineTo(bx,by+r);
+    ctx.quadraticCurveTo(bx,by, bx+r,by);
+    ctx.closePath();
+    const g=ctx.createLinearGradient(bx,by,bx,by+bh);
+    g.addColorStop(0,'#061424'); g.addColorStop(1,'#040c16');
+    ctx.fillStyle=g; ctx.fill();
+    ctx.save();
+    ctx.shadowColor='rgba(0,100,255,0.5)'; ctx.shadowBlur=22;
+    ctx.strokeStyle='rgba(0,110,255,0.65)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.restore();
+    /* depth strips */
+    const dl=ctx.createLinearGradient(bx,by,bx+14,by);
+    dl.addColorStop(0,'rgba(0,0,20,0.5)'); dl.addColorStop(1,'transparent');
+    ctx.fillStyle=dl; ctx.fillRect(bx,by,14,bh);
+    const dr=ctx.createLinearGradient(bx+bw-14,by,bx+bw,by);
+    dr.addColorStop(0,'transparent'); dr.addColorStop(1,'rgba(0,0,20,0.5)');
+    ctx.fillStyle=dr; ctx.fillRect(bx+bw-14,by,14,bh);
 }
 
-/* Draw room label */
-function drawLabel(rx, ry, rw, text, accent) {
-    const [ar,ag,ab] = accent;
-    const lw = Math.min(ctx.measureText(text).width + 14, rw - 4);
-    const lx = rx + (rw - lw) / 2;
-    ctx.fillStyle = 'rgba(3,5,10,0.85)';
-    ctx.beginPath();
-    ctx.roundRect(lx, ry + 5, lw, 14, 3);
-    ctx.fill();
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},1)`;
-    ctx.font = '600 7px "JetBrains Mono", monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText(text, rx + rw/2, ry + 15);
+/* ── Floor separator ── */
+function drawSep(fx,fy,fw) {
+    const g=ctx.createLinearGradient(fx,0,fx+fw,0);
+    g.addColorStop(0,'transparent'); g.addColorStop(0.15,'rgba(0,140,255,0.8)');
+    g.addColorStop(0.85,'rgba(0,140,255,0.8)'); g.addColorStop(1,'transparent');
+    ctx.fillStyle=g; ctx.fillRect(fx,fy,fw,2);
+    const gs=ctx.createLinearGradient(0,fy+2,0,fy+5);
+    gs.addColorStop(0,'rgba(0,0,0,0.4)'); gs.addColorStop(1,'transparent');
+    ctx.fillStyle=gs; ctx.fillRect(fx,fy+2,fw,3);
 }
 
-/* Draw agent name tag near desk */
-function drawNametag(tx, ty, name, accent) {
-    const [ar,ag,ab] = accent;
-    ctx.font = '500 6px "JetBrains Mono", monospace';
-    ctx.textAlign = 'center';
-    const tw = ctx.measureText(name).width;
-    ctx.fillStyle = 'rgba(3,5,10,0.75)';
-    ctx.fillRect(tx - tw/2 - 3, ty - 8, tw + 6, 10);
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.9)`;
-    ctx.fillText(name, tx, ty);
+/* ── Command Center floor ── */
+function drawCMD(fx,fy,fw,fh) {
+    /* BG */
+    const bg=ctx.createLinearGradient(fx,fy,fx,fy+fh);
+    bg.addColorStop(0,'#0d2040'); bg.addColorStop(1,'#061222');
+    ctx.fillStyle=bg; ctx.fillRect(fx,fy,fw,fh);
+    drawSkyline(fx,fy,fw,fh);
+
+    /* floor label */
+    ctx.font='bold 7px "JetBrains Mono",monospace'; ctx.textAlign='left';
+    ctx.fillStyle='rgba(0,200,255,0.8)'; ctx.fillText('COMMAND CENTER', fx+10, fy+10);
+
+    /* status dot */
+    const pulse=0.7+0.3*Math.sin((af/60)*Math.PI*2);
+    ctx.beginPath(); ctx.arc(fx+fw-14,fy+8,3.5,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,255,128,${pulse})`; ctx.fill();
+    ctx.beginPath(); ctx.arc(fx+fw-14,fy+8,6,0,Math.PI*2);
+    ctx.fillStyle=`rgba(0,255,128,${pulse*0.25})`; ctx.fill();
+
+    /* Left screen */
+    const sw=Math.min(105,fw*0.14);
+    drawScreen(fx+10,fy+14,sw,fh-28,[240,192,64],'ANALYTICS','pie');
+    /* Right screen */
+    drawScreen(fx+fw-10-sw,fy+14,sw,fh-28,[88,166,255],'NETWORK','bars');
+    /* Center globe */
+    const cw2=Math.min(190,fw*0.28);
+    drawGlobe(fx+(fw-cw2)/2,fy+8,cw2,fh-16);
+
+    /* Workers */
+    const z=Math.min(2.2,fh/46);
+    [[fw*0.22,0],[fw*0.5,1],[fw*0.78,3]].forEach(([xp,ci],i)=>{
+        drawAgent(fx+xp,fy,fh,spr.chars[ci],[[240,192,64],[88,166,255],[248,113,113]][i],z);
+    });
+
+    roomHits.push({x:fx,y:fy,w:fw,h:fh, room:FLOORS[0].rooms[0]});
 }
 
-/* ════════════════════════════════════════════════════════════
-   ROOM RENDERING
-   ════════════════════════════════════════════════════════════ */
-function renderRoom(room, rx, ry, rw, rh, zoom, time) {
-    const [ar,ag,ab] = room.accent;
+/* ── Floor row (3 rooms) ── */
+function drawFRow(fx,fy,fw,fh,floor) {
+    const n=floor.rooms.length, rw=Math.floor(fw/n);
 
-    // Floor
-    drawFloorTiles(rx, ry, rw, rh, room.floor,
-        `rgba(${ar},${ag},${ab},0.03)`);
+    /* Label strip */
+    ctx.fillStyle='rgba(0,0,0,0.28)'; ctx.fillRect(fx,fy,fw,12);
+    ctx.font='bold 6px "JetBrains Mono",monospace'; ctx.textAlign='center';
+    ctx.fillStyle='rgba(0,180,255,0.65)'; ctx.fillText(floor.label,fx+fw/2,fy+8.5);
 
-    // Back wall strip
-    const wallH = 32;
-    ctx.fillStyle = room.wall;
-    ctx.fillRect(rx, ry, rw, wallH);
-    drawWallAccent(rx, ry, rw, room.accent);
-
-    // City window (left side of wall)
-    drawWindow(rx + 8, ry + 4, 28, 22);
-
-    // Wall screen / whiteboard (right of wall)
-    const scrX = rx + rw - 48, scrY = ry + 3;
-    ctx.fillStyle = '#010305';
-    ctx.fillRect(scrX, scrY, 40, 24);
-    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.6)`;
-    ctx.lineWidth = 1;
-    ctx.strokeRect(scrX, scrY, 40, 24);
-    // Scrolling code lines on screen
-    const scroll = (time * 0.03) % 40;
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.45)`;
-    for (let l = 0; l < 5; l++) {
-        const lw = [28,18,22,12,25][l];
-        const ly = scrY + 3 + ((l * 5 + scroll) % 22);
-        if (ly < scrY + 24) ctx.fillRect(scrX + 3, ly, lw, 2);
-    }
-
-    // Room label top-center
-    ctx.font = '700 7px "JetBrains Mono", monospace';
-    drawLabel(rx, ry, rw, room.id.toUpperCase(), room.accent);
-
-    // ── Workstation 1 (main agent) ──
-    if (!room.isServer && !room.isLobby) {
-        const ws1x = Math.round(rw * 0.22);
-        const deskY = Math.round(rh * 0.55);
-        const deskW = 48 * zoom, deskH = 16;
-        const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
-        const charX = rx + ws1x + Math.round((deskW - charW) / 2);
-        const charY = ry + deskY - charH + 8; // feet overlap desk slightly
-
-        // Typing frame: cycles between frame 3 and 4
-        const typFrame = (Math.floor(time * 0.003) % 2 === 0) ? 3 : 4;
-
-        // Draw character (before desk, so desk covers feet)
-        if (room.charIdx >= 0) {
-            const cImg = charImgs[room.charIdx];
-            if (cImg) {
-                drawChar(cImg, charX, charY, typFrame, 0, zoom);
-            } else {
-                drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
-            }
+    const ry=fy+12, rh=fh-12;
+    floor.rooms.forEach((room,i)=>{
+        const rx=fx+i*rw;
+        const thisW=(i===n-1)?fw-i*rw:rw;
+        if(i>0){
+            const dg=ctx.createLinearGradient(rx,ry,rx,ry+rh);
+            dg.addColorStop(0,'transparent');
+            dg.addColorStop(0.5,`rgba(${room.accent[0]*0.4},${room.accent[1]*0.4},${room.accent[2]*0.4},0.5)`);
+            dg.addColorStop(1,'transparent');
+            ctx.fillStyle=dg; ctx.fillRect(rx,ry,1,rh);
         }
-
-        // Desk
-        const deskX = rx + ws1x;
-        if (deskImg) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(deskImg, 0, 0, 48, 32, deskX, ry + deskY, deskW, 20);
-        } else {
-            drawFallbackDesk(deskX, ry + deskY, room.accent, zoom);
-        }
-
-        // PC (animated 3 frames)
-        const pcFrame = Math.floor(time / 400) % 3;
-        const pcX = deskX + deskW / 2 - 12;
-        const pcY = ry + deskY - 22;
-        if (pcImgs[pcFrame]) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32, pcX, pcY - 14, 16*zoom, 20);
-        } else {
-            drawFallbackPC(pcX, pcY, room.accent, 1, time);
-        }
-
-        // Name tag
-        drawNametag(deskX + deskW/2, ry + deskY + 24, room.name.split(' ')[0], room.accent);
-
-        // Status dot
-        drawStatusDot(deskX - 5, ry + deskY + 4, room.status);
-    }
-
-    // ── Workstation 2 (worker) ──
-    if (room.workerIdx >= 0 && !room.isServer && !room.isLobby) {
-        const ws2x = Math.round(rw * 0.60);
-        const deskY = Math.round(rh * 0.55);
-        const deskW = 48 * zoom;
-        const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
-        const charX = rx + ws2x + Math.round((deskW - charW) / 2);
-        const charY = ry + deskY - charH + 8;
-
-        const typFrame = (Math.floor(time * 0.0025 + 1) % 2 === 0) ? 3 : 4;
-
-        if (room.workerIdx >= 0) {
-            const wImg = charImgs[room.workerIdx];
-            if (wImg) {
-                drawChar(wImg, charX, charY, typFrame, 0, zoom);
-            } else {
-                drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
-            }
-        }
-
-        const desk2X = rx + ws2x;
-        if (deskImg) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(deskImg, 0, 0, 48, 32, desk2X, ry + deskY, deskW, 20);
-        } else {
-            drawFallbackDesk(desk2X, ry + deskY, room.accent, zoom);
-        }
-
-        const pcFrame = (Math.floor(time / 400) + 1) % 3;
-        if (pcImgs[pcFrame]) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32,
-                desk2X + deskW/2 - 12, ry + deskY - 36, 16*zoom, 20);
-        }
-
-        drawStatusDot(desk2X - 5, ry + deskY + 4, room.status);
-    }
-
-    // Server room: racks
-    if (room.isServer) {
-        const rackColors = ['#1a3a60','#162e50','#1e4070'];
-        for (let rack = 0; rack < 3; rack++) {
-            const rx2 = rx + 20 + rack * 35;
-            ctx.fillStyle = rackColors[rack];
-            ctx.fillRect(rx2, ry + 38, 24, rh - 48);
-            ctx.strokeStyle = 'rgba(88,166,255,0.3)';
-            ctx.lineWidth = 1;
-            ctx.strokeRect(rx2, ry + 38, 24, rh - 48);
-            // Units
-            for (let u = 0; u < 6; u++) {
-                ctx.fillStyle = 'rgba(88,166,255,0.1)';
-                ctx.fillRect(rx2 + 2, ry + 42 + u*12, 20, 8);
-                const on = (time/500 + rack*2 + u) % 4 < 1;
-                ctx.fillStyle = on ? '#3fb950' : '#1a3030';
-                ctx.fillRect(rx2 + 18, ry + 45 + u*12, 2, 2);
-            }
-        }
-        // Robot
-        ctx.font = '22px serif';
-        ctx.textAlign = 'center';
-        const bobY = Math.sin(time * 0.003) * 3;
-        ctx.fillText('🤖', rx + rw - 28, ry + rh - 20 + bobY);
-    }
-
-    // Lobby: sofa, plant
-    if (room.isLobby) {
-        ctx.font = '18px serif'; ctx.textAlign = 'center';
-        ctx.fillText('🛋️', rx + rw/2, ry + rh * 0.6);
-        ctx.fillText('🌱', rx + 18, ry + rh - 24);
-        ctx.fillText('🌱', rx + rw - 18, ry + rh - 24);
-    }
-
-    // Plant decoration (all rooms)
-    if (plantImg && !room.isServer) {
-        ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(plantImg, rx + 4, ry + rh - 22, 14, 20);
-    } else if (!room.isServer && !room.isLobby) {
-        ctx.font = '10px serif';
-        ctx.textAlign = 'left';
-        ctx.fillText('🌿', rx + 4, ry + rh - 10);
-    }
-
-    // Room border
-    ctx.strokeStyle = 'rgba(20,40,60,0.8)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(rx + 0.5, ry + 0.5, rw - 1, rh - 1);
+        drawRoom(rx,ry,thisW,rh,room);
+        roomHits.push({x:rx,y:ry,w:thisW,h:rh,room});
+    });
 }
 
-/* ════════════════════════════════════════════════════════════
-   MAIN RENDER LOOP
-   ════════════════════════════════════════════════════════════ */
-function renderFrame(time) {
-    ctx.clearRect(0, 0, CW, CH);
+/* ── Individual room ── */
+function drawRoom(rx,ry,rw,rh,room) {
+    const [ar,ag,ab]=room.accent;
 
-    const floor = FLOORS[currentFloor];
-    const rooms = floor.rooms;
+    /* BG tint */
+    const bg=ctx.createLinearGradient(rx,ry,rx,ry+rh);
+    bg.addColorStop(0,`rgba(${Math.floor(ar*0.05)},${Math.floor(ag*0.05)},${Math.floor(ab*0.07)},0.55)`);
+    bg.addColorStop(1,'rgba(2,6,14,0)');
+    ctx.fillStyle=bg; ctx.fillRect(rx,ry,rw,rh);
 
-    if (currentFloor === 0) {
-        // CMD: 1 room, full canvas
-        const room = rooms[0];
-        const zoom = 2;
-        renderCMD(room, 0, 0, CW, CH, zoom, time);
+    /* Floor tiles */
+    ctx.strokeStyle='rgba(0,40,80,0.25)'; ctx.lineWidth=0.5;
+    for(let tx=rx;tx<rx+rw;tx+=14){
+        ctx.beginPath(); ctx.moveTo(tx,ry+rh-8); ctx.lineTo(tx,ry+rh); ctx.stroke();
+    }
+
+    if(room.isServer){
+        drawServerRacks(rx+4,ry+2,rw-8,rh-4);
     } else {
-        // 3 rooms side by side
-        const rw = Math.floor(CW / 3);
-        const rh = CH;
-        const zoom = 2;
-        rooms.forEach((room, i) => {
-            renderRoom(room, i * rw, 0, i === 2 ? CW - 2*rw : rw, rh, zoom, time);
-            // Divider
-            if (i < 2) {
-                ctx.fillStyle = 'rgba(10,20,35,0.9)';
-                ctx.fillRect(i*rw + rw - 2, 0, 4, CH);
-            }
+        /* Wall screen */
+        const sw=Math.min(rw*0.42,58);
+        drawScreen(rx+(rw-sw)/2,ry+2,sw,rh*0.44,room.accent,room.dept||'','lines');
+
+        /* Character + desk */
+        const z=Math.min(1.5,rh/54);
+        const xOff = rw > 90 ? [rw*0.3, rw*0.65] : [rw*0.5];
+        xOff.forEach(xp=>{
+            const img=room.charIdx>=0?spr.chars[room.charIdx]:null;
+            drawAgent(rx+xp,ry,rh,img,room.accent,z);
         });
+
+        /* Plant */
+        if(rw>78) drawPlant(rx+rw-12,ry+rh-16,10);
     }
 
-    requestAnimationFrame(renderFrame);
+    /* Lobby window */
+    if(room.isLobby) drawWindow(rx+rw-18,ry+3,13,rh-8);
+
+    /* Name tag */
+    ctx.font='5.5px "JetBrains Mono",monospace'; ctx.textAlign='left';
+    ctx.fillStyle=`rgba(${ar},${ag},${ab},0.8)`;
+    ctx.fillText(room.eng||room.name, rx+4, ry+rh-3);
 }
 
-/* CMD floor: large single room with 3 workstations */
-function renderCMD(room, rx, ry, rw, rh, zoom, time) {
-    const [ar,ag,ab] = room.accent;
+/* ── Character + desk at position ── */
+function drawAgent(cx,fy,fh,charImg,accent,zoom) {
+    const z=Math.max(1,zoom);
+    const cw=16*z, ch=32*z;
+    const dw=48*z, dh=15*z;
+    const [ar,ag,ab]=accent;
+    const deskY=fy+fh-dh-5, deskX=cx-dw/2;
+    const charY=deskY-ch*0.52, charX=cx-cw/2;
+    const frame=(Math.floor(af/15)%2===0)?3:4;
 
-    // Floor
-    drawFloorTiles(rx, ry, rw, rh, room.floor, `rgba(${ar},${ag},${ab},0.04)`);
+    /* Character sprite */
+    if(charImg&&charImg.complete&&charImg.naturalWidth>0){
+        ctx.save(); ctx.imageSmoothingEnabled=false;
+        ctx.drawImage(charImg,frame*16,0,16,32,charX,charY,cw,ch);
+        ctx.restore();
+    } else { drawFallChar(charX,charY,z,ar,ag,ab); }
 
-    // Wall
-    ctx.fillStyle = room.wall;
-    ctx.fillRect(rx, ry, rw, 40);
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},0.7)`;
-    ctx.fillRect(rx, ry + 38, rw, 3);
+    /* Desk */
+    if(spr.desk&&spr.desk.complete&&spr.desk.naturalWidth>0){
+        ctx.save(); ctx.imageSmoothingEnabled=false;
+        ctx.drawImage(spr.desk,0,16,48,16,deskX,deskY,dw,dh);
+        ctx.restore();
+    } else { drawFallDesk(deskX,deskY,dw,dh,ar,ag,ab); }
 
-    // Large wall display (center)
-    const dispW = Math.min(400, rw * 0.5);
-    const dispX = rx + (rw - dispW) / 2;
-    ctx.fillStyle = '#010307';
-    ctx.fillRect(dispX, ry + 3, dispW, 32);
-    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.6)`;
-    ctx.lineWidth = 1.5;
-    ctx.strokeRect(dispX, ry + 3, dispW, 32);
-    // Grid on display
-    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.1)`;
-    ctx.lineWidth = 0.5;
-    for (let gx = dispX + 20; gx < dispX + dispW; gx += 20) {
-        ctx.beginPath(); ctx.moveTo(gx, ry+3); ctx.lineTo(gx, ry+35); ctx.stroke();
-    }
-    for (let gy = ry + 10; gy < ry + 35; gy += 8) {
-        ctx.beginPath(); ctx.moveTo(dispX, gy); ctx.lineTo(dispX+dispW, gy); ctx.stroke();
-    }
-    // Orb
-    const orbR = 14;
-    const orbX = dispX + dispW / 2, orbY = ry + 19;
-    const pulse = 0.4 + 0.35 * Math.sin(time * 0.004);
-    const grd = ctx.createRadialGradient(orbX, orbY, 0, orbX, orbY, orbR);
-    grd.addColorStop(0, `rgba(${ar},${ag},${ab},${pulse})`);
-    grd.addColorStop(1, `rgba(${ar},${ag},${ab},0)`);
-    ctx.fillStyle = grd;
-    ctx.beginPath(); ctx.arc(orbX, orbY, orbR, 0, Math.PI*2); ctx.fill();
-    ctx.strokeStyle = `rgba(${ar},${ag},${ab},0.8)`;
-    ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.arc(orbX, orbY, orbR, 0, Math.PI*2); ctx.stroke();
-    ctx.fillStyle = `rgba(${ar},${ag},${ab},1)`;
-    ctx.font = '700 7px "JetBrains Mono", monospace';
-    ctx.textAlign = 'center';
-    ctx.fillText('BOSS', orbX, orbY + 3);
-
-    // Windows
-    drawWindow(rx + 10, ry + 5, 40, 28);
-    drawWindow(rx + rw - 52, ry + 5, 40, 28);
-
-    // 3 workstations
-    const wsPositions = [0.22, 0.50, 0.78];
-    const charIndices = [room.charIdx, 1, 2];
-    const deskY = Math.round(rh * 0.52);
-    const deskW = 56 * zoom, deskH = 20;
-    const charW = FRAME_W * zoom, charH = FRAME_H * zoom;
-
-    wsPositions.forEach((pct, wi) => {
-        const wsX = Math.round(rw * pct - deskW/2);
-        const charX = rx + wsX + Math.round((deskW - charW) / 2);
-        const charY = ry + deskY - charH + 8;
-        const typFrame = (Math.floor(time * 0.003 + wi * 0.7) % 2 === 0) ? 3 : 4;
-        const cIdx = charIndices[wi];
-        const cImg = cIdx >= 0 ? charImgs[cIdx] : null;
-
-        // Character
-        if (cImg) {
-            drawChar(cImg, charX, charY, typFrame, 0, zoom);
-        } else {
-            drawFallbackChar(charX, charY + charH - 6*zoom, room.accent, zoom);
-        }
-
-        // Desk
-        if (deskImg) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(deskImg, 0, 0, 48, 32, rx + wsX, ry + deskY, deskW, deskH);
-        } else {
-            drawFallbackDesk(rx + wsX, ry + deskY, room.accent, zoom);
-        }
-
-        // PC
-        const pcFrame = (Math.floor(time / 400) + wi) % 3;
-        const pcX = rx + wsX + deskW/2 - 12;
-        if (pcImgs[pcFrame]) {
-            ctx.imageSmoothingEnabled = false;
-            ctx.drawImage(pcImgs[pcFrame], 0, 0, 16, 32, pcX, ry + deskY - 38, 16*zoom, 22);
-        }
-
-        drawStatusDot(rx + wsX - 5, ry + deskY + 4, 'working');
-    });
-
-    // Room label
-    drawLabel(rx, ry, rw, 'COMMAND CENTER · CEO', room.accent);
+    /* Monitor glow on desk */
+    const mg=0.35+0.2*Math.sin((af/60)*Math.PI*2);
+    ctx.fillStyle=`rgba(${ar},${ag},${ab},${mg*0.12})`;
+    ctx.fillRect(cx-7*z,deskY-8*z,14*z,7*z);
+    ctx.strokeStyle=`rgba(${ar},${ag},${ab},${mg*0.7})`;
+    ctx.lineWidth=0.5; ctx.strokeRect(cx-7*z,deskY-8*z,14*z,7*z);
 }
 
-/* ════════════════════════════════════════════════════════════
-   CANVAS CLICK → ROOM SELECT
-   ════════════════════════════════════════════════════════════ */
-canvas.addEventListener('click', e => {
-    const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const floor = FLOORS[currentFloor];
-    let roomIdx = 0;
-    if (currentFloor !== 0) {
-        roomIdx = Math.min(2, Math.floor(mx / (CW / 3)));
-    }
-    const room = floor.rooms[roomIdx];
-    if (!room) return;
-    document.getElementById('rp-name').textContent = room.name;
-    document.getElementById('rp-role').textContent  = room.role;
-});
+function drawFallChar(x,y,z,r,g,b) {
+    const p=Math.max(2,Math.floor(z*2));
+    ctx.fillStyle='rgba(255,210,165,0.9)'; ctx.fillRect(x+p,y+p,p*3,p*3);
+    ctx.fillStyle=`rgba(${r},${g},${b},0.85)`; ctx.fillRect(x+p,y,p*3,p+1);
+    ctx.fillStyle='#111'; ctx.fillRect(x+p+1,y+p+1,p*0.8,p*0.7); ctx.fillRect(x+p*2+1,y+p+1,p*0.8,p*0.7);
+    ctx.fillStyle=`rgba(${r},${g},${b},0.7)`; ctx.fillRect(x,y+p*4,p*5,p*4);
+    ctx.fillRect(x-p,y+p*4,p,p*3); ctx.fillRect(x+p*5,y+p*4,p,p*3);
+}
 
-/* Canvas hover tooltip */
-const tip = document.getElementById('pxTip');
-canvas.addEventListener('mousemove', e => {
-    const rect = canvas.getBoundingClientRect();
-    const mx = e.clientX - rect.left;
-    const floor = FLOORS[currentFloor];
-    let room;
-    if (currentFloor === 0) {
-        room = floor.rooms[0];
+function drawFallDesk(dx,dy,dw,dh,r,g,b) {
+    ctx.fillStyle='rgba(18,36,64,0.9)'; ctx.fillRect(dx,dy,dw,dh);
+    ctx.strokeStyle=`rgba(${r},${g},${b},0.5)`; ctx.lineWidth=1; ctx.strokeRect(dx,dy,dw,dh);
+    ctx.fillStyle=`rgba(${r},${g},${b},0.1)`; ctx.fillRect(dx,dy,dw,3);
+}
+
+/* ── Wall-mounted screen ── */
+function drawScreen(sx,sy,sw,sh,accent,label,type) {
+    if(sw<8||sh<8) return;
+    const [ar,ag,ab]=accent;
+    ctx.fillStyle='rgba(2,8,22,0.88)'; ctx.fillRect(sx,sy,sw,sh);
+    ctx.save();
+    ctx.shadowColor=`rgba(${ar},${ag},${ab},0.55)`; ctx.shadowBlur=7;
+    ctx.strokeStyle=`rgba(${ar},${ag},${ab},0.85)`; ctx.lineWidth=1;
+    ctx.strokeRect(sx,sy,sw,sh);
+    ctx.restore();
+    if(sh>12){
+        ctx.font='5px "JetBrains Mono",monospace'; ctx.textAlign='center';
+        ctx.fillStyle=`rgba(${ar},${ag},${ab},0.9)`; ctx.fillText(label.substring(0,10),sx+sw/2,sy+7);
+    }
+    const cy2=sy+10, ch2=sh-12; if(ch2<4) return;
+    if(type==='pie'){
+        const cx2=sx+sw/2, pr=Math.min(sw,ch2)/2-4;
+        if(pr>3){
+            const segs=[[0.35,[ar,ag,ab]],[0.25,[0,200,255]],[0.22,[0,255,128]],[0.18,[255,200,0]]];
+            let ang=-Math.PI/2;
+            segs.forEach(([pv,col])=>{
+                ctx.beginPath(); ctx.moveTo(cx2,cy2+ch2/2);
+                ctx.arc(cx2,cy2+ch2/2,pr,ang,ang+Math.PI*2*pv); ctx.closePath();
+                ctx.fillStyle=`rgba(${col[0]},${col[1]},${col[2]},0.75)`; ctx.fill();
+                ang+=Math.PI*2*pv;
+            });
+        }
+    } else if(type==='bars'){
+        const n=6, bw2=(sw-6)/(n*1.6);
+        [0.6,0.8,0.5,0.9,0.7,0.6+0.25*Math.sin((af/60)*Math.PI*2)].forEach((h2,i)=>{
+            const bx2=sx+3+i*(bw2+bw2*0.6), bH=ch2*h2;
+            ctx.fillStyle=`rgba(${ar},${ag},${ab},0.65)`; ctx.fillRect(bx2,cy2+ch2-bH,bw2,bH);
+        });
     } else {
-        const idx = Math.min(2, Math.floor(mx / (CW / 3)));
-        room = floor.rooms[idx];
+        const n=4;
+        for(let i=0;i<n;i++){
+            const ly=cy2+2+i*(ch2/n);
+            const lw=(sw-6)*(0.35+0.55*((i+1)/n));
+            ctx.fillStyle=`rgba(${ar},${ag},${ab},${0.22+i*0.1})`; ctx.fillRect(sx+3,ly,lw,1.5);
+        }
+        if(af%30<15){
+            const li=Math.floor(af/50)%n;
+            const lw=(sw-6)*(0.35+0.55*((li+1)/n));
+            ctx.fillStyle=`rgba(${ar},${ag},${ab},0.9)`; ctx.fillRect(sx+3+lw,cy2+2+li*(ch2/n),3,1.5);
+        }
     }
-    if (room) {
-        tip.style.display = 'block';
-        tip.style.left = (e.clientX - rect.left + 10) + 'px';
-        tip.style.top  = (e.clientY - rect.top  - 30) + 'px';
-        tip.textContent = room.name;
+}
+
+/* ── Globe display (CMD center) ── */
+function drawGlobe(dx,dy,dw,dh) {
+    if(dw<20||dh<20) return;
+    ctx.fillStyle='rgba(2,10,28,0.9)'; ctx.fillRect(dx,dy,dw,dh);
+    ctx.save();
+    ctx.shadowColor='rgba(0,160,255,0.6)'; ctx.shadowBlur=14;
+    ctx.strokeStyle='rgba(0,160,255,0.75)'; ctx.lineWidth=1; ctx.strokeRect(dx,dy,dw,dh);
+    ctx.restore();
+
+    const cx2=dx+dw/2, cy2=dy+dh/2, r=Math.min(dw,dh)*0.33;
+    const t=(af/200)*Math.PI*2;
+
+    /* Globe fill */
+    ctx.beginPath(); ctx.arc(cx2,cy2,r,0,Math.PI*2);
+    const grd=ctx.createRadialGradient(cx2-r*0.3,cy2-r*0.3,0,cx2,cy2,r);
+    grd.addColorStop(0,'rgba(20,80,200,0.85)');
+    grd.addColorStop(0.6,'rgba(6,32,100,0.75)');
+    grd.addColorStop(1,'rgba(0,10,40,0.5)');
+    ctx.fillStyle=grd; ctx.fill();
+
+    /* Grid lines */
+    ctx.save(); ctx.clip();
+    ctx.strokeStyle='rgba(0,180,255,0.18)'; ctx.lineWidth=0.5;
+    for(let lat=-2;lat<=2;lat++){
+        ctx.beginPath();
+        ctx.ellipse(cx2,cy2+lat*(r*0.26),r,Math.max(2,Math.abs(Math.cos(lat*0.65))*r*0.26),0,0,Math.PI*2);
+        ctx.stroke();
     }
+    for(let lon=0;lon<4;lon++){
+        const a=lon*Math.PI/2+t;
+        ctx.beginPath();
+        ctx.ellipse(cx2,cy2,Math.abs(Math.cos(a))*r,r,0,0,Math.PI*2);
+        ctx.stroke();
+    }
+    ctx.restore();
+
+    /* Glow ring */
+    ctx.save();
+    ctx.shadowColor='rgba(0,150,255,0.7)'; ctx.shadowBlur=10;
+    ctx.strokeStyle='rgba(0,180,255,0.5)'; ctx.lineWidth=1;
+    ctx.beginPath(); ctx.arc(cx2,cy2,r+2,0,Math.PI*2); ctx.stroke();
+    ctx.restore();
+
+    /* Pulsing orbit ring */
+    const orbR=r+8+4*Math.sin(t);
+    ctx.beginPath(); ctx.arc(cx2,cy2,orbR,0,Math.PI*2);
+    ctx.strokeStyle=`rgba(0,220,255,${0.28+0.2*Math.sin(t)})`; ctx.lineWidth=1.5; ctx.stroke();
+
+    /* Moving dot on orbit */
+    const dotA=t*2;
+    ctx.beginPath(); ctx.arc(cx2+Math.cos(dotA)*orbR,cy2+Math.sin(dotA)*orbR,2.5,0,Math.PI*2);
+    ctx.fillStyle='rgba(0,255,200,0.9)'; ctx.fill();
+
+    ctx.font='bold 5.5px "JetBrains Mono",monospace'; ctx.textAlign='center';
+    ctx.fillStyle='rgba(0,200,255,0.8)';
+    ctx.fillText('AI CORE ONLINE',cx2,dy+dh-5);
+}
+
+/* ── City skyline ── */
+function drawSkyline(fx,fy,fw,fh) {
+    const gY=fy+fh-fh*0.12;
+    const bx2s=[.05,.10,.17,.25,.31,.40,.50,.57,.64,.72,.81,.89,.96];
+    const bhs  =[.28,.50,.38,.60,.33,.52,.43,.62,.38,.48,.34,.54,.42];
+    const bws  =[.04,.03,.05,.04,.03,.06,.04,.03,.05,.04,.06,.03,.04];
+    bx2s.forEach((bxr,i)=>{
+        const bx3=fx+bxr*fw, bw2=bws[i]*fw, bh2=bhs[i]*(fh*0.38);
+        ctx.fillStyle='rgba(4,14,32,0.72)'; ctx.fillRect(bx3,gY-bh2,bw2,bh2);
+        /* windows */
+        ctx.fillStyle='rgba(255,235,100,0.4)';
+        for(let wr=0;wr<3;wr++) for(let wc=0;wc<2;wc++){
+            if((wr*7+wc*3+i+Math.floor(af/60))%4!==0)
+                ctx.fillRect(bx3+2+wc*4,gY-bh2+4+wr*7,2,2);
+        }
+    });
+}
+
+/* ── Window panel ── */
+function drawWindow(wx,wy,ww,wh) {
+    const ng=ctx.createLinearGradient(wx,wy,wx,wy+wh);
+    ng.addColorStop(0,'rgba(10,20,65,0.9)'); ng.addColorStop(1,'rgba(4,10,30,0.9)');
+    ctx.fillStyle=ng; ctx.fillRect(wx,wy,ww,wh);
+    ctx.strokeStyle='rgba(80,140,255,0.35)'; ctx.lineWidth=0.5;
+    ctx.strokeRect(wx,wy,ww,wh);
+    ctx.beginPath(); ctx.moveTo(wx,wy+wh/2); ctx.lineTo(wx+ww,wy+wh/2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(wx+ww/2,wy); ctx.lineTo(wx+ww/2,wy+wh); ctx.stroke();
+    [[2,3],[6,8],[9,2],[3,11]].forEach(([sx,sy])=>{
+        ctx.fillStyle='rgba(210,230,255,0.7)'; ctx.fillRect(wx+sx%(ww-2),wy+sy%(wh-2),1,1);
+    });
+}
+
+/* ── Server racks ── */
+function drawServerRacks(rx,ry,rw,rh) {
+    const rackW=Math.min(14,rw*0.18);
+    const n=Math.min(5,Math.floor(rw/(rackW+5)));
+    for(let i=0;i<n;i++){
+        const rxr=rx+i*(rackW+5);
+        ctx.fillStyle='rgba(18,38,72,0.85)'; ctx.fillRect(rxr,ry+3,rackW,rh-6);
+        ctx.strokeStyle='rgba(0,100,200,0.5)'; ctx.lineWidth=0.5; ctx.strokeRect(rxr,ry+3,rackW,rh-6);
+        const units=Math.floor((rh-10)/5);
+        for(let u=0;u<units;u++){
+            const act=(u*7+i*3+Math.floor(af/25))%5!==0;
+            ctx.fillStyle=act?'rgba(0,255,100,0.75)':'rgba(0,60,30,0.4)';
+            ctx.fillRect(rxr+2,ry+5+u*5,3,2);
+            ctx.fillStyle='rgba(0,100,255,0.5)'; ctx.fillRect(rxr+rackW-4,ry+5+u*5,2,2);
+        }
+    }
+    ctx.font='5px "JetBrains Mono",monospace'; ctx.textAlign='center';
+    ctx.fillStyle='rgba(88,166,255,0.75)'; ctx.fillText('SERVER',rx+rw/2,ry+rh-1);
+}
+
+/* ── Plant ── */
+function drawPlant(px,py,sz) {
+    if(spr.plant&&spr.plant.complete&&spr.plant.naturalWidth>0){
+        ctx.save(); ctx.imageSmoothingEnabled=false;
+        ctx.drawImage(spr.plant,px-sz/2,py-sz,sz,sz); ctx.restore();
+    } else {
+        ctx.fillStyle='rgba(0,180,60,0.65)'; ctx.beginPath();
+        ctx.arc(px,py-sz/2,sz/2,0,Math.PI*2); ctx.fill();
+        ctx.fillStyle='rgba(70,35,0,0.7)'; ctx.fillRect(px-1,py-sz/2,2,sz/2);
+    }
+}
+
+/* ════════════════════════════════════
+   INTERACTION
+════════════════════════════════════ */
+canvas.addEventListener('mousemove',e=>{
+    const rc=canvas.getBoundingClientRect();
+    const mx=e.clientX-rc.left, my=e.clientY-rc.top;
+    const h=roomHits.find(r=>mx>=r.x&&mx<=r.x+r.w&&my>=r.y&&my<=r.y+r.h);
+    if(h){
+        tip.style.display='block'; tip.style.left=(mx+12)+'px'; tip.style.top=(my+8)+'px';
+        tip.textContent=`${h.room.eng||h.room.name} · ${h.room.dept||h.room.role||''}`;
+        canvas.style.cursor='pointer';
+    } else { tip.style.display='none'; canvas.style.cursor='default'; }
 });
-canvas.addEventListener('mouseleave', () => { tip.style.display = 'none'; });
+canvas.addEventListener('mouseleave',()=>{ tip.style.display='none'; });
+canvas.addEventListener('click',e=>{
+    const rc=canvas.getBoundingClientRect();
+    const mx=e.clientX-rc.left, my=e.clientY-rc.top;
+    const h=roomHits.find(r=>mx>=r.x&&mx<=r.x+r.w&&my>=r.y&&my<=r.y+r.h);
+    if(h) showSel(h.room);
+});
 
-/* ════════════════════════════════════════════════════════════
-   CLOCK
-   ════════════════════════════════════════════════════════════ */
-function tick2() {
-    const now = new Date();
-    const t = now.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
-    const d = now.toLocaleDateString('th-TH',{weekday:'short',year:'2-digit',month:'short',day:'numeric'});
-    const lc = document.getElementById('lp-clock'); if(lc) lc.textContent = t;
-    const ld = document.getElementById('lp-date');  if(ld) ld.textContent = d;
-    const bc = document.getElementById('base-clock'); if(bc) bc.textContent = t;
+function showSel(room) {
+    const el=document.getElementById('rSelected'), cnt=document.getElementById('rSelectedContent');
+    el.style.display='block';
+    if(room.isServer){
+        cnt.innerHTML=`<div class="r-agent-card"><div class="r-agent-nm">⚙️ Server Room</div><div class="r-agent-rl">Infrastructure · Data Center</div></div>`;
+    } else if(room.isLobby){
+        cnt.innerHTML=`<div class="r-agent-card"><div class="r-agent-nm">🏛️ Lobby / Reception</div><div class="r-agent-rl">Ground Floor · Entry Point</div></div>`;
+    } else {
+        cnt.innerHTML=`<div class="r-agent-card">
+            <div class="r-agent-nm">${room.eng||room.name}</div>
+            <div class="r-agent-rl">${room.role||''} · ${room.dept||''}</div>
+            <a class="r-agent-open" href="/Dashboard">OPEN WORKSPACE ›</a>
+        </div>`;
+    }
 }
-tick2(); setInterval(tick2, 1000);
 
-/* ════════════════════════════════════════════════════════════
-   MODAL HELPERS
-   ════════════════════════════════════════════════════════════ */
-function openModal(id) {
-    const r = AGENTS[id];
-    if (!r) return;
-    document.getElementById('modal-name').textContent = r.name;
-    document.getElementById('modal-role').textContent  = r.role;
-    document.getElementById('modal-link').href = r.link || '/Dashboard';
-    document.getElementById('modal').classList.add('open');
-}
-function closeModal() { document.getElementById('modal').classList.remove('open'); }
+/* ════════════════════════════════════
+   DONUT CHART
+════════════════════════════════════ */
+(function(){
+    const c=document.getElementById('donutCanvas'); if(!c) return;
+    const cx=c.getContext('2d'), R=28, CX=36, CY=36;
+    cx.beginPath(); cx.arc(CX,CY,R,0,Math.PI*2);
+    cx.strokeStyle='rgba(255,255,255,0.07)'; cx.lineWidth=8; cx.stroke();
+    cx.beginPath(); cx.arc(CX,CY,R,-Math.PI/2,-Math.PI/2+Math.PI*2*0.75);
+    cx.strokeStyle='#00c8ff'; cx.lineWidth=8; cx.lineCap='round';
+    cx.shadowColor='rgba(0,200,255,0.5)'; cx.shadowBlur=8; cx.stroke(); cx.shadowBlur=0;
+    cx.font='bold 10px "JetBrains Mono",monospace'; cx.textAlign='center';
+    cx.fillStyle='#00c8ff'; cx.fillText('75%',CX,CY+3.5);
+})();
 
-/* Start render loop */
-requestAnimationFrame(renderFrame);
+/* ════════════════════════════════════
+   DATA FLOW CHART
+════════════════════════════════════ */
+(function(){
+    const c=document.getElementById('flowCanvas'); if(!c) return;
+    const pw=c.parentElement.clientWidth-28;
+    c.width=pw>20?pw:180;
+    const cx=c.getContext('2d'), W=c.width, H=c.height;
+    const pts=[0.40,0.58,0.36,0.72,0.50,0.66,0.44,0.78,0.55,0.62,0.82,0.67,0.52];
+    cx.fillStyle='rgba(0,10,30,0.75)'; cx.fillRect(0,0,W,H);
+    cx.strokeStyle='rgba(0,60,120,0.28)'; cx.lineWidth=0.5;
+    for(let y=H/3;y<H;y+=H/3){ cx.beginPath(); cx.moveTo(0,y); cx.lineTo(W,y); cx.stroke(); }
+    /* Fill */
+    cx.beginPath(); cx.moveTo(0,H);
+    pts.forEach((v,i)=>{ const x=(i/(pts.length-1))*W, y=H-v*(H-4)-2; cx.lineTo(x,y); });
+    cx.lineTo(W,H); cx.closePath();
+    cx.fillStyle='rgba(0,150,255,0.1)'; cx.fill();
+    /* Line */
+    cx.beginPath();
+    pts.forEach((v,i)=>{ const x=(i/(pts.length-1))*W, y=H-v*(H-4)-2; i===0?cx.moveTo(x,y):cx.lineTo(x,y); });
+    cx.strokeStyle='#00c8ff'; cx.lineWidth=1.5;
+    cx.shadowColor='rgba(0,200,255,0.5)'; cx.shadowBlur=5; cx.stroke(); cx.shadowBlur=0;
+    /* Dots */
+    pts.forEach((v,i)=>{
+        const x=(i/(pts.length-1))*W, y=H-v*(H-4)-2;
+        cx.beginPath(); cx.arc(x,y,1.8,0,Math.PI*2); cx.fillStyle='#00c8ff'; cx.fill();
+    });
+})();
 </script>
 }
